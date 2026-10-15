@@ -31,11 +31,11 @@
     "generated:check": "npm run schemas:check && node --import tsx scripts/build-docs.ts --check && node --import tsx scripts/build-agent-docs.ts --check"
   },
   "dependencies": {
-    "@x402/core": "2.25.0",
-    "@x402/evm": "2.25.0",
-    "cheerio": "1.1.2",
-    "ipaddr.js": "2.2.0",
-    "viem": "2.56.3"
+    "@x402/core": "2.28.0",
+    "@x402/evm": "2.28.0",
+    "cheerio": "1.2.0",
+    "ipaddr.js": "2.5.0",
+    "viem": "2.57.4"
   },
   "devDependencies": {
     "@types/node": "22.15.30",
