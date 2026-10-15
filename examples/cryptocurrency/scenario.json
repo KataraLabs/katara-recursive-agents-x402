@@ -1,0 +1,115 @@
+{
+  "id": "cryptocurrency",
+  "title": "AVAX activity briefing",
+  "command": "Produce an evidence-backed AVAX briefing for the past seven days: market activity, network observations, and ecosystem releases. Separate observations, estimates, and missing data.",
+  "description": "Three research leads each delegate to two researchers. Research covers Avalanche activity; inference payments use native USDC on Avalanche C-Chain.",
+  "sources": [
+    {
+      "id": "candles",
+      "title": "Coinbase AVAX-USD daily candles",
+      "url": "https://api.exchange.coinbase.com/products/AVAX-USD/candles?granularity=86400&start={weekAgo}&end={now}",
+      "format": "candles"
+    },
+    {
+      "id": "ticker",
+      "title": "Coinbase AVAX-USD 24-hour statistics",
+      "url": "https://api.exchange.coinbase.com/products/AVAX-USD/stats"
+    },
+    {
+      "id": "tvl",
+      "title": "Avalanche DeFi TVL history",
+      "url": "https://api.llama.fi/v2/historicalChainTvl/Avalanche",
+      "format": "tvl"
+    },
+    {
+      "id": "block",
+      "title": "Avalanche mainnet latest-block observation",
+      "url": "https://api.avax.network/ext/bc/C/rpc",
+      "format": "rpc-block"
+    },
+    {
+      "id": "avalanchego",
+      "title": "AvalancheGo official releases",
+      "url": "https://api.github.com/repos/ava-labs/avalanchego/releases?per_page=20",
+      "format": "releases"
+    },
+    {
+      "id": "subnetevm",
+      "title": "Subnet-EVM official releases",
+      "url": "https://api.github.com/repos/ava-labs/subnet-evm/releases?per_page=20",
+      "format": "releases"
+    }
+  ],
+  "specialists": [
+    {
+      "id": "market",
+      "title": "Market activity lead",
+      "goal": "Explain the supplied price and volume observations without extrapolating venue data to the whole market.",
+      "researchers": [
+        {
+          "id": "price",
+          "title": "Price researcher",
+          "question": "Summarize the daily AVAX-USD candles over the supplied window. State the venue and incomplete-day limitations.",
+          "sourceIds": [
+            "candles"
+          ]
+        },
+        {
+          "id": "volume",
+          "title": "Volume researcher",
+          "question": "Compare available daily and 24-hour volume; distinguish AVAX volume from USD values.",
+          "sourceIds": [
+            "ticker",
+            "candles"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "network",
+      "title": "Network observation lead",
+      "goal": "Explain what the observed metrics establish and what they cannot establish.",
+      "researchers": [
+        {
+          "id": "capital",
+          "title": "Capital researcher",
+          "question": "Describe the seven-day TVL observations; TVL is not transaction throughput.",
+          "sourceIds": [
+            "tvl"
+          ]
+        },
+        {
+          "id": "chain",
+          "title": "Chain researcher",
+          "question": "Describe the observed mainnet block, timestamp, transaction count, and gas use. A single block does not prove weekly activity.",
+          "sourceIds": [
+            "block"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ecosystem",
+      "title": "Ecosystem release lead",
+      "goal": "Summarize official releases inside the requested window.",
+      "researchers": [
+        {
+          "id": "node-releases",
+          "title": "Node release researcher",
+          "question": "Summarize the dated AvalancheGo release notes. Report an empty window honestly.",
+          "sourceIds": [
+            "avalanchego"
+          ]
+        },
+        {
+          "id": "evm-releases",
+          "title": "EVM release researcher",
+          "question": "Summarize the dated Subnet-EVM release notes and source links.",
+          "sourceIds": [
+            "subnetevm"
+          ]
+        }
+      ]
+    }
+  ]
+}

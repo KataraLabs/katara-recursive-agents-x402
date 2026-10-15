@@ -1,0 +1,148 @@
+{
+  "id": "comparison",
+  "title": "Developer-product comparison",
+  "command": "Compare Neon, Turso, and PlanetScale for a small SQL-backed application. Include features, pricing, limits, source dates, and explicit unknowns.",
+  "description": "One specialist per product delegates to feature, pricing, and limit researchers.",
+  "sources": [
+    {
+      "id": "neon-docs",
+      "title": "Neon documentation",
+      "url": "https://neon.com/docs/introduction"
+    },
+    {
+      "id": "neon-pricing",
+      "title": "Neon pricing",
+      "url": "https://neon.com/pricing"
+    },
+    {
+      "id": "neon-limits",
+      "title": "Neon limits",
+      "url": "https://neon.com/docs/introduction/pro-plan"
+    },
+    {
+      "id": "turso-docs",
+      "title": "Turso documentation",
+      "url": "https://docs.turso.tech/introduction"
+    },
+    {
+      "id": "turso-pricing",
+      "title": "Turso pricing",
+      "url": "https://turso.tech/pricing"
+    },
+    {
+      "id": "turso-limits",
+      "title": "Turso limits",
+      "url": "https://docs.turso.tech/cloud/limitations"
+    },
+    {
+      "id": "planetscale-docs",
+      "title": "PlanetScale documentation",
+      "url": "https://planetscale.com/docs"
+    },
+    {
+      "id": "planetscale-pricing",
+      "title": "PlanetScale pricing",
+      "url": "https://planetscale.com/pricing"
+    },
+    {
+      "id": "planetscale-limits",
+      "title": "PlanetScale limits",
+      "url": "https://planetscale.com/docs/vitess/scaling/planetscale-system-limits"
+    }
+  ],
+  "specialists": [
+    {
+      "id": "neon",
+      "title": "Neon researcher",
+      "goal": "Assess this database for a small application needing SQL, migrations, backups, and predictable cost.",
+      "researchers": [
+        {
+          "id": "neon-features",
+          "title": "Feature researcher",
+          "question": "Identify supported features, SQL engine, and important tradeoffs. Cite only supplied sources.",
+          "sourceIds": [
+            "neon-docs"
+          ]
+        },
+        {
+          "id": "neon-cost",
+          "title": "Pricing researcher",
+          "question": "Extract current price units, included resources, and paid thresholds. Label unknowns.",
+          "sourceIds": [
+            "neon-pricing"
+          ]
+        },
+        {
+          "id": "neon-constraints",
+          "title": "Limits researcher",
+          "question": "Identify resource limits and operating constraints. Do not invent missing numbers.",
+          "sourceIds": [
+            "neon-limits"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "turso",
+      "title": "Turso researcher",
+      "goal": "Assess this database for a small application needing SQL, migrations, backups, and predictable cost.",
+      "researchers": [
+        {
+          "id": "turso-features",
+          "title": "Feature researcher",
+          "question": "Identify supported features, SQL engine, and important tradeoffs. Cite only supplied sources.",
+          "sourceIds": [
+            "turso-docs"
+          ]
+        },
+        {
+          "id": "turso-cost",
+          "title": "Pricing researcher",
+          "question": "Extract current price units, included resources, and paid thresholds. Label unknowns.",
+          "sourceIds": [
+            "turso-pricing"
+          ]
+        },
+        {
+          "id": "turso-constraints",
+          "title": "Limits researcher",
+          "question": "Identify resource limits and operating constraints. Do not invent missing numbers.",
+          "sourceIds": [
+            "turso-limits"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "planetscale",
+      "title": "PlanetScale researcher",
+      "goal": "Assess this database for a small application needing SQL, migrations, backups, and predictable cost.",
+      "researchers": [
+        {
+          "id": "planetscale-features",
+          "title": "Feature researcher",
+          "question": "Identify supported features, SQL engine, and important tradeoffs. Cite only supplied sources.",
+          "sourceIds": [
+            "planetscale-docs"
+          ]
+        },
+        {
+          "id": "planetscale-cost",
+          "title": "Pricing researcher",
+          "question": "Extract current price units, included resources, and paid thresholds. Label unknowns.",
+          "sourceIds": [
+            "planetscale-pricing"
+          ]
+        },
+        {
+          "id": "planetscale-constraints",
+          "title": "Limits researcher",
+          "question": "Identify resource limits and operating constraints. Do not invent missing numbers.",
+          "sourceIds": [
+            "planetscale-limits"
+          ]
+        }
+      ]
+    }
+  ]
+}

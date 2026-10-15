@@ -1,0 +1,118 @@
+{
+  "id": "documentation",
+  "title": "Documentation website audit",
+  "command": "Audit these Katara documentation pages for gaps, contradictions, and broken links. Distinguish observed defects from suggestions.",
+  "description": "Three section specialists each delegate to two page researchers.",
+  "sources": [
+    {
+      "id": "start-api",
+      "title": "API quickstart",
+      "url": "https://docs.katara.com/start/api/",
+      "links": true
+    },
+    {
+      "id": "start-chat",
+      "title": "Chat quickstart",
+      "url": "https://docs.katara.com/start/chat/",
+      "links": true
+    },
+    {
+      "id": "cortex",
+      "title": "Katara Cortex model guide",
+      "url": "https://docs.katara.com/concepts/cortex/",
+      "links": true
+    },
+    {
+      "id": "networks",
+      "title": "Network reference",
+      "url": "https://docs.katara.com/about/networks/",
+      "links": true
+    },
+    {
+      "id": "errors",
+      "title": "Error reference",
+      "url": "https://docs.katara.com/developers/errors/",
+      "links": true
+    },
+    {
+      "id": "usage",
+      "title": "Usage reference",
+      "url": "https://docs.katara.com/developers/usage/",
+      "links": true
+    }
+  ],
+  "specialists": [
+    {
+      "id": "onboarding",
+      "title": "Onboarding reviewer",
+      "goal": "Check whether first-time users can follow the setup.",
+      "researchers": [
+        {
+          "id": "api-page",
+          "title": "API page reviewer",
+          "question": "Check setup prerequisites, command completeness, and observed links.",
+          "sourceIds": [
+            "start-api"
+          ]
+        },
+        {
+          "id": "chat-page",
+          "title": "Chat page reviewer",
+          "question": "Check sign-in, network context, and observed links.",
+          "sourceIds": [
+            "start-chat"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "concepts",
+      "title": "Concept reviewer",
+      "goal": "Compare model behavior and network descriptions.",
+      "researchers": [
+        {
+          "id": "cortex-page",
+          "title": "Katara Cortex reviewer",
+          "question": "Look for unsupported claims and ambiguities using the supplied pages.",
+          "sourceIds": [
+            "cortex",
+            "errors"
+          ]
+        },
+        {
+          "id": "network-page",
+          "title": "Network reviewer",
+          "question": "Check chain, token, and environment wording for consistency.",
+          "sourceIds": [
+            "networks",
+            "start-api"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reference",
+      "title": "Reference reviewer",
+      "goal": "Check errors and billing explanations.",
+      "researchers": [
+        {
+          "id": "errors-page",
+          "title": "Error reviewer",
+          "question": "Check failure and retry guidance and observed link outcomes.",
+          "sourceIds": [
+            "errors"
+          ]
+        },
+        {
+          "id": "usage-page",
+          "title": "Usage reviewer",
+          "question": "Check cost fields and attribution descriptions against the model guide.",
+          "sourceIds": [
+            "usage",
+            "cortex"
+          ]
+        }
+      ]
+    }
+  ]
+}

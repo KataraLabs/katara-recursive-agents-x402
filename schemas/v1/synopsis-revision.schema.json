@@ -1,0 +1,660 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:katara:recursive-agents:synopsis-revision:v1",
+  "title": "SynopsisRevision",
+  "$ref": "#/definitions/SynopsisRevision",
+  "definitions": {
+    "SynopsisRevision": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "number",
+          "const": 1
+        },
+        "id": {
+          "type": "string"
+        },
+        "sourceRunId": {
+          "type": "string"
+        },
+        "sourceReportHash": {
+          "type": "string"
+        },
+        "implementationFingerprint": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "SHA-256 by implementation path; source research is reused rather than refreshed."
+        },
+        "example": {
+          "type": "string",
+          "enum": [
+            "comparison",
+            "cryptocurrency",
+            "documentation",
+            "repository",
+            "trip"
+          ]
+        },
+        "startedAt": {
+          "type": "string"
+        },
+        "finishedAt": {
+          "type": "string"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "fixture",
+            "mainnet"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "failed",
+            "running",
+            "succeeded"
+          ]
+        },
+        "output": {
+          "$ref": "#/definitions/AgentOutput"
+        },
+        "error": {
+          "type": "string"
+        },
+        "calls": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CallEvidence"
+          }
+        },
+        "payments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Authorization"
+          }
+        },
+        "evidenceReview": {
+          "type": "object",
+          "properties": {
+            "findings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Finding"
+              }
+            },
+            "checkedAt": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "findings",
+            "checkedAt"
+          ],
+          "additionalProperties": false
+        },
+        "masterDraft": {
+          "$ref": "#/definitions/AgentOutput"
+        },
+        "draftText": {
+          "type": "string",
+          "description": "Raw model draft kept in ignored local state and removed by publicSynopsis."
+        },
+        "postprocessing": {
+          "type": "object",
+          "properties": {
+            "originalStatus": {
+              "type": "string"
+            },
+            "originalError": {
+              "type": "string"
+            },
+            "parserHash": {
+              "type": "string"
+            },
+            "processedAt": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "originalStatus",
+            "parserHash",
+            "processedAt"
+          ],
+          "additionalProperties": false,
+          "description": "Historical parser provenance; exporters never promote an unreviewed draft."
+        },
+        "reviewNotes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "validationIssues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "attempt": {
+                "type": "number"
+              },
+              "detail": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "attempt",
+              "detail"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "version",
+        "id",
+        "sourceRunId",
+        "sourceReportHash",
+        "implementationFingerprint",
+        "example",
+        "startedAt",
+        "mode",
+        "status",
+        "calls",
+        "payments",
+        "validationIssues"
+      ],
+      "additionalProperties": false,
+      "description": "Separate paid or fixture revision tied to the exact bytes of an exported source report."
+    },
+    "AgentOutput": {
+      "type": "object",
+      "properties": {
+        "summary": {
+          "type": "string"
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Finding"
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "synopsis": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SynopsisSection"
+          }
+        },
+        "completion": {
+          "type": "string",
+          "enum": [
+            "complete",
+            "partial"
+          ],
+          "description": "Coverage of the user's request, independent of execution or payment status."
+        },
+        "review": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "partial",
+                "supported"
+              ]
+            },
+            "sections": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "assessment": {
+                    "$ref": "#/definitions/EvidenceAssessment"
+                  }
+                },
+                "required": [
+                  "id",
+                  "assessment"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "status",
+            "sections"
+          ],
+          "additionalProperties": false,
+          "description": "Assessments refer to the retained original draft; rejected sections may have been replaced."
+        }
+      },
+      "required": [
+        "summary",
+        "findings",
+        "limitations"
+      ],
+      "additionalProperties": false,
+      "description": "Structured research output. Parent summaries are never treated as evidence without cited findings."
+    },
+    "Finding": {
+      "type": "object",
+      "properties": {
+        "claim": {
+          "type": "string"
+        },
+        "citations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Citation"
+          }
+        },
+        "assessment": {
+          "$ref": "#/definitions/EvidenceAssessment"
+        }
+      },
+      "required": [
+        "claim",
+        "citations"
+      ],
+      "additionalProperties": false,
+      "description": "A paraphrased observation with citations; assessment is absent until source review runs."
+    },
+    "Citation": {
+      "type": "object",
+      "properties": {
+        "sourceId": {
+          "type": "string"
+        },
+        "startLine": {
+          "type": "integer",
+          "description": "First cited line, starting at one.",
+          "minimum": 1
+        },
+        "endLine": {
+          "type": "integer",
+          "description": "Last cited line; runtime validation also requires endLine >= startLine.",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "sourceId",
+        "startLine",
+        "endLine"
+      ],
+      "additionalProperties": false,
+      "description": "Inclusive source-view line range. Retrieval metadata cannot support a factual claim."
+    },
+    "EvidenceAssessment": {
+      "type": "object",
+      "properties": {
+        "verdict": {
+          "type": "string",
+          "enum": [
+            "supported",
+            "uncertain",
+            "unsupported"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "claimHash": {
+          "type": "string",
+          "description": "Hash of the exact assessed claim or original draft section."
+        },
+        "checkedAt": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string",
+          "enum": [
+            "fixture",
+            "model",
+            "policy"
+          ],
+          "description": "Distinguishes deterministic checks, paid Katara Cortex review and synthetic fixture review."
+        },
+        "callId": {
+          "type": "string"
+        },
+        "support": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sourceId": {
+                "type": "string"
+              },
+              "startLine": {
+                "type": "number"
+              },
+              "endLine": {
+                "type": "number"
+              },
+              "sourceHash": {
+                "type": "string"
+              },
+              "spanHash": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "sourceId",
+              "startLine",
+              "endLine",
+              "sourceHash",
+              "spanHash"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Hashes identify cited source spans without exporting their full text."
+        }
+      },
+      "required": [
+        "verdict",
+        "reason",
+        "claimHash",
+        "checkedAt",
+        "method",
+        "support"
+      ],
+      "additionalProperties": false,
+      "description": "Review provenance. A model verdict is a source-support check, not proof of factual correctness."
+    },
+    "SynopsisSection": {
+      "type": "object",
+      "properties": {
+        "heading": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "citations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Citation"
+          }
+        },
+        "unverifiedEvidence": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "Retained for older parser provenance; new synthesis rejects unknown evidence references."
+        },
+        "replaced": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "uncertain",
+                "unsupported"
+              ]
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "reason"
+          ],
+          "additionalProperties": false,
+          "description": "Set when the master review rejected the drafted section and the client replaced its body; the draft is kept in masterDraft."
+        }
+      },
+      "required": [
+        "heading",
+        "body",
+        "citations"
+      ],
+      "additionalProperties": false,
+      "description": "One scenario-specific part of the master answer."
+    },
+    "CallEvidence": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "agentId": {
+          "type": "string"
+        },
+        "purpose": {
+          "type": "string",
+          "enum": [
+            "plan",
+            "repair",
+            "research",
+            "review",
+            "synthesize"
+          ]
+        },
+        "requestedModel": {
+          "type": "string"
+        },
+        "servedModel": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "requestId": {
+          "type": "string"
+        },
+        "startedAt": {
+          "type": "string"
+        },
+        "finishedAt": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "failed",
+            "running",
+            "succeeded"
+          ]
+        },
+        "usage": {
+          "type": "object",
+          "properties": {
+            "prompt_tokens": {
+              "type": "number"
+            },
+            "completion_tokens": {
+              "type": "number"
+            },
+            "total_tokens": {
+              "type": "number"
+            }
+          },
+          "additionalProperties": false
+        },
+        "costUsdc": {
+          "type": "string",
+          "description": "Charge the gateway reported in katara.cost_usdc, in USDC (test USDC in test mode). Chain evidence is authoritative for live payments."
+        },
+        "gateway": {
+          "$ref": "#/definitions/GatewayRefusal",
+          "description": "The gateway's own error code, parameter and message when it refused this call."
+        },
+        "quoteWaits": {
+          "type": "number",
+          "description": "Times the call waited for the gateway's quote rate limit before its first quote; waits are not failures."
+        },
+        "simulated": {
+          "type": "boolean",
+          "const": true,
+          "description": "Paid Test call answered by the network's simulated reply because no Fuji provider was free; the agent used its fixture output."
+        },
+        "authorizationIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "One completion may reserve several maxima after fresh payment challenges."
+        },
+        "error": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "agentId",
+        "purpose",
+        "requestedModel",
+        "startedAt",
+        "status",
+        "authorizationIds"
+      ],
+      "additionalProperties": false,
+      "description": "Completion metadata without prompt bodies, raw responses or payment signatures."
+    },
+    "GatewayRefusal": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "number"
+        },
+        "code": {
+          "type": "string"
+        },
+        "param": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "description": "A gateway's error answer as it sent it: untrusted text, bounded and stripped of control characters."
+    },
+    "Authorization": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "runId": {
+          "type": "string"
+        },
+        "callId": {
+          "type": "string"
+        },
+        "agentId": {
+          "type": "string"
+        },
+        "requestHash": {
+          "type": "string",
+          "description": "Hash of the exact completion request bytes that were retried with payment."
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string",
+          "description": "Verified settlement recipient, never a model-selected address."
+        },
+        "asset": {
+          "type": "string"
+        },
+        "network": {
+          "type": "string"
+        },
+        "scheme": {
+          "type": "string",
+          "enum": [
+            "exact",
+            "upto"
+          ],
+          "description": "exact: EIP-3009 transfer of the maximum with a refund; upto: Permit2 transfer of the charge only. Absent means exact."
+        },
+        "sponsored": {
+          "type": "boolean",
+          "const": true,
+          "description": "Set when an upto payment carried a sponsored EIP-2612 permit; only one may be unsettled per wallet."
+        },
+        "nonce": {
+          "type": "string",
+          "description": "EIP-3009 nonce, or the Permit2 nonce as 32-byte hex."
+        },
+        "value": {
+          "type": "string",
+          "description": "Authorized maximum in six-decimal USDC base units.",
+          "pattern": "^[1-9][0-9]*$"
+        },
+        "validAfter": {
+          "type": "string",
+          "description": "Unix seconds; validity is checked against finalized chain time before releasing a reservation."
+        },
+        "validBefore": {
+          "type": "string"
+        },
+        "startBlock": {
+          "type": "string",
+          "description": "First block searched for authorization and settlement evidence."
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "confirmed",
+            "expired",
+            "pending"
+          ]
+        },
+        "actual": {
+          "type": "string",
+          "description": "Confirmed net buyer debit, including fees within that charge; not the authorization maximum.",
+          "pattern": "^[0-9]+$"
+        },
+        "transaction": {
+          "type": "string"
+        },
+        "block": {
+          "type": "string"
+        },
+        "ticketHash": {
+          "type": "string",
+          "description": "The quote's ticket for upto, which reconciliation looks for in Settled events; the settled ticket once confirmed."
+        }
+      },
+      "required": [
+        "id",
+        "runId",
+        "callId",
+        "agentId",
+        "requestHash",
+        "from",
+        "to",
+        "asset",
+        "network",
+        "nonce",
+        "value",
+        "validAfter",
+        "validBefore",
+        "startBlock",
+        "state"
+      ],
+      "additionalProperties": false,
+      "description": "Durable EIP-3009 reservation. Amounts, times and block numbers remain decimal strings in JSON."
+    }
+  }
+}

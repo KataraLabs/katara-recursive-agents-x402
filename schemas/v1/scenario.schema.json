@@ -1,0 +1,162 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:katara:recursive-agents:scenario:v1",
+  "title": "Example",
+  "$ref": "#/definitions/Example",
+  "definitions": {
+    "Example": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "enum": [
+            "comparison",
+            "cryptocurrency",
+            "documentation",
+            "repository",
+            "trip"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string",
+          "description": "Default user request; --command can replace it without changing source permissions."
+        },
+        "description": {
+          "type": "string"
+        },
+        "repository": {
+          "type": "string",
+          "description": "Public owner/name resolved to a commit for repository-source collection."
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SourceSpec"
+          },
+          "description": "The source collector refuses endpoints outside these hosts.",
+          "maxItems": 30
+        },
+        "specialists": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Specialist"
+          },
+          "description": "At most sixteen agents may execute, including the master and all descendants.",
+          "minItems": 1,
+          "maxItems": 4
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "command",
+        "description",
+        "sources",
+        "specialists"
+      ],
+      "additionalProperties": false,
+      "description": "Scenario input. Runtime validation also checks unique IDs, source references and the total tree size."
+    },
+    "SourceSpec": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Stable citation ID, unique within its scenario."
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "description": "HTTPS URL; repository templates may use {repo} and {commit}."
+        },
+        "links": {
+          "type": "boolean",
+          "description": "Sample at most two same-host links after collecting the page."
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "candles",
+            "releases",
+            "rpc-block",
+            "tvl"
+          ],
+          "description": "Select a bounded adapter for structured research data instead of HTML extraction."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "url"
+      ],
+      "additionalProperties": false,
+      "description": "One permitted public endpoint; URL templates are expanded only by the source collector."
+    },
+    "Specialist": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "goal": {
+          "type": "string"
+        },
+        "researchers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Researcher"
+          },
+          "description": "A specialist cannot create extra researchers through model output.",
+          "minItems": 1,
+          "maxItems": 3
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "goal",
+        "researchers"
+      ],
+      "additionalProperties": false,
+      "description": "Parent agent that plans and synthesizes the work of its fixed researchers."
+    },
+    "Researcher": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string"
+        },
+        "sourceIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "References SourceSpec IDs from the same scenario.",
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "question",
+        "sourceIds"
+      ],
+      "additionalProperties": false,
+      "description": "Leaf agent with an explicit source scope; a model-generated task cannot expand it."
+    }
+  }
+}

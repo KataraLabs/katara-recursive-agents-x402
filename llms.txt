@@ -1,0 +1,25 @@
+# Recursive agents with Katara Cortex and x402
+
+> Bounded research agents using Katara Cortex and native USDC through x402 on Avalanche C-Chain. Begin with offline verification.
+
+## Start
+
+- [README](README.md): setup, five examples and evidence.
+- [Agent instructions](AGENTS.md): standalone operating rules; CLAUDE.md is an identical mirror.
+- [Contributor guide](docs/contributing.html): module map, extension recipes and JSON CLI.
+- [API reference](docs/api.html): generated JSDoc contracts.
+- [Full text](llms-full.txt): generated guidance and API text.
+
+## Data and behavior
+
+- [Scenario schema](schemas/v1/scenario.schema.json): source scopes and task trees.
+- [Run report schema](schemas/v1/run-report.schema.json): results, reviews and payments.
+- [Synopsis revision schema](schemas/v1/synopsis-revision.schema.json): input and revision provenance.
+- [CLI response schema](schemas/v1/cli-response.schema.json): structured output and errors.
+- [Payments and evidence](docs/payments.html): signing, caps and finalized settlement.
+- [Sample answers](evidence/results.html): explicitly labeled offline fixtures.
+
+## Maintenance
+
+- [Package commands](package.json): build, test, audit and regeneration.
+- [MIT license](LICENSE): project reuse terms.

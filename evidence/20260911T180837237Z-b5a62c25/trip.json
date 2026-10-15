@@ -1,0 +1,1653 @@
+{
+  "version": 1,
+  "id": "20260911T180837237Z-b5a62c25",
+  "example": "trip",
+  "title": "One-day Boston itinerary",
+  "command": "Plan a one-day visit to Boston under $100 per person, excluding lodging and travel to Boston. Use public transport and official sources; label unverified hours or prices. Do not book anything.",
+  "mode": "fixture",
+  "startedAt": "2026-09-11T18:08:40.950Z",
+  "status": "succeeded",
+  "softwareCommit": "eefb0ae031f6b0352fe44e18d84c522e997391d2+uncommitted",
+  "gateway": "none (offline fixture)",
+  "network": "none (offline fixture)",
+  "model": "fixture (no inference)",
+  "budgetUnits": "0",
+  "budgetScope": "all five examples in this invocation",
+  "plannedAgents": 13,
+  "agents": [
+    {
+      "id": "trip/master",
+      "title": "Master demo agent",
+      "assignment": "Plan a one-day visit to Boston under $100 per person, excluding lodging and travel to Boston. Use public transport and official sources; label unverified hours or prices. Do not book anything.",
+      "depth": 0,
+      "startedAt": "2026-09-11T18:08:40.972Z",
+      "status": "succeeded",
+      "children": [
+        "trip/attractions",
+        "trip/food",
+        "trip/transport",
+        "trip/schedule"
+      ],
+      "output": {
+        "summary": "Offline fixture synopsis. This text checks the final-answer layout and orchestration; it is not a researched recommendation.",
+        "synopsis": [
+          {
+            "heading": "Proposed day plan",
+            "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+            "citations": [
+              {
+                "sourceId": "trail",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ]
+          },
+          {
+            "heading": "Budget allocation",
+            "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+            "citations": [
+              {
+                "sourceId": "trail",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ]
+          },
+          {
+            "heading": "Transport and practical details",
+            "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+            "citations": [
+              {
+                "sourceId": "trail",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ]
+          },
+          {
+            "heading": "Before you go",
+            "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+            "citations": [
+              {
+                "sourceId": "trail",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ]
+          }
+        ],
+        "completion": "partial",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Freedom Trail visit planning.",
+            "citations": [
+              {
+                "sourceId": "trail",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+              "checkedAt": "2026-09-11T18:08:42.253Z",
+              "claimHash": "144d2727442f52b8f7f804ceb735ad0082545c2cb2b69f3694e1c6a81696ed1a",
+              "support": [
+                {
+                  "sourceId": "trail",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "20253e9a55ca6608accf5f171da1daf2bd075341962519ed3513df4fb072fddc",
+                  "spanHash": "283ac9d3626e9247dcbb56824931aaeadbca904f21727d7e15ea93d9bc7fba88"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "Synthetic fixture data; no live research or model inference occurred."
+        ],
+        "review": {
+          "status": "supported",
+          "sections": [
+            {
+              "id": "summary",
+              "assessment": {
+                "verdict": "supported",
+                "reason": "Explicitly labeled synthetic fixture content.",
+                "method": "fixture",
+                "callId": "6ec43d37-036e-4425-9df5-58540e5b78bc",
+                "checkedAt": "2026-09-11T18:08:42.308Z",
+                "claimHash": "7a08acc679c8f2d2df6c60a2625e0c36a8071c82a7a5110a2fbf3a2547707085",
+                "support": [
+                  {
+                    "sourceId": "trail",
+                    "startLine": 1,
+                    "endLine": 1,
+                    "sourceHash": "20253e9a55ca6608accf5f171da1daf2bd075341962519ed3513df4fb072fddc",
+                    "spanHash": "283ac9d3626e9247dcbb56824931aaeadbca904f21727d7e15ea93d9bc7fba88"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "section-1",
+              "assessment": {
+                "verdict": "supported",
+                "reason": "Explicitly labeled synthetic fixture content.",
+                "method": "fixture",
+                "callId": "6ec43d37-036e-4425-9df5-58540e5b78bc",
+                "checkedAt": "2026-09-11T18:08:42.309Z",
+                "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+                "support": [
+                  {
+                    "sourceId": "trail",
+                    "startLine": 1,
+                    "endLine": 1,
+                    "sourceHash": "20253e9a55ca6608accf5f171da1daf2bd075341962519ed3513df4fb072fddc",
+                    "spanHash": "283ac9d3626e9247dcbb56824931aaeadbca904f21727d7e15ea93d9bc7fba88"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "section-2",
+              "assessment": {
+                "verdict": "supported",
+                "reason": "Explicitly labeled synthetic fixture content.",
+                "method": "fixture",
+                "callId": "6ec43d37-036e-4425-9df5-58540e5b78bc",
+                "checkedAt": "2026-09-11T18:08:42.309Z",
+                "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+                "support": [
+                  {
+                    "sourceId": "trail",
+                    "startLine": 1,
+                    "endLine": 1,
+                    "sourceHash": "20253e9a55ca6608accf5f171da1daf2bd075341962519ed3513df4fb072fddc",
+                    "spanHash": "283ac9d3626e9247dcbb56824931aaeadbca904f21727d7e15ea93d9bc7fba88"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "section-3",
+              "assessment": {
+                "verdict": "supported",
+                "reason": "Explicitly labeled synthetic fixture content.",
+                "method": "fixture",
+                "callId": "6ec43d37-036e-4425-9df5-58540e5b78bc",
+                "checkedAt": "2026-09-11T18:08:42.309Z",
+                "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+                "support": [
+                  {
+                    "sourceId": "trail",
+                    "startLine": 1,
+                    "endLine": 1,
+                    "sourceHash": "20253e9a55ca6608accf5f171da1daf2bd075341962519ed3513df4fb072fddc",
+                    "spanHash": "283ac9d3626e9247dcbb56824931aaeadbca904f21727d7e15ea93d9bc7fba88"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "section-4",
+              "assessment": {
+                "verdict": "supported",
+                "reason": "Explicitly labeled synthetic fixture content.",
+                "method": "fixture",
+                "callId": "6ec43d37-036e-4425-9df5-58540e5b78bc",
+                "checkedAt": "2026-09-11T18:08:42.309Z",
+                "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+                "support": [
+                  {
+                    "sourceId": "trail",
+                    "startLine": 1,
+                    "endLine": 1,
+                    "sourceHash": "20253e9a55ca6608accf5f171da1daf2bd075341962519ed3513df4fb072fddc",
+                    "spanHash": "283ac9d3626e9247dcbb56824931aaeadbca904f21727d7e15ea93d9bc7fba88"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "finishedAt": "2026-09-11T18:08:42.310Z"
+    },
+    {
+      "id": "trip/attractions",
+      "parentId": "trip/master",
+      "title": "Attractions coordinator",
+      "assignment": "Choose a compact set of sights grounded in official information.",
+      "depth": 1,
+      "startedAt": "2026-09-11T18:08:41.040Z",
+      "status": "succeeded",
+      "children": [
+        "trip/history",
+        "trip/public-spaces"
+      ],
+      "output": {
+        "summary": "Offline fixture synthesis. This proves orchestration only; it is not a researched answer or a paid run.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Freedom Trail visit planning.",
+            "citations": [
+              {
+                "sourceId": "trail",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+              "checkedAt": "2026-09-11T18:08:42.253Z",
+              "claimHash": "144d2727442f52b8f7f804ceb735ad0082545c2cb2b69f3694e1c6a81696ed1a",
+              "support": [
+                {
+                  "sourceId": "trail",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "20253e9a55ca6608accf5f171da1daf2bd075341962519ed3513df4fb072fddc",
+                  "spanHash": "283ac9d3626e9247dcbb56824931aaeadbca904f21727d7e15ea93d9bc7fba88"
+                }
+              ]
+            }
+          },
+          {
+            "claim": "Synthetic fixture evidence for Boston Common.",
+            "citations": [
+              {
+                "sourceId": "common",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+              "checkedAt": "2026-09-11T18:08:42.253Z",
+              "claimHash": "7dfb5bc15a39217efe01bf772aa687e1c86330d861c9b5e354e51a76a7c1cfff",
+              "support": [
+                {
+                  "sourceId": "common",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "9a5063a9a73b67de9fd718139be3f7b7f3ad6a530144e0eb47bf44c0b718f244",
+                  "spanHash": "64c46f4399c54aeeabbb8322f96b9666a482f8d15a8e64db996daf8290c7cb57"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "Synthetic fixture data; no live sources or model calls."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:42.122Z"
+    },
+    {
+      "id": "trip/food",
+      "parentId": "trip/master",
+      "title": "Food coordinator",
+      "assignment": "Propose meal stops without inventing menu prices.",
+      "depth": 1,
+      "startedAt": "2026-09-11T18:08:41.083Z",
+      "status": "succeeded",
+      "children": [
+        "trip/market-food",
+        "trip/area-food"
+      ],
+      "output": {
+        "summary": "Offline fixture synthesis. This proves orchestration only; it is not a researched answer or a paid run.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Boston Public Market.",
+            "citations": [
+              {
+                "sourceId": "market",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+              "checkedAt": "2026-09-11T18:08:42.253Z",
+              "claimHash": "fb36bf11df2413317fb795b68ac5e37bb1c80965cd6fe80fa8f6df3052f32349",
+              "support": [
+                {
+                  "sourceId": "market",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "17b598901a9e0438af54664ca0d089f53d009bb2be4407b5fccff72434d06c1b",
+                  "spanHash": "c60b56a89c5b0505e5d5efc2cd479c6783cdad4c8d9aa153ef26c65746ff0df4"
+                }
+              ]
+            }
+          },
+          {
+            "claim": "Synthetic fixture evidence for Boston visitor resources.",
+            "citations": [
+              {
+                "sourceId": "visitor",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+              "checkedAt": "2026-09-11T18:08:42.253Z",
+              "claimHash": "a9ffc69c8a0250be9049f43a5245c230241813a59dc9172d7dcf730d630b79d1",
+              "support": [
+                {
+                  "sourceId": "visitor",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "f2d6517cb421a639c1953267b878ef68dec6460414b421102d23b1306ab0533b",
+                  "spanHash": "da16e4ebbe67e3ddeb40157cd896a74c958b550a9ddad5eaca64623debaeb60c"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "Synthetic fixture data; no live sources or model calls."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:42.099Z"
+    },
+    {
+      "id": "trip/transport",
+      "parentId": "trip/master",
+      "title": "Transport coordinator",
+      "assignment": "Suggest transport consistent with the official fare and route information.",
+      "depth": 1,
+      "startedAt": "2026-09-11T18:08:41.126Z",
+      "status": "succeeded",
+      "children": [
+        "trip/fare-check",
+        "trip/route-check"
+      ],
+      "output": {
+        "summary": "Offline fixture synthesis. This proves orchestration only; it is not a researched answer or a paid run.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for MBTA fare overview.",
+            "citations": [
+              {
+                "sourceId": "fares",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+              "checkedAt": "2026-09-11T18:08:42.253Z",
+              "claimHash": "998cc48c836ceac5c1bb7e2b4e0eafce5508e99e035586daac7d6190508f2593",
+              "support": [
+                {
+                  "sourceId": "fares",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "152182b94fa89ea136104f35efa98682991b42869a275dc68089f0b568de52d2",
+                  "spanHash": "fa8c2e87fbf5a7e5afe4a27550da1a3d6b38a66a61d980dfc3856376550d41fe"
+                }
+              ]
+            }
+          },
+          {
+            "claim": "Synthetic fixture evidence for MBTA subway guide.",
+            "citations": [
+              {
+                "sourceId": "subway",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+              "checkedAt": "2026-09-11T18:08:42.253Z",
+              "claimHash": "9012f904c3143f73ea2c175b929c2b8852b96d653e1718ba16aae4967700e5f6",
+              "support": [
+                {
+                  "sourceId": "subway",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "014fb646a7e9b9785371eb4fba3d6883c304d040045a9004010b29bb0f6ac5c0",
+                  "spanHash": "1add4a464083fb77417e9664e2b95821b2b670190982e4121c8fd859e9800aec"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "Synthetic fixture data; no live sources or model calls."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:42.171Z"
+    },
+    {
+      "id": "trip/schedule",
+      "parentId": "trip/master",
+      "title": "Schedule coordinator",
+      "assignment": "Check opening hours and construct a feasible order with explicit assumptions.",
+      "depth": 1,
+      "startedAt": "2026-09-11T18:08:41.151Z",
+      "status": "succeeded",
+      "children": [
+        "trip/opening-check",
+        "trip/budget-check"
+      ],
+      "output": {
+        "summary": "Offline fixture synthesis. This proves orchestration only; it is not a researched answer or a paid run.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Boston Public Library locations and hours.",
+            "citations": [
+              {
+                "sourceId": "library",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+              "checkedAt": "2026-09-11T18:08:42.253Z",
+              "claimHash": "346cde0bfbed76170fac2ef72bcfd3f658aecce72e86ec7a9aa162a92c1e89bf",
+              "support": [
+                {
+                  "sourceId": "library",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "2ce5b6683e9ad06debe9f7b570114a3bd70c2c394bd69d3e567b2e7a5754615e",
+                  "spanHash": "371bf0e4d0fa3ec14a569034cf1bb0c06a8c561ace6827a6184748199e9e29de"
+                }
+              ]
+            }
+          },
+          {
+            "claim": "Synthetic fixture evidence for MBTA fare overview.",
+            "citations": [
+              {
+                "sourceId": "fares",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+              "checkedAt": "2026-09-11T18:08:42.253Z",
+              "claimHash": "998cc48c836ceac5c1bb7e2b4e0eafce5508e99e035586daac7d6190508f2593",
+              "support": [
+                {
+                  "sourceId": "fares",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "152182b94fa89ea136104f35efa98682991b42869a275dc68089f0b568de52d2",
+                  "spanHash": "fa8c2e87fbf5a7e5afe4a27550da1a3d6b38a66a61d980dfc3856376550d41fe"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "Synthetic fixture data; no live sources or model calls."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:42.198Z"
+    },
+    {
+      "id": "trip/history",
+      "parentId": "trip/attractions",
+      "title": "Historic sights researcher",
+      "assignment": "Extract access and visit details for the Freedom Trail and Faneuil Hall.",
+      "depth": 2,
+      "startedAt": "2026-09-11T18:08:41.242Z",
+      "status": "succeeded",
+      "children": [],
+      "output": {
+        "summary": "Offline fixture research result; no factual research performed.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Freedom Trail visit planning.",
+            "citations": [
+              {
+                "sourceId": "trail",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+              "checkedAt": "2026-09-11T18:08:42.253Z",
+              "claimHash": "144d2727442f52b8f7f804ceb735ad0082545c2cb2b69f3694e1c6a81696ed1a",
+              "support": [
+                {
+                  "sourceId": "trail",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "20253e9a55ca6608accf5f171da1daf2bd075341962519ed3513df4fb072fddc",
+                  "spanHash": "283ac9d3626e9247dcbb56824931aaeadbca904f21727d7e15ea93d9bc7fba88"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "This output uses synthetic test data."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:41.775Z"
+    },
+    {
+      "id": "trip/public-spaces",
+      "parentId": "trip/attractions",
+      "title": "Public spaces researcher",
+      "assignment": "Describe accessible public spaces and library visit constraints.",
+      "depth": 2,
+      "startedAt": "2026-09-11T18:08:41.266Z",
+      "status": "succeeded",
+      "children": [],
+      "output": {
+        "summary": "Offline fixture research result; no factual research performed.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Boston Common.",
+            "citations": [
+              {
+                "sourceId": "common",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+              "checkedAt": "2026-09-11T18:08:42.253Z",
+              "claimHash": "7dfb5bc15a39217efe01bf772aa687e1c86330d861c9b5e354e51a76a7c1cfff",
+              "support": [
+                {
+                  "sourceId": "common",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "9a5063a9a73b67de9fd718139be3f7b7f3ad6a530144e0eb47bf44c0b718f244",
+                  "spanHash": "64c46f4399c54aeeabbb8322f96b9666a482f8d15a8e64db996daf8290c7cb57"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "This output uses synthetic test data."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:41.797Z"
+    },
+    {
+      "id": "trip/market-food",
+      "parentId": "trip/food",
+      "title": "Market researcher",
+      "assignment": "Identify documented food options and hours; flag missing prices.",
+      "depth": 2,
+      "startedAt": "2026-09-11T18:08:41.312Z",
+      "status": "succeeded",
+      "children": [],
+      "output": {
+        "summary": "Offline fixture research result; no factual research performed.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Boston Public Market.",
+            "citations": [
+              {
+                "sourceId": "market",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+              "checkedAt": "2026-09-11T18:08:42.253Z",
+              "claimHash": "fb36bf11df2413317fb795b68ac5e37bb1c80965cd6fe80fa8f6df3052f32349",
+              "support": [
+                {
+                  "sourceId": "market",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "17b598901a9e0438af54664ca0d089f53d009bb2be4407b5fccff72434d06c1b",
+                  "spanHash": "c60b56a89c5b0505e5d5efc2cd479c6783cdad4c8d9aa153ef26c65746ff0df4"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "This output uses synthetic test data."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:41.865Z"
+    },
+    {
+      "id": "trip/area-food",
+      "parentId": "trip/food",
+      "title": "Area researcher",
+      "assignment": "Assess meal-stop location options from these sources; keep unsupported costs explicitly unknown.",
+      "depth": 2,
+      "startedAt": "2026-09-11T18:08:41.336Z",
+      "status": "succeeded",
+      "children": [],
+      "output": {
+        "summary": "Offline fixture research result; no factual research performed.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Boston visitor resources.",
+            "citations": [
+              {
+                "sourceId": "visitor",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+              "checkedAt": "2026-09-11T18:08:42.253Z",
+              "claimHash": "a9ffc69c8a0250be9049f43a5245c230241813a59dc9172d7dcf730d630b79d1",
+              "support": [
+                {
+                  "sourceId": "visitor",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "f2d6517cb421a639c1953267b878ef68dec6460414b421102d23b1306ab0533b",
+                  "spanHash": "da16e4ebbe67e3ddeb40157cd896a74c958b550a9ddad5eaca64623debaeb60c"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "This output uses synthetic test data."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:41.887Z"
+    },
+    {
+      "id": "trip/fare-check",
+      "parentId": "trip/transport",
+      "title": "Fare researcher",
+      "assignment": "Extract applicable fare amounts, units, and restrictions.",
+      "depth": 2,
+      "startedAt": "2026-09-11T18:08:41.381Z",
+      "status": "succeeded",
+      "children": [],
+      "output": {
+        "summary": "Offline fixture research result; no factual research performed.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for MBTA fare overview.",
+            "citations": [
+              {
+                "sourceId": "fares",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+              "checkedAt": "2026-09-11T18:08:42.253Z",
+              "claimHash": "998cc48c836ceac5c1bb7e2b4e0eafce5508e99e035586daac7d6190508f2593",
+              "support": [
+                {
+                  "sourceId": "fares",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "152182b94fa89ea136104f35efa98682991b42869a275dc68089f0b568de52d2",
+                  "spanHash": "fa8c2e87fbf5a7e5afe4a27550da1a3d6b38a66a61d980dfc3856376550d41fe"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "This output uses synthetic test data."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:41.949Z"
+    },
+    {
+      "id": "trip/route-check",
+      "parentId": "trip/transport",
+      "title": "Route researcher",
+      "assignment": "Explain useful subway guidance and transfers; do not invent travel times.",
+      "depth": 2,
+      "startedAt": "2026-09-11T18:08:41.402Z",
+      "status": "succeeded",
+      "children": [],
+      "output": {
+        "summary": "Offline fixture research result; no factual research performed.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for MBTA subway guide.",
+            "citations": [
+              {
+                "sourceId": "subway",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+              "checkedAt": "2026-09-11T18:08:42.253Z",
+              "claimHash": "9012f904c3143f73ea2c175b929c2b8852b96d653e1718ba16aae4967700e5f6",
+              "support": [
+                {
+                  "sourceId": "subway",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "014fb646a7e9b9785371eb4fba3d6883c304d040045a9004010b29bb0f6ac5c0",
+                  "spanHash": "1add4a464083fb77417e9664e2b95821b2b670190982e4121c8fd859e9800aec"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "This output uses synthetic test data."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:41.975Z"
+    },
+    {
+      "id": "trip/opening-check",
+      "parentId": "trip/schedule",
+      "title": "Opening-hours researcher",
+      "assignment": "Extract opening hours and date restrictions, labeling anything unavailable.",
+      "depth": 2,
+      "startedAt": "2026-09-11T18:08:41.448Z",
+      "status": "succeeded",
+      "children": [],
+      "output": {
+        "summary": "Offline fixture research result; no factual research performed.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Boston Public Library locations and hours.",
+            "citations": [
+              {
+                "sourceId": "library",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+              "checkedAt": "2026-09-11T18:08:42.253Z",
+              "claimHash": "346cde0bfbed76170fac2ef72bcfd3f658aecce72e86ec7a9aa162a92c1e89bf",
+              "support": [
+                {
+                  "sourceId": "library",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "2ce5b6683e9ad06debe9f7b570114a3bd70c2c394bd69d3e567b2e7a5754615e",
+                  "spanHash": "371bf0e4d0fa3ec14a569034cf1bb0c06a8c561ace6827a6184748199e9e29de"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "This output uses synthetic test data."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:42.037Z"
+    },
+    {
+      "id": "trip/budget-check",
+      "parentId": "trip/schedule",
+      "title": "Budget researcher",
+      "assignment": "Identify verified costs and unknown costs. Do not claim the $100 cap is proven when prices are missing.",
+      "depth": 2,
+      "startedAt": "2026-09-11T18:08:41.471Z",
+      "status": "succeeded",
+      "children": [],
+      "output": {
+        "summary": "Offline fixture research result; no factual research performed.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for MBTA fare overview.",
+            "citations": [
+              {
+                "sourceId": "fares",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+              "checkedAt": "2026-09-11T18:08:42.253Z",
+              "claimHash": "998cc48c836ceac5c1bb7e2b4e0eafce5508e99e035586daac7d6190508f2593",
+              "support": [
+                {
+                  "sourceId": "fares",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "152182b94fa89ea136104f35efa98682991b42869a275dc68089f0b568de52d2",
+                  "spanHash": "fa8c2e87fbf5a7e5afe4a27550da1a3d6b38a66a61d980dfc3856376550d41fe"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "This output uses synthetic test data."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:42.058Z"
+    }
+  ],
+  "calls": [
+    {
+      "id": "039390c6-78ca-4874-9396-b92b1ad87fc6",
+      "agentId": "trip/master",
+      "purpose": "plan",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:40.996Z",
+      "finishedAt": "2026-09-11T18:08:40.996Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "443dbae9-f8f9-4582-8ff6-f6703839252a",
+      "agentId": "trip/attractions",
+      "purpose": "plan",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:41.062Z",
+      "finishedAt": "2026-09-11T18:08:41.062Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "f1837cd3-a1db-45cb-9bf5-e2c6f665a08d",
+      "agentId": "trip/food",
+      "purpose": "plan",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:41.104Z",
+      "finishedAt": "2026-09-11T18:08:41.104Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "719a7acd-ee31-4b3b-8d2b-1e2e4fc4c4a1",
+      "agentId": "trip/transport",
+      "purpose": "plan",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:41.173Z",
+      "finishedAt": "2026-09-11T18:08:41.173Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "c6b01f40-bdef-4d11-b66b-2d7b8e04c50f",
+      "agentId": "trip/schedule",
+      "purpose": "plan",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:41.194Z",
+      "finishedAt": "2026-09-11T18:08:41.194Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "cf75c98d-dd46-44e1-b2c2-fb8526e41865",
+      "agentId": "trip/history",
+      "purpose": "research",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:41.516Z",
+      "finishedAt": "2026-09-11T18:08:41.516Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "77b3437d-0942-4ecf-ab26-f1c9b23f247e",
+      "agentId": "trip/public-spaces",
+      "purpose": "research",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:41.564Z",
+      "finishedAt": "2026-09-11T18:08:41.564Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "f69c697a-882c-42c3-a387-7ec275bc2298",
+      "agentId": "trip/market-food",
+      "purpose": "research",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:41.687Z",
+      "finishedAt": "2026-09-11T18:08:41.687Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "e7d7be4e-b7f8-41a3-81af-9abcec097550",
+      "agentId": "trip/area-food",
+      "purpose": "research",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:41.712Z",
+      "finishedAt": "2026-09-11T18:08:41.712Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "34bb7318-3985-4ec0-98aa-d209cac23127",
+      "agentId": "trip/fare-check",
+      "purpose": "research",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:41.817Z",
+      "finishedAt": "2026-09-11T18:08:41.817Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "688c901b-d32a-44b8-91e6-a1d03e333889",
+      "agentId": "trip/route-check",
+      "purpose": "research",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:41.842Z",
+      "finishedAt": "2026-09-11T18:08:41.842Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "e0bd4d77-2a14-47d0-af37-0ccb62e79c96",
+      "agentId": "trip/opening-check",
+      "purpose": "research",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:41.909Z",
+      "finishedAt": "2026-09-11T18:08:41.909Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "1928a8b9-ee07-435c-8dd8-b260daf97c9d",
+      "agentId": "trip/budget-check",
+      "purpose": "research",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:41.929Z",
+      "finishedAt": "2026-09-11T18:08:41.929Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "81ac54b0-06a0-4321-b319-957a2c6dadb8",
+      "agentId": "trip/food",
+      "purpose": "synthesize",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:41.996Z",
+      "finishedAt": "2026-09-11T18:08:41.996Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "ed871200-37a7-423d-aba0-2e9d210cad44",
+      "agentId": "trip/attractions",
+      "purpose": "synthesize",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:42.016Z",
+      "finishedAt": "2026-09-11T18:08:42.016Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "5662e3b9-1f8d-44c0-81fe-19858e408f6e",
+      "agentId": "trip/transport",
+      "purpose": "synthesize",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:42.079Z",
+      "finishedAt": "2026-09-11T18:08:42.079Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "b1a03a38-e1bd-4620-9ac2-0bd2f38bec40",
+      "agentId": "trip/schedule",
+      "purpose": "synthesize",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:42.147Z",
+      "finishedAt": "2026-09-11T18:08:42.147Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "338694c6-a553-4e34-bf61-722f69d6f938",
+      "agentId": "trip/master",
+      "purpose": "review",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:42.221Z",
+      "finishedAt": "2026-09-11T18:08:42.221Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "feae42bd-8b6e-4b2b-a423-b20648c8eb6b",
+      "agentId": "trip/master",
+      "purpose": "synthesize",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:42.253Z",
+      "finishedAt": "2026-09-11T18:08:42.253Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "6ec43d37-036e-4425-9df5-58540e5b78bc",
+      "agentId": "trip/master",
+      "purpose": "review",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:42.284Z",
+      "finishedAt": "2026-09-11T18:08:42.284Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    }
+  ],
+  "sources": [
+    {
+      "id": "trail",
+      "title": "Freedom Trail visit planning",
+      "url": "fixture:trail",
+      "retrievedAt": "2026-09-11T18:08:41.265Z",
+      "status": 200,
+      "sha256": "20253e9a55ca6608accf5f171da1daf2bd075341962519ed3513df4fb072fddc",
+      "text": "Offline fixture for Freedom Trail visit planning. This is synthetic test data, not a retrieved fact. A researcher must cite trail and label the fixture.",
+      "fixture": true,
+      "textSha256": "20253e9a55ca6608accf5f171da1daf2bd075341962519ed3513df4fb072fddc"
+    },
+    {
+      "id": "faneuil",
+      "title": "Faneuil Hall visitor information",
+      "url": "fixture:faneuil",
+      "retrievedAt": "2026-09-11T18:08:41.265Z",
+      "status": 200,
+      "sha256": "b4cf52d72390a7863c888be3db0221e93f2fa4764ee8afce505fa28b9af34e2b",
+      "text": "Offline fixture for Faneuil Hall visitor information. This is synthetic test data, not a retrieved fact. A researcher must cite faneuil and label the fixture.",
+      "fixture": true,
+      "textSha256": "b4cf52d72390a7863c888be3db0221e93f2fa4764ee8afce505fa28b9af34e2b"
+    },
+    {
+      "id": "common",
+      "title": "Boston Common",
+      "url": "fixture:common",
+      "retrievedAt": "2026-09-11T18:08:41.287Z",
+      "status": 200,
+      "sha256": "9a5063a9a73b67de9fd718139be3f7b7f3ad6a530144e0eb47bf44c0b718f244",
+      "text": "Offline fixture for Boston Common. This is synthetic test data, not a retrieved fact. A researcher must cite common and label the fixture.",
+      "fixture": true,
+      "textSha256": "9a5063a9a73b67de9fd718139be3f7b7f3ad6a530144e0eb47bf44c0b718f244"
+    },
+    {
+      "id": "library",
+      "title": "Boston Public Library locations and hours",
+      "url": "fixture:library",
+      "retrievedAt": "2026-09-11T18:08:41.287Z",
+      "status": 200,
+      "sha256": "2ce5b6683e9ad06debe9f7b570114a3bd70c2c394bd69d3e567b2e7a5754615e",
+      "text": "Offline fixture for Boston Public Library locations and hours. This is synthetic test data, not a retrieved fact. A researcher must cite library and label",
+      "fixture": true,
+      "textSha256": "2ce5b6683e9ad06debe9f7b570114a3bd70c2c394bd69d3e567b2e7a5754615e"
+    },
+    {
+      "id": "market",
+      "title": "Boston Public Market",
+      "url": "fixture:market",
+      "retrievedAt": "2026-09-11T18:08:41.336Z",
+      "status": 200,
+      "sha256": "17b598901a9e0438af54664ca0d089f53d009bb2be4407b5fccff72434d06c1b",
+      "text": "Offline fixture for Boston Public Market. This is synthetic test data, not a retrieved fact. A researcher must cite market and label the fixture.",
+      "fixture": true,
+      "textSha256": "17b598901a9e0438af54664ca0d089f53d009bb2be4407b5fccff72434d06c1b"
+    },
+    {
+      "id": "visitor",
+      "title": "Boston visitor resources",
+      "url": "fixture:visitor",
+      "retrievedAt": "2026-09-11T18:08:41.360Z",
+      "status": 200,
+      "sha256": "f2d6517cb421a639c1953267b878ef68dec6460414b421102d23b1306ab0533b",
+      "text": "Offline fixture for Boston visitor resources. This is synthetic test data, not a retrieved fact. A researcher must cite visitor and label the fixture.",
+      "fixture": true,
+      "textSha256": "f2d6517cb421a639c1953267b878ef68dec6460414b421102d23b1306ab0533b"
+    },
+    {
+      "id": "fares",
+      "title": "MBTA fare overview",
+      "url": "fixture:fares",
+      "retrievedAt": "2026-09-11T18:08:41.402Z",
+      "status": 200,
+      "sha256": "152182b94fa89ea136104f35efa98682991b42869a275dc68089f0b568de52d2",
+      "text": "Offline fixture for MBTA fare overview. This is synthetic test data, not a retrieved fact. A researcher must cite fares and label the fixture.",
+      "fixture": true,
+      "textSha256": "152182b94fa89ea136104f35efa98682991b42869a275dc68089f0b568de52d2"
+    },
+    {
+      "id": "subway",
+      "title": "MBTA subway guide",
+      "url": "fixture:subway",
+      "retrievedAt": "2026-09-11T18:08:41.425Z",
+      "status": 200,
+      "sha256": "014fb646a7e9b9785371eb4fba3d6883c304d040045a9004010b29bb0f6ac5c0",
+      "text": "Offline fixture for MBTA subway guide. This is synthetic test data, not a retrieved fact. A researcher must cite subway and label the fixture.",
+      "fixture": true,
+      "textSha256": "014fb646a7e9b9785371eb4fba3d6883c304d040045a9004010b29bb0f6ac5c0"
+    }
+  ],
+  "payments": [],
+  "evidenceReview": {
+    "findings": [
+      {
+        "claim": "Synthetic fixture evidence for Freedom Trail visit planning.",
+        "citations": [
+          {
+            "sourceId": "trail",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+          "checkedAt": "2026-09-11T18:08:42.253Z",
+          "claimHash": "144d2727442f52b8f7f804ceb735ad0082545c2cb2b69f3694e1c6a81696ed1a",
+          "support": [
+            {
+              "sourceId": "trail",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "20253e9a55ca6608accf5f171da1daf2bd075341962519ed3513df4fb072fddc",
+              "spanHash": "283ac9d3626e9247dcbb56824931aaeadbca904f21727d7e15ea93d9bc7fba88"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Boston Common.",
+        "citations": [
+          {
+            "sourceId": "common",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+          "checkedAt": "2026-09-11T18:08:42.253Z",
+          "claimHash": "7dfb5bc15a39217efe01bf772aa687e1c86330d861c9b5e354e51a76a7c1cfff",
+          "support": [
+            {
+              "sourceId": "common",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "9a5063a9a73b67de9fd718139be3f7b7f3ad6a530144e0eb47bf44c0b718f244",
+              "spanHash": "64c46f4399c54aeeabbb8322f96b9666a482f8d15a8e64db996daf8290c7cb57"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Boston Public Market.",
+        "citations": [
+          {
+            "sourceId": "market",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+          "checkedAt": "2026-09-11T18:08:42.253Z",
+          "claimHash": "fb36bf11df2413317fb795b68ac5e37bb1c80965cd6fe80fa8f6df3052f32349",
+          "support": [
+            {
+              "sourceId": "market",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "17b598901a9e0438af54664ca0d089f53d009bb2be4407b5fccff72434d06c1b",
+              "spanHash": "c60b56a89c5b0505e5d5efc2cd479c6783cdad4c8d9aa153ef26c65746ff0df4"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Boston visitor resources.",
+        "citations": [
+          {
+            "sourceId": "visitor",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+          "checkedAt": "2026-09-11T18:08:42.253Z",
+          "claimHash": "a9ffc69c8a0250be9049f43a5245c230241813a59dc9172d7dcf730d630b79d1",
+          "support": [
+            {
+              "sourceId": "visitor",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "f2d6517cb421a639c1953267b878ef68dec6460414b421102d23b1306ab0533b",
+              "spanHash": "da16e4ebbe67e3ddeb40157cd896a74c958b550a9ddad5eaca64623debaeb60c"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for MBTA fare overview.",
+        "citations": [
+          {
+            "sourceId": "fares",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+          "checkedAt": "2026-09-11T18:08:42.253Z",
+          "claimHash": "998cc48c836ceac5c1bb7e2b4e0eafce5508e99e035586daac7d6190508f2593",
+          "support": [
+            {
+              "sourceId": "fares",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "152182b94fa89ea136104f35efa98682991b42869a275dc68089f0b568de52d2",
+              "spanHash": "fa8c2e87fbf5a7e5afe4a27550da1a3d6b38a66a61d980dfc3856376550d41fe"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for MBTA subway guide.",
+        "citations": [
+          {
+            "sourceId": "subway",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+          "checkedAt": "2026-09-11T18:08:42.253Z",
+          "claimHash": "9012f904c3143f73ea2c175b929c2b8852b96d653e1718ba16aae4967700e5f6",
+          "support": [
+            {
+              "sourceId": "subway",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "014fb646a7e9b9785371eb4fba3d6883c304d040045a9004010b29bb0f6ac5c0",
+              "spanHash": "1add4a464083fb77417e9664e2b95821b2b670190982e4121c8fd859e9800aec"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Boston Public Library locations and hours.",
+        "citations": [
+          {
+            "sourceId": "library",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+          "checkedAt": "2026-09-11T18:08:42.253Z",
+          "claimHash": "346cde0bfbed76170fac2ef72bcfd3f658aecce72e86ec7a9aa162a92c1e89bf",
+          "support": [
+            {
+              "sourceId": "library",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "2ce5b6683e9ad06debe9f7b570114a3bd70c2c394bd69d3e567b2e7a5754615e",
+              "spanHash": "371bf0e4d0fa3ec14a569034cf1bb0c06a8c561ace6827a6184748199e9e29de"
+            }
+          ]
+        }
+      }
+    ],
+    "checkedAt": "2026-09-11T18:08:42.253Z"
+  },
+  "masterDraft": {
+    "summary": "Offline fixture synopsis. This text checks the final-answer layout and orchestration; it is not a researched recommendation.",
+    "synopsis": [
+      {
+        "heading": "Proposed day plan",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "trail",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Budget allocation",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "trail",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Transport and practical details",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "trail",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Before you go",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "trail",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      }
+    ],
+    "completion": "partial",
+    "findings": [
+      {
+        "claim": "Synthetic fixture evidence for Freedom Trail visit planning.",
+        "citations": [
+          {
+            "sourceId": "trail",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+          "checkedAt": "2026-09-11T18:08:42.253Z",
+          "claimHash": "144d2727442f52b8f7f804ceb735ad0082545c2cb2b69f3694e1c6a81696ed1a",
+          "support": [
+            {
+              "sourceId": "trail",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "20253e9a55ca6608accf5f171da1daf2bd075341962519ed3513df4fb072fddc",
+              "spanHash": "283ac9d3626e9247dcbb56824931aaeadbca904f21727d7e15ea93d9bc7fba88"
+            }
+          ]
+        }
+      }
+    ],
+    "limitations": [
+      "Synthetic fixture data; no live research or model inference occurred."
+    ]
+  },
+  "result": {
+    "summary": "Offline fixture synopsis. This text checks the final-answer layout and orchestration; it is not a researched recommendation.",
+    "synopsis": [
+      {
+        "heading": "Proposed day plan",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "trail",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Budget allocation",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "trail",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Transport and practical details",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "trail",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Before you go",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "trail",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      }
+    ],
+    "completion": "partial",
+    "findings": [
+      {
+        "claim": "Synthetic fixture evidence for Freedom Trail visit planning.",
+        "citations": [
+          {
+            "sourceId": "trail",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "338694c6-a553-4e34-bf61-722f69d6f938",
+          "checkedAt": "2026-09-11T18:08:42.253Z",
+          "claimHash": "144d2727442f52b8f7f804ceb735ad0082545c2cb2b69f3694e1c6a81696ed1a",
+          "support": [
+            {
+              "sourceId": "trail",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "20253e9a55ca6608accf5f171da1daf2bd075341962519ed3513df4fb072fddc",
+              "spanHash": "283ac9d3626e9247dcbb56824931aaeadbca904f21727d7e15ea93d9bc7fba88"
+            }
+          ]
+        }
+      }
+    ],
+    "limitations": [
+      "Synthetic fixture data; no live research or model inference occurred."
+    ],
+    "review": {
+      "status": "supported",
+      "sections": [
+        {
+          "id": "summary",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "6ec43d37-036e-4425-9df5-58540e5b78bc",
+            "checkedAt": "2026-09-11T18:08:42.308Z",
+            "claimHash": "7a08acc679c8f2d2df6c60a2625e0c36a8071c82a7a5110a2fbf3a2547707085",
+            "support": [
+              {
+                "sourceId": "trail",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "20253e9a55ca6608accf5f171da1daf2bd075341962519ed3513df4fb072fddc",
+                "spanHash": "283ac9d3626e9247dcbb56824931aaeadbca904f21727d7e15ea93d9bc7fba88"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-1",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "6ec43d37-036e-4425-9df5-58540e5b78bc",
+            "checkedAt": "2026-09-11T18:08:42.309Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "trail",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "20253e9a55ca6608accf5f171da1daf2bd075341962519ed3513df4fb072fddc",
+                "spanHash": "283ac9d3626e9247dcbb56824931aaeadbca904f21727d7e15ea93d9bc7fba88"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-2",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "6ec43d37-036e-4425-9df5-58540e5b78bc",
+            "checkedAt": "2026-09-11T18:08:42.309Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "trail",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "20253e9a55ca6608accf5f171da1daf2bd075341962519ed3513df4fb072fddc",
+                "spanHash": "283ac9d3626e9247dcbb56824931aaeadbca904f21727d7e15ea93d9bc7fba88"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-3",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "6ec43d37-036e-4425-9df5-58540e5b78bc",
+            "checkedAt": "2026-09-11T18:08:42.309Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "trail",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "20253e9a55ca6608accf5f171da1daf2bd075341962519ed3513df4fb072fddc",
+                "spanHash": "283ac9d3626e9247dcbb56824931aaeadbca904f21727d7e15ea93d9bc7fba88"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-4",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "6ec43d37-036e-4425-9df5-58540e5b78bc",
+            "checkedAt": "2026-09-11T18:08:42.309Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "trail",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "20253e9a55ca6608accf5f171da1daf2bd075341962519ed3513df4fb072fddc",
+                "spanHash": "283ac9d3626e9247dcbb56824931aaeadbca904f21727d7e15ea93d9bc7fba88"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "finishedAt": "2026-09-11T18:08:42.353Z",
+  "presentationNotes": [
+    "Product references use the full name Katara Cortex. Payment identifiers and source hashes retain their recorded values."
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "reports": [
+    {
+      "id": "20260911T180837237Z-b5a62c25",
+      "example": "cryptocurrency",
+      "mode": "fixture",
+      "status": "succeeded"
+    },
+    {
+      "id": "20260911T180837237Z-b5a62c25",
+      "example": "trip",
+      "mode": "fixture",
+      "status": "succeeded"
+    },
+    {
+      "id": "20260911T180837237Z-b5a62c25",
+      "example": "comparison",
+      "mode": "fixture",
+      "status": "succeeded"
+    },
+    {
+      "id": "20260911T180837237Z-b5a62c25",
+      "example": "documentation",
+      "mode": "fixture",
+      "status": "succeeded"
+    },
+    {
+      "id": "20260911T180837237Z-b5a62c25",
+      "example": "repository",
+      "mode": "fixture",
+      "status": "succeeded"
+    }
+  ],
+  "revisions": [
+    {
+      "id": "20260911T181012290Z-a496a812",
+      "example": "comparison",
+      "sourceRunId": "20260911T180837237Z-b5a62c25",
+      "mode": "fixture",
+      "status": "succeeded"
+    },
+    {
+      "id": "20260911T181012290Z-a496a812",
+      "example": "cryptocurrency",
+      "sourceRunId": "20260911T180837237Z-b5a62c25",
+      "mode": "fixture",
+      "status": "succeeded"
+    },
+    {
+      "id": "20260911T181012290Z-a496a812",
+      "example": "documentation",
+      "sourceRunId": "20260911T180837237Z-b5a62c25",
+      "mode": "fixture",
+      "status": "succeeded"
+    },
+    {
+      "id": "20260911T181012290Z-a496a812",
+      "example": "repository",
+      "sourceRunId": "20260911T180837237Z-b5a62c25",
+      "mode": "fixture",
+      "status": "succeeded"
+    },
+    {
+      "id": "20260911T181012290Z-a496a812",
+      "example": "trip",
+      "sourceRunId": "20260911T180837237Z-b5a62c25",
+      "mode": "fixture",
+      "status": "succeeded"
+    }
+  ],
+  "confirmedUnits": "0",
+  "pendingUnits": "0"
+}
