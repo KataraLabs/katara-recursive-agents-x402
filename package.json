@@ -41,7 +41,7 @@
     "@types/node": "22.15.30",
     "ajv": "8.20.0",
     "tsx": "4.20.5",
-    "typescript": "5.9.2",
+    "typescript": "7.0.2",
     "vite": "7.3.6",
     "vitest": "4.1.11"
   },
