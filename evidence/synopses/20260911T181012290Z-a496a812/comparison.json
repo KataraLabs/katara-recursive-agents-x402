@@ -1,0 +1,616 @@
+{
+  "version": 1,
+  "id": "20260911T181012290Z-a496a812",
+  "sourceRunId": "20260911T180837237Z-b5a62c25",
+  "sourceReportHash": "69a65997bc648dc14c5984c487c3f00c5afe680e7c37639a18093ca36e4f75e1",
+  "implementationFingerprint": {
+    "src/synopsis.ts": "a1fd4d2a0430b95901e03d59d1fd06b6df41d38c5dede67d673a855b319c4f08",
+    "src/review.ts": "cc4a8177ba5b5cd53ae34cf44b109da2b04f38415f7a5e246860406f452134c9",
+    "src/evidence.ts": "d0a3ecd37787fef1f9b9744d0f83cae0c1fe2a60ba4395589049c969a16569a2",
+    "src/inference.ts": "8f212d1a3bc5c262cf25a7818b23e69632d27b6fedddb9e969b0e2c8f76acd2c",
+    "src/ledger.ts": "ed6ca75e804700168fdff59f0acdf74019c1cacc75323b0f5140197f96283620",
+    "src/chain.ts": "59cf3d729ff7047ca254574cbbd889130e4c41b12672db3fcfee0312872b5917",
+    "src/config.ts": "b596853cbcee0e197362720ef2bf7196cc92c9c8d49c63761ebf80926377d2e3",
+    "src/types.ts": "9820f264cb493a027481a59adc0befda7f036d970f70d15862d70b7ea255c152",
+    "scripts/build-synopses.ts": "51fc0bbb260c571921c47d7f1ca4507dd953f298bb87f0600fbc3ae8020a24ab",
+    "package-lock.json": "50d026886293891ffb7bde1e9385065826560a2da8fbd9e94928f50fd1ae03db"
+  },
+  "example": "comparison",
+  "mode": "fixture",
+  "startedAt": "2026-09-11T18:10:12.414Z",
+  "status": "succeeded",
+  "calls": [
+    {
+      "id": "d96b0e04-0c65-4a7c-9f70-3b95d6740458",
+      "agentId": "comparison/master",
+      "purpose": "review",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:10:12.415Z",
+      "finishedAt": "2026-09-11T18:10:12.415Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "bf5c6d56-9c16-4231-8fb7-8c0768255a41",
+      "agentId": "comparison/master",
+      "purpose": "synthesize",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:10:12.423Z",
+      "finishedAt": "2026-09-11T18:10:12.423Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "3ea1e62a-cea1-43fe-8074-a42022eb6156",
+      "agentId": "comparison/master",
+      "purpose": "review",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:10:12.441Z",
+      "finishedAt": "2026-09-11T18:10:12.441Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    }
+  ],
+  "payments": [],
+  "validationIssues": [],
+  "output": {
+    "summary": "Offline fixture synopsis. This text checks the final-answer layout and orchestration; it is not a researched recommendation.",
+    "synopsis": [
+      {
+        "heading": "Decision summary",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "neon-docs",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Neon",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "neon-docs",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Turso",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "neon-docs",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "PlanetScale",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "neon-docs",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Pricing and limits",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "neon-docs",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      }
+    ],
+    "completion": "partial",
+    "findings": [
+      {
+        "claim": "Synthetic fixture evidence for Neon documentation.",
+        "citations": [
+          {
+            "sourceId": "neon-docs",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "d96b0e04-0c65-4a7c-9f70-3b95d6740458",
+          "checkedAt": "2026-09-11T18:10:12.423Z",
+          "claimHash": "a3e61f691176f128f6a1f045ae8b64c04dd1b2106264b237bb4870cf7f370c05",
+          "support": [
+            {
+              "sourceId": "neon-docs",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "b2f7c5f7a104f2ba05db2244da830e04a29ae9c05b186bb353b639869db38852",
+              "spanHash": "e86eee3060a681415d8add7349b6735bff75057b70fb1f1210631bde41a0f4a7"
+            }
+          ]
+        }
+      }
+    ],
+    "limitations": [
+      "Synthetic fixture data; no live research or model inference occurred."
+    ],
+    "review": {
+      "status": "supported",
+      "sections": [
+        {
+          "id": "summary",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "3ea1e62a-cea1-43fe-8074-a42022eb6156",
+            "checkedAt": "2026-09-11T18:10:12.450Z",
+            "claimHash": "7a08acc679c8f2d2df6c60a2625e0c36a8071c82a7a5110a2fbf3a2547707085",
+            "support": [
+              {
+                "sourceId": "neon-docs",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "b2f7c5f7a104f2ba05db2244da830e04a29ae9c05b186bb353b639869db38852",
+                "spanHash": "e86eee3060a681415d8add7349b6735bff75057b70fb1f1210631bde41a0f4a7"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-1",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "3ea1e62a-cea1-43fe-8074-a42022eb6156",
+            "checkedAt": "2026-09-11T18:10:12.450Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "neon-docs",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "b2f7c5f7a104f2ba05db2244da830e04a29ae9c05b186bb353b639869db38852",
+                "spanHash": "e86eee3060a681415d8add7349b6735bff75057b70fb1f1210631bde41a0f4a7"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-2",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "3ea1e62a-cea1-43fe-8074-a42022eb6156",
+            "checkedAt": "2026-09-11T18:10:12.450Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "neon-docs",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "b2f7c5f7a104f2ba05db2244da830e04a29ae9c05b186bb353b639869db38852",
+                "spanHash": "e86eee3060a681415d8add7349b6735bff75057b70fb1f1210631bde41a0f4a7"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-3",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "3ea1e62a-cea1-43fe-8074-a42022eb6156",
+            "checkedAt": "2026-09-11T18:10:12.450Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "neon-docs",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "b2f7c5f7a104f2ba05db2244da830e04a29ae9c05b186bb353b639869db38852",
+                "spanHash": "e86eee3060a681415d8add7349b6735bff75057b70fb1f1210631bde41a0f4a7"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-4",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "3ea1e62a-cea1-43fe-8074-a42022eb6156",
+            "checkedAt": "2026-09-11T18:10:12.450Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "neon-docs",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "b2f7c5f7a104f2ba05db2244da830e04a29ae9c05b186bb353b639869db38852",
+                "spanHash": "e86eee3060a681415d8add7349b6735bff75057b70fb1f1210631bde41a0f4a7"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-5",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "3ea1e62a-cea1-43fe-8074-a42022eb6156",
+            "checkedAt": "2026-09-11T18:10:12.450Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "neon-docs",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "b2f7c5f7a104f2ba05db2244da830e04a29ae9c05b186bb353b639869db38852",
+                "spanHash": "e86eee3060a681415d8add7349b6735bff75057b70fb1f1210631bde41a0f4a7"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "evidenceReview": {
+    "findings": [
+      {
+        "claim": "Synthetic fixture evidence for Neon documentation.",
+        "citations": [
+          {
+            "sourceId": "neon-docs",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "d96b0e04-0c65-4a7c-9f70-3b95d6740458",
+          "checkedAt": "2026-09-11T18:10:12.423Z",
+          "claimHash": "a3e61f691176f128f6a1f045ae8b64c04dd1b2106264b237bb4870cf7f370c05",
+          "support": [
+            {
+              "sourceId": "neon-docs",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "b2f7c5f7a104f2ba05db2244da830e04a29ae9c05b186bb353b639869db38852",
+              "spanHash": "e86eee3060a681415d8add7349b6735bff75057b70fb1f1210631bde41a0f4a7"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Neon pricing.",
+        "citations": [
+          {
+            "sourceId": "neon-pricing",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "d96b0e04-0c65-4a7c-9f70-3b95d6740458",
+          "checkedAt": "2026-09-11T18:10:12.423Z",
+          "claimHash": "ccfa8413e6adddbce27a72c76228f75a3b45bae6e660047be5d3ebb3acab4c46",
+          "support": [
+            {
+              "sourceId": "neon-pricing",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "999ea7550ef68fc2b73628953910e7c21d09f225375a270be64c69280365205a",
+              "spanHash": "2eccde70776216a0594d56dca4ad6a0e870afff1718e5cd373ca3839daabf2b7"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Neon limits.",
+        "citations": [
+          {
+            "sourceId": "neon-limits",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "d96b0e04-0c65-4a7c-9f70-3b95d6740458",
+          "checkedAt": "2026-09-11T18:10:12.423Z",
+          "claimHash": "10b085ecf5b1b33724893eec11e065397ba60e7d8920f1ead372169bf0baa69c",
+          "support": [
+            {
+              "sourceId": "neon-limits",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "5364d3d5b3fc6bba55e15b67bae2740521fd4e8fede990d74af95518651ed7c2",
+              "spanHash": "ce7b0adae82dafea62fb51e65d4f7f39058e14bcd4604e5e5c9f83ebe3a0bb2c"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Turso documentation.",
+        "citations": [
+          {
+            "sourceId": "turso-docs",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "d96b0e04-0c65-4a7c-9f70-3b95d6740458",
+          "checkedAt": "2026-09-11T18:10:12.423Z",
+          "claimHash": "2055a4d06c0c5301366e5aba08febc39992343d4cae9f91971332cc621a3973a",
+          "support": [
+            {
+              "sourceId": "turso-docs",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "358c2fc82a2d873a071eb9e21b9d385e36b8f7bd242c3656ac47525ef93160e9",
+              "spanHash": "1624f1a4a214a344fbe773ef82556a5208f2a89a09fb0f0ec17a3bdf70d12cea"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Turso pricing.",
+        "citations": [
+          {
+            "sourceId": "turso-pricing",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "d96b0e04-0c65-4a7c-9f70-3b95d6740458",
+          "checkedAt": "2026-09-11T18:10:12.423Z",
+          "claimHash": "dd4d2d16a4495c6ff83fbb52329596afebcbe3dfe26c01375b3fa3aae0bc1d18",
+          "support": [
+            {
+              "sourceId": "turso-pricing",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "f64166922bf1c76895b8c88ba669478ad5f5b5a878b783d83ad16ee68d63d126",
+              "spanHash": "c742ca78afe170f26a5d35ff771949a1e2613fc939d6e78d3dc8b2f4ae994daf"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Turso limits.",
+        "citations": [
+          {
+            "sourceId": "turso-limits",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "d96b0e04-0c65-4a7c-9f70-3b95d6740458",
+          "checkedAt": "2026-09-11T18:10:12.423Z",
+          "claimHash": "107721fbd95b7ef6a3debfb7ac681ffb4a8f51eff013a51e0654f8c5342ecbd7",
+          "support": [
+            {
+              "sourceId": "turso-limits",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "709e46651776a9f7f7ae4731b511746037cdfb2aae67d6a2bf5fe34cf2cdff89",
+              "spanHash": "5804240ece10a1da57ed18020ceaa12d1a8c42aa1e396d74f0495f3f5c64fd16"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for PlanetScale documentation.",
+        "citations": [
+          {
+            "sourceId": "planetscale-docs",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "d96b0e04-0c65-4a7c-9f70-3b95d6740458",
+          "checkedAt": "2026-09-11T18:10:12.423Z",
+          "claimHash": "848e145c46097fdb47254ce1eec13aa22ecf859b6a0b03e77d7db186996449ac",
+          "support": [
+            {
+              "sourceId": "planetscale-docs",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "59133806b0b2db617670c9cd19866ad2612b0364e4590cc9a970c82b50914229",
+              "spanHash": "2106005b35bdb57d88e38c75d97335b6aefbd240a3f7b9aa08765d1c10f1d1d5"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for PlanetScale pricing.",
+        "citations": [
+          {
+            "sourceId": "planetscale-pricing",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "d96b0e04-0c65-4a7c-9f70-3b95d6740458",
+          "checkedAt": "2026-09-11T18:10:12.423Z",
+          "claimHash": "0e1c53ede47eded709cce2f7551669ad6a18f9a985c1f12e1655b94b3f6f3d85",
+          "support": [
+            {
+              "sourceId": "planetscale-pricing",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "06a187092ca61f4371dc6dbb3a25a5a76ba9bbb5eecb09034823c9af20ea1929",
+              "spanHash": "49a0f23490c1004d63bc66d4a6366fe29343862a7dd3f33bfb9fd506b9554c85"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for PlanetScale limits.",
+        "citations": [
+          {
+            "sourceId": "planetscale-limits",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "d96b0e04-0c65-4a7c-9f70-3b95d6740458",
+          "checkedAt": "2026-09-11T18:10:12.423Z",
+          "claimHash": "8da3f7e56167af64881ddb380e3fce16df5f373b59899d168b379d6c3c4fa82a",
+          "support": [
+            {
+              "sourceId": "planetscale-limits",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "86bc567fb392780d179dc2bc7493b21f52f186afae4cb4d46deb0ba3c551aee9",
+              "spanHash": "a6f3121aa928aa4af173d4b9120e1208269071944dc48643242aeb7eb76302c1"
+            }
+          ]
+        }
+      }
+    ],
+    "checkedAt": "2026-09-11T18:10:12.423Z"
+  },
+  "masterDraft": {
+    "summary": "Offline fixture synopsis. This text checks the final-answer layout and orchestration; it is not a researched recommendation.",
+    "synopsis": [
+      {
+        "heading": "Decision summary",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "neon-docs",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Neon",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "neon-docs",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Turso",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "neon-docs",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "PlanetScale",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "neon-docs",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Pricing and limits",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "neon-docs",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      }
+    ],
+    "completion": "partial",
+    "findings": [
+      {
+        "claim": "Synthetic fixture evidence for Neon documentation.",
+        "citations": [
+          {
+            "sourceId": "neon-docs",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "d96b0e04-0c65-4a7c-9f70-3b95d6740458",
+          "checkedAt": "2026-09-11T18:10:12.423Z",
+          "claimHash": "a3e61f691176f128f6a1f045ae8b64c04dd1b2106264b237bb4870cf7f370c05",
+          "support": [
+            {
+              "sourceId": "neon-docs",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "b2f7c5f7a104f2ba05db2244da830e04a29ae9c05b186bb353b639869db38852",
+              "spanHash": "e86eee3060a681415d8add7349b6735bff75057b70fb1f1210631bde41a0f4a7"
+            }
+          ]
+        }
+      }
+    ],
+    "limitations": [
+      "Synthetic fixture data; no live research or model inference occurred."
+    ]
+  },
+  "finishedAt": "2026-09-11T18:10:12.450Z"
+}

@@ -1,0 +1,1395 @@
+{
+  "version": 1,
+  "id": "20260911T180837237Z-b5a62c25",
+  "example": "cryptocurrency",
+  "title": "AVAX activity briefing",
+  "command": "Produce an evidence-backed AVAX briefing for the past seven days: market activity, network observations, and ecosystem releases. Separate observations, estimates, and missing data.",
+  "mode": "fixture",
+  "startedAt": "2026-09-11T18:08:42.395Z",
+  "status": "succeeded",
+  "softwareCommit": "eefb0ae031f6b0352fe44e18d84c522e997391d2+uncommitted",
+  "gateway": "none (offline fixture)",
+  "network": "none (offline fixture)",
+  "model": "fixture (no inference)",
+  "budgetUnits": "0",
+  "budgetScope": "all five examples in this invocation",
+  "plannedAgents": 10,
+  "agents": [
+    {
+      "id": "cryptocurrency/master",
+      "title": "Master demo agent",
+      "assignment": "Produce an evidence-backed AVAX briefing for the past seven days: market activity, network observations, and ecosystem releases. Separate observations, estimates, and missing data.",
+      "depth": 0,
+      "startedAt": "2026-09-11T18:08:42.420Z",
+      "status": "succeeded",
+      "children": [
+        "cryptocurrency/market",
+        "cryptocurrency/network",
+        "cryptocurrency/ecosystem"
+      ],
+      "output": {
+        "summary": "Offline fixture synopsis. This text checks the final-answer layout and orchestration; it is not a researched recommendation.",
+        "synopsis": [
+          {
+            "heading": "Market activity",
+            "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+            "citations": [
+              {
+                "sourceId": "candles",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ]
+          },
+          {
+            "heading": "Network observations",
+            "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+            "citations": [
+              {
+                "sourceId": "candles",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ]
+          },
+          {
+            "heading": "Ecosystem releases",
+            "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+            "citations": [
+              {
+                "sourceId": "candles",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ]
+          },
+          {
+            "heading": "What the evidence cannot establish",
+            "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+            "citations": [
+              {
+                "sourceId": "candles",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ]
+          }
+        ],
+        "completion": "partial",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Coinbase AVAX-USD daily candles.",
+            "citations": [
+              {
+                "sourceId": "candles",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+              "checkedAt": "2026-09-11T18:08:43.442Z",
+              "claimHash": "f60ffee35800a5d877b40643a3f2817a840b353984f2dcd1ce7b71718d403183",
+              "support": [
+                {
+                  "sourceId": "candles",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "84f8ee4212d89da098a1a539c160effd75f477bc2b0c95142efca21e570e2338",
+                  "spanHash": "474785257ee2608f19cfe36c5e8559e5930c73c462a9d7eeeafdccb475963ba9"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "Synthetic fixture data; no live research or model inference occurred."
+        ],
+        "review": {
+          "status": "supported",
+          "sections": [
+            {
+              "id": "summary",
+              "assessment": {
+                "verdict": "supported",
+                "reason": "Explicitly labeled synthetic fixture content.",
+                "method": "fixture",
+                "callId": "241dc193-3450-4746-963c-c0f2180a62f3",
+                "checkedAt": "2026-09-11T18:08:43.502Z",
+                "claimHash": "7a08acc679c8f2d2df6c60a2625e0c36a8071c82a7a5110a2fbf3a2547707085",
+                "support": [
+                  {
+                    "sourceId": "candles",
+                    "startLine": 1,
+                    "endLine": 1,
+                    "sourceHash": "84f8ee4212d89da098a1a539c160effd75f477bc2b0c95142efca21e570e2338",
+                    "spanHash": "474785257ee2608f19cfe36c5e8559e5930c73c462a9d7eeeafdccb475963ba9"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "section-1",
+              "assessment": {
+                "verdict": "supported",
+                "reason": "Explicitly labeled synthetic fixture content.",
+                "method": "fixture",
+                "callId": "241dc193-3450-4746-963c-c0f2180a62f3",
+                "checkedAt": "2026-09-11T18:08:43.502Z",
+                "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+                "support": [
+                  {
+                    "sourceId": "candles",
+                    "startLine": 1,
+                    "endLine": 1,
+                    "sourceHash": "84f8ee4212d89da098a1a539c160effd75f477bc2b0c95142efca21e570e2338",
+                    "spanHash": "474785257ee2608f19cfe36c5e8559e5930c73c462a9d7eeeafdccb475963ba9"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "section-2",
+              "assessment": {
+                "verdict": "supported",
+                "reason": "Explicitly labeled synthetic fixture content.",
+                "method": "fixture",
+                "callId": "241dc193-3450-4746-963c-c0f2180a62f3",
+                "checkedAt": "2026-09-11T18:08:43.502Z",
+                "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+                "support": [
+                  {
+                    "sourceId": "candles",
+                    "startLine": 1,
+                    "endLine": 1,
+                    "sourceHash": "84f8ee4212d89da098a1a539c160effd75f477bc2b0c95142efca21e570e2338",
+                    "spanHash": "474785257ee2608f19cfe36c5e8559e5930c73c462a9d7eeeafdccb475963ba9"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "section-3",
+              "assessment": {
+                "verdict": "supported",
+                "reason": "Explicitly labeled synthetic fixture content.",
+                "method": "fixture",
+                "callId": "241dc193-3450-4746-963c-c0f2180a62f3",
+                "checkedAt": "2026-09-11T18:08:43.502Z",
+                "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+                "support": [
+                  {
+                    "sourceId": "candles",
+                    "startLine": 1,
+                    "endLine": 1,
+                    "sourceHash": "84f8ee4212d89da098a1a539c160effd75f477bc2b0c95142efca21e570e2338",
+                    "spanHash": "474785257ee2608f19cfe36c5e8559e5930c73c462a9d7eeeafdccb475963ba9"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "section-4",
+              "assessment": {
+                "verdict": "supported",
+                "reason": "Explicitly labeled synthetic fixture content.",
+                "method": "fixture",
+                "callId": "241dc193-3450-4746-963c-c0f2180a62f3",
+                "checkedAt": "2026-09-11T18:08:43.502Z",
+                "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+                "support": [
+                  {
+                    "sourceId": "candles",
+                    "startLine": 1,
+                    "endLine": 1,
+                    "sourceHash": "84f8ee4212d89da098a1a539c160effd75f477bc2b0c95142efca21e570e2338",
+                    "spanHash": "474785257ee2608f19cfe36c5e8559e5930c73c462a9d7eeeafdccb475963ba9"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "finishedAt": "2026-09-11T18:08:43.502Z"
+    },
+    {
+      "id": "cryptocurrency/market",
+      "parentId": "cryptocurrency/master",
+      "title": "Market activity lead",
+      "assignment": "Explain the supplied price and volume observations without extrapolating venue data to the whole market.",
+      "depth": 1,
+      "startedAt": "2026-09-11T18:08:42.482Z",
+      "status": "succeeded",
+      "children": [
+        "cryptocurrency/price",
+        "cryptocurrency/volume"
+      ],
+      "output": {
+        "summary": "Offline fixture synthesis. This proves orchestration only; it is not a researched answer or a paid run.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Coinbase AVAX-USD daily candles.",
+            "citations": [
+              {
+                "sourceId": "candles",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+              "checkedAt": "2026-09-11T18:08:43.442Z",
+              "claimHash": "f60ffee35800a5d877b40643a3f2817a840b353984f2dcd1ce7b71718d403183",
+              "support": [
+                {
+                  "sourceId": "candles",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "84f8ee4212d89da098a1a539c160effd75f477bc2b0c95142efca21e570e2338",
+                  "spanHash": "474785257ee2608f19cfe36c5e8559e5930c73c462a9d7eeeafdccb475963ba9"
+                }
+              ]
+            }
+          },
+          {
+            "claim": "Synthetic fixture evidence for Coinbase AVAX-USD 24-hour statistics.",
+            "citations": [
+              {
+                "sourceId": "ticker",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+              "checkedAt": "2026-09-11T18:08:43.442Z",
+              "claimHash": "49ba6d481ceb694e2ef4ae9937fbb6c44599769147cbbaf614e43b88a32782ee",
+              "support": [
+                {
+                  "sourceId": "ticker",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "528320261a0f6ebccca617339d904b1a340642004d5bc388de228321fb71ca1d",
+                  "spanHash": "1e011c2a94c0c56b0fb85d393dece6a67a7e5025c3e42b3950294627d6b92468"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "Synthetic fixture data; no live sources or model calls."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:43.309Z"
+    },
+    {
+      "id": "cryptocurrency/network",
+      "parentId": "cryptocurrency/master",
+      "title": "Network observation lead",
+      "assignment": "Explain what the observed metrics establish and what they cannot establish.",
+      "depth": 1,
+      "startedAt": "2026-09-11T18:08:42.523Z",
+      "status": "succeeded",
+      "children": [
+        "cryptocurrency/capital",
+        "cryptocurrency/chain"
+      ],
+      "output": {
+        "summary": "Offline fixture synthesis. This proves orchestration only; it is not a researched answer or a paid run.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Avalanche DeFi TVL history.",
+            "citations": [
+              {
+                "sourceId": "tvl",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+              "checkedAt": "2026-09-11T18:08:43.442Z",
+              "claimHash": "61dcfef9ad5aa261693721fce77b83bf00b3a79680af7ba7ddc1f2d2266e5e03",
+              "support": [
+                {
+                  "sourceId": "tvl",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "1652717b34f659f8a6bae8a3a55066bc39699f256e477cb30771e769e4a463b5",
+                  "spanHash": "1d33344bfe8f2ec1c08e969dd3aa735afe79139aeb6dddc39073a9b2dbe21288"
+                }
+              ]
+            }
+          },
+          {
+            "claim": "Synthetic fixture evidence for Avalanche mainnet latest-block observation.",
+            "citations": [
+              {
+                "sourceId": "block",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+              "checkedAt": "2026-09-11T18:08:43.442Z",
+              "claimHash": "6b4fc08b3cccbf8a0089b64a5d94f4e6f04f55a4fe00756ef32b358f2ccfc758",
+              "support": [
+                {
+                  "sourceId": "block",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "7f0c25570d0d79d1b4cffda84d557a7ad3d61e7afaac984dbc776436fa620905",
+                  "spanHash": "9ffcf6bcefbabedd6543cf1037fa462af1c2c491524f4fd7502dc6d5aab0ed31"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "Synthetic fixture data; no live sources or model calls."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:43.358Z"
+    },
+    {
+      "id": "cryptocurrency/ecosystem",
+      "parentId": "cryptocurrency/master",
+      "title": "Ecosystem release lead",
+      "assignment": "Summarize official releases inside the requested window.",
+      "depth": 1,
+      "startedAt": "2026-09-11T18:08:42.566Z",
+      "status": "succeeded",
+      "children": [
+        "cryptocurrency/node-releases",
+        "cryptocurrency/evm-releases"
+      ],
+      "output": {
+        "summary": "Offline fixture synthesis. This proves orchestration only; it is not a researched answer or a paid run.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for AvalancheGo official releases.",
+            "citations": [
+              {
+                "sourceId": "avalanchego",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+              "checkedAt": "2026-09-11T18:08:43.442Z",
+              "claimHash": "ffc75b95c2aec72cfd11eb30afe42df4425e4e34dd5c32d6215b02c20cff8ada",
+              "support": [
+                {
+                  "sourceId": "avalanchego",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "b57ff80068324531e0d8892173779637c0e011d5ee5f3fa5d38fee5f9c5ec7b8",
+                  "spanHash": "31c1b63f8a047a1030444ad04a585abeccecb68da360dfe213138d8743ad1956"
+                }
+              ]
+            }
+          },
+          {
+            "claim": "Synthetic fixture evidence for Subnet-EVM official releases.",
+            "citations": [
+              {
+                "sourceId": "subnetevm",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+              "checkedAt": "2026-09-11T18:08:43.442Z",
+              "claimHash": "f28788de982e7f855d369378456b35657b00d8b0cfe8ede2f81e7ce3dd874ef2",
+              "support": [
+                {
+                  "sourceId": "subnetevm",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "6ec62fe9668db989ce6b7ae4674ca80e8795802407c4037a89d24f4ddfb6798d",
+                  "spanHash": "bb310d9ae2343581dc7aed4048eacf5898a5d1b2ef24ae9a1cfadbbca0871134"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "Synthetic fixture data; no live sources or model calls."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:43.385Z"
+    },
+    {
+      "id": "cryptocurrency/price",
+      "parentId": "cryptocurrency/market",
+      "title": "Price researcher",
+      "assignment": "Summarize the daily AVAX-USD candles over the supplied window. State the venue and incomplete-day limitations.",
+      "depth": 2,
+      "startedAt": "2026-09-11T18:08:42.629Z",
+      "status": "succeeded",
+      "children": [],
+      "output": {
+        "summary": "Offline fixture research result; no factual research performed.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Coinbase AVAX-USD daily candles.",
+            "citations": [
+              {
+                "sourceId": "candles",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+              "checkedAt": "2026-09-11T18:08:43.442Z",
+              "claimHash": "f60ffee35800a5d877b40643a3f2817a840b353984f2dcd1ce7b71718d403183",
+              "support": [
+                {
+                  "sourceId": "candles",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "84f8ee4212d89da098a1a539c160effd75f477bc2b0c95142efca21e570e2338",
+                  "spanHash": "474785257ee2608f19cfe36c5e8559e5930c73c462a9d7eeeafdccb475963ba9"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "This output uses synthetic test data."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:43.049Z"
+    },
+    {
+      "id": "cryptocurrency/volume",
+      "parentId": "cryptocurrency/market",
+      "title": "Volume researcher",
+      "assignment": "Compare available daily and 24-hour volume; distinguish AVAX volume from USD values.",
+      "depth": 2,
+      "startedAt": "2026-09-11T18:08:42.653Z",
+      "status": "succeeded",
+      "children": [],
+      "output": {
+        "summary": "Offline fixture research result; no factual research performed.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Coinbase AVAX-USD 24-hour statistics.",
+            "citations": [
+              {
+                "sourceId": "ticker",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+              "checkedAt": "2026-09-11T18:08:43.442Z",
+              "claimHash": "49ba6d481ceb694e2ef4ae9937fbb6c44599769147cbbaf614e43b88a32782ee",
+              "support": [
+                {
+                  "sourceId": "ticker",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "528320261a0f6ebccca617339d904b1a340642004d5bc388de228321fb71ca1d",
+                  "spanHash": "1e011c2a94c0c56b0fb85d393dece6a67a7e5025c3e42b3950294627d6b92468"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "This output uses synthetic test data."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:43.073Z"
+    },
+    {
+      "id": "cryptocurrency/capital",
+      "parentId": "cryptocurrency/network",
+      "title": "Capital researcher",
+      "assignment": "Describe the seven-day TVL observations; TVL is not transaction throughput.",
+      "depth": 2,
+      "startedAt": "2026-09-11T18:08:42.695Z",
+      "status": "succeeded",
+      "children": [],
+      "output": {
+        "summary": "Offline fixture research result; no factual research performed.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Avalanche DeFi TVL history.",
+            "citations": [
+              {
+                "sourceId": "tvl",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+              "checkedAt": "2026-09-11T18:08:43.442Z",
+              "claimHash": "61dcfef9ad5aa261693721fce77b83bf00b3a79680af7ba7ddc1f2d2266e5e03",
+              "support": [
+                {
+                  "sourceId": "tvl",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "1652717b34f659f8a6bae8a3a55066bc39699f256e477cb30771e769e4a463b5",
+                  "spanHash": "1d33344bfe8f2ec1c08e969dd3aa735afe79139aeb6dddc39073a9b2dbe21288"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "This output uses synthetic test data."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:43.150Z"
+    },
+    {
+      "id": "cryptocurrency/chain",
+      "parentId": "cryptocurrency/network",
+      "title": "Chain researcher",
+      "assignment": "Describe the observed mainnet block, timestamp, transaction count, and gas use. A single block does not prove weekly activity.",
+      "depth": 2,
+      "startedAt": "2026-09-11T18:08:42.717Z",
+      "status": "succeeded",
+      "children": [],
+      "output": {
+        "summary": "Offline fixture research result; no factual research performed.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Avalanche mainnet latest-block observation.",
+            "citations": [
+              {
+                "sourceId": "block",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+              "checkedAt": "2026-09-11T18:08:43.442Z",
+              "claimHash": "6b4fc08b3cccbf8a0089b64a5d94f4e6f04f55a4fe00756ef32b358f2ccfc758",
+              "support": [
+                {
+                  "sourceId": "block",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "7f0c25570d0d79d1b4cffda84d557a7ad3d61e7afaac984dbc776436fa620905",
+                  "spanHash": "9ffcf6bcefbabedd6543cf1037fa462af1c2c491524f4fd7502dc6d5aab0ed31"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "This output uses synthetic test data."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:43.177Z"
+    },
+    {
+      "id": "cryptocurrency/node-releases",
+      "parentId": "cryptocurrency/ecosystem",
+      "title": "Node release researcher",
+      "assignment": "Summarize the dated AvalancheGo release notes. Report an empty window honestly.",
+      "depth": 2,
+      "startedAt": "2026-09-11T18:08:42.763Z",
+      "status": "succeeded",
+      "children": [],
+      "output": {
+        "summary": "Offline fixture research result; no factual research performed.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for AvalancheGo official releases.",
+            "citations": [
+              {
+                "sourceId": "avalanchego",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+              "checkedAt": "2026-09-11T18:08:43.442Z",
+              "claimHash": "ffc75b95c2aec72cfd11eb30afe42df4425e4e34dd5c32d6215b02c20cff8ada",
+              "support": [
+                {
+                  "sourceId": "avalanchego",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "b57ff80068324531e0d8892173779637c0e011d5ee5f3fa5d38fee5f9c5ec7b8",
+                  "spanHash": "31c1b63f8a047a1030444ad04a585abeccecb68da360dfe213138d8743ad1956"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "This output uses synthetic test data."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:43.234Z"
+    },
+    {
+      "id": "cryptocurrency/evm-releases",
+      "parentId": "cryptocurrency/ecosystem",
+      "title": "EVM release researcher",
+      "assignment": "Summarize the dated Subnet-EVM release notes and source links.",
+      "depth": 2,
+      "startedAt": "2026-09-11T18:08:42.786Z",
+      "status": "succeeded",
+      "children": [],
+      "output": {
+        "summary": "Offline fixture research result; no factual research performed.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Subnet-EVM official releases.",
+            "citations": [
+              {
+                "sourceId": "subnetevm",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+              "checkedAt": "2026-09-11T18:08:43.442Z",
+              "claimHash": "f28788de982e7f855d369378456b35657b00d8b0cfe8ede2f81e7ce3dd874ef2",
+              "support": [
+                {
+                  "sourceId": "subnetevm",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "6ec62fe9668db989ce6b7ae4674ca80e8795802407c4037a89d24f4ddfb6798d",
+                  "spanHash": "bb310d9ae2343581dc7aed4048eacf5898a5d1b2ef24ae9a1cfadbbca0871134"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "This output uses synthetic test data."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:43.259Z"
+    }
+  ],
+  "calls": [
+    {
+      "id": "03914fa6-211d-4654-b21e-d554dd3c4ec5",
+      "agentId": "cryptocurrency/master",
+      "purpose": "plan",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:42.440Z",
+      "finishedAt": "2026-09-11T18:08:42.440Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "cb570a35-e163-41be-ba14-ed1ce7902e52",
+      "agentId": "cryptocurrency/market",
+      "purpose": "plan",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:42.502Z",
+      "finishedAt": "2026-09-11T18:08:42.502Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "8c551f3d-2354-4f84-a3eb-fcd5cadc9fb1",
+      "agentId": "cryptocurrency/network",
+      "purpose": "plan",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:42.544Z",
+      "finishedAt": "2026-09-11T18:08:42.544Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "a0ca5089-91c4-4219-b23a-93b6755ce69d",
+      "agentId": "cryptocurrency/ecosystem",
+      "purpose": "plan",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:42.586Z",
+      "finishedAt": "2026-09-11T18:08:42.586Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "7b566581-2105-4162-8982-d3d771141e7d",
+      "agentId": "cryptocurrency/price",
+      "purpose": "research",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:42.839Z",
+      "finishedAt": "2026-09-11T18:08:42.839Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "3b466d5c-69bf-414e-b1d4-567f5c91f3ba",
+      "agentId": "cryptocurrency/volume",
+      "purpose": "research",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:42.883Z",
+      "finishedAt": "2026-09-11T18:08:42.883Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "1d3f447b-613c-4190-ba61-d2404b37f77d",
+      "agentId": "cryptocurrency/capital",
+      "purpose": "research",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:43.004Z",
+      "finishedAt": "2026-09-11T18:08:43.004Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "e60ccd79-4ffb-45a4-ac5c-4ee8600dcc80",
+      "agentId": "cryptocurrency/chain",
+      "purpose": "research",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:43.026Z",
+      "finishedAt": "2026-09-11T18:08:43.026Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "f957194e-19df-4c47-8c42-308d92ccb083",
+      "agentId": "cryptocurrency/node-releases",
+      "purpose": "research",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:43.097Z",
+      "finishedAt": "2026-09-11T18:08:43.097Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "00d44576-f5f5-4b9a-be6c-c0047b4d26e9",
+      "agentId": "cryptocurrency/evm-releases",
+      "purpose": "research",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:43.123Z",
+      "finishedAt": "2026-09-11T18:08:43.123Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "96b4af10-50ce-48cd-9cd9-0e489fc04270",
+      "agentId": "cryptocurrency/market",
+      "purpose": "synthesize",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:43.204Z",
+      "finishedAt": "2026-09-11T18:08:43.204Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "bf592ada-d2a7-402a-889e-28c43800aeb8",
+      "agentId": "cryptocurrency/network",
+      "purpose": "synthesize",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:43.284Z",
+      "finishedAt": "2026-09-11T18:08:43.284Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "2775ead4-bc64-4161-8d78-272fe1e22e86",
+      "agentId": "cryptocurrency/ecosystem",
+      "purpose": "synthesize",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:43.334Z",
+      "finishedAt": "2026-09-11T18:08:43.334Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+      "agentId": "cryptocurrency/master",
+      "purpose": "review",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:43.411Z",
+      "finishedAt": "2026-09-11T18:08:43.411Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "a236395c-7b3f-403a-8a96-98421e315e41",
+      "agentId": "cryptocurrency/master",
+      "purpose": "synthesize",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:43.442Z",
+      "finishedAt": "2026-09-11T18:08:43.442Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "241dc193-3450-4746-963c-c0f2180a62f3",
+      "agentId": "cryptocurrency/master",
+      "purpose": "review",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:43.473Z",
+      "finishedAt": "2026-09-11T18:08:43.473Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    }
+  ],
+  "sources": [
+    {
+      "id": "candles",
+      "title": "Coinbase AVAX-USD daily candles",
+      "url": "fixture:candles",
+      "retrievedAt": "2026-09-11T18:08:42.653Z",
+      "status": 200,
+      "sha256": "84f8ee4212d89da098a1a539c160effd75f477bc2b0c95142efca21e570e2338",
+      "text": "Offline fixture for Coinbase AVAX-USD daily candles. This is synthetic test data, not a retrieved fact. A researcher must cite candles and label the fixture.",
+      "fixture": true,
+      "textSha256": "84f8ee4212d89da098a1a539c160effd75f477bc2b0c95142efca21e570e2338"
+    },
+    {
+      "id": "ticker",
+      "title": "Coinbase AVAX-USD 24-hour statistics",
+      "url": "fixture:ticker",
+      "retrievedAt": "2026-09-11T18:08:42.674Z",
+      "status": 200,
+      "sha256": "528320261a0f6ebccca617339d904b1a340642004d5bc388de228321fb71ca1d",
+      "text": "Offline fixture for Coinbase AVAX-USD 24-hour statistics. This is synthetic test data, not a retrieved fact. A researcher must cite ticker and label the fixture.",
+      "fixture": true,
+      "textSha256": "528320261a0f6ebccca617339d904b1a340642004d5bc388de228321fb71ca1d"
+    },
+    {
+      "id": "tvl",
+      "title": "Avalanche DeFi TVL history",
+      "url": "fixture:tvl",
+      "retrievedAt": "2026-09-11T18:08:42.716Z",
+      "status": 200,
+      "sha256": "1652717b34f659f8a6bae8a3a55066bc39699f256e477cb30771e769e4a463b5",
+      "text": "Offline fixture for Avalanche DeFi TVL history. This is synthetic test data, not a retrieved fact. A researcher must cite tvl and label the fixture.",
+      "fixture": true,
+      "textSha256": "1652717b34f659f8a6bae8a3a55066bc39699f256e477cb30771e769e4a463b5"
+    },
+    {
+      "id": "block",
+      "title": "Avalanche mainnet latest-block observation",
+      "url": "fixture:block",
+      "retrievedAt": "2026-09-11T18:08:42.743Z",
+      "status": 200,
+      "sha256": "7f0c25570d0d79d1b4cffda84d557a7ad3d61e7afaac984dbc776436fa620905",
+      "text": "Offline fixture for Avalanche mainnet latest-block observation. This is synthetic test data, not a retrieved fact. A researcher must cite block and label the fixture.",
+      "fixture": true,
+      "textSha256": "7f0c25570d0d79d1b4cffda84d557a7ad3d61e7afaac984dbc776436fa620905"
+    },
+    {
+      "id": "avalanchego",
+      "title": "AvalancheGo official releases",
+      "url": "fixture:avalanchego",
+      "retrievedAt": "2026-09-11T18:08:42.786Z",
+      "status": 200,
+      "sha256": "b57ff80068324531e0d8892173779637c0e011d5ee5f3fa5d38fee5f9c5ec7b8",
+      "text": "Offline fixture for AvalancheGo official releases. This is synthetic test data, not a retrieved fact. A researcher must cite avalanchego and label the fixture.",
+      "fixture": true,
+      "textSha256": "b57ff80068324531e0d8892173779637c0e011d5ee5f3fa5d38fee5f9c5ec7b8"
+    },
+    {
+      "id": "subnetevm",
+      "title": "Subnet-EVM official releases",
+      "url": "fixture:subnetevm",
+      "retrievedAt": "2026-09-11T18:08:42.811Z",
+      "status": 200,
+      "sha256": "6ec62fe9668db989ce6b7ae4674ca80e8795802407c4037a89d24f4ddfb6798d",
+      "text": "Offline fixture for Subnet-EVM official releases. This is synthetic test data, not a retrieved fact. A researcher must cite subnetevm and label the fixture.",
+      "fixture": true,
+      "textSha256": "6ec62fe9668db989ce6b7ae4674ca80e8795802407c4037a89d24f4ddfb6798d"
+    }
+  ],
+  "payments": [],
+  "evidenceReview": {
+    "findings": [
+      {
+        "claim": "Synthetic fixture evidence for Coinbase AVAX-USD daily candles.",
+        "citations": [
+          {
+            "sourceId": "candles",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+          "checkedAt": "2026-09-11T18:08:43.442Z",
+          "claimHash": "f60ffee35800a5d877b40643a3f2817a840b353984f2dcd1ce7b71718d403183",
+          "support": [
+            {
+              "sourceId": "candles",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "84f8ee4212d89da098a1a539c160effd75f477bc2b0c95142efca21e570e2338",
+              "spanHash": "474785257ee2608f19cfe36c5e8559e5930c73c462a9d7eeeafdccb475963ba9"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Coinbase AVAX-USD 24-hour statistics.",
+        "citations": [
+          {
+            "sourceId": "ticker",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+          "checkedAt": "2026-09-11T18:08:43.442Z",
+          "claimHash": "49ba6d481ceb694e2ef4ae9937fbb6c44599769147cbbaf614e43b88a32782ee",
+          "support": [
+            {
+              "sourceId": "ticker",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "528320261a0f6ebccca617339d904b1a340642004d5bc388de228321fb71ca1d",
+              "spanHash": "1e011c2a94c0c56b0fb85d393dece6a67a7e5025c3e42b3950294627d6b92468"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Avalanche DeFi TVL history.",
+        "citations": [
+          {
+            "sourceId": "tvl",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+          "checkedAt": "2026-09-11T18:08:43.442Z",
+          "claimHash": "61dcfef9ad5aa261693721fce77b83bf00b3a79680af7ba7ddc1f2d2266e5e03",
+          "support": [
+            {
+              "sourceId": "tvl",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "1652717b34f659f8a6bae8a3a55066bc39699f256e477cb30771e769e4a463b5",
+              "spanHash": "1d33344bfe8f2ec1c08e969dd3aa735afe79139aeb6dddc39073a9b2dbe21288"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Avalanche mainnet latest-block observation.",
+        "citations": [
+          {
+            "sourceId": "block",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+          "checkedAt": "2026-09-11T18:08:43.442Z",
+          "claimHash": "6b4fc08b3cccbf8a0089b64a5d94f4e6f04f55a4fe00756ef32b358f2ccfc758",
+          "support": [
+            {
+              "sourceId": "block",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "7f0c25570d0d79d1b4cffda84d557a7ad3d61e7afaac984dbc776436fa620905",
+              "spanHash": "9ffcf6bcefbabedd6543cf1037fa462af1c2c491524f4fd7502dc6d5aab0ed31"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for AvalancheGo official releases.",
+        "citations": [
+          {
+            "sourceId": "avalanchego",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+          "checkedAt": "2026-09-11T18:08:43.442Z",
+          "claimHash": "ffc75b95c2aec72cfd11eb30afe42df4425e4e34dd5c32d6215b02c20cff8ada",
+          "support": [
+            {
+              "sourceId": "avalanchego",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "b57ff80068324531e0d8892173779637c0e011d5ee5f3fa5d38fee5f9c5ec7b8",
+              "spanHash": "31c1b63f8a047a1030444ad04a585abeccecb68da360dfe213138d8743ad1956"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Subnet-EVM official releases.",
+        "citations": [
+          {
+            "sourceId": "subnetevm",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+          "checkedAt": "2026-09-11T18:08:43.442Z",
+          "claimHash": "f28788de982e7f855d369378456b35657b00d8b0cfe8ede2f81e7ce3dd874ef2",
+          "support": [
+            {
+              "sourceId": "subnetevm",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "6ec62fe9668db989ce6b7ae4674ca80e8795802407c4037a89d24f4ddfb6798d",
+              "spanHash": "bb310d9ae2343581dc7aed4048eacf5898a5d1b2ef24ae9a1cfadbbca0871134"
+            }
+          ]
+        }
+      }
+    ],
+    "checkedAt": "2026-09-11T18:08:43.442Z"
+  },
+  "masterDraft": {
+    "summary": "Offline fixture synopsis. This text checks the final-answer layout and orchestration; it is not a researched recommendation.",
+    "synopsis": [
+      {
+        "heading": "Market activity",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "candles",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Network observations",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "candles",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Ecosystem releases",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "candles",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "What the evidence cannot establish",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "candles",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      }
+    ],
+    "completion": "partial",
+    "findings": [
+      {
+        "claim": "Synthetic fixture evidence for Coinbase AVAX-USD daily candles.",
+        "citations": [
+          {
+            "sourceId": "candles",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+          "checkedAt": "2026-09-11T18:08:43.442Z",
+          "claimHash": "f60ffee35800a5d877b40643a3f2817a840b353984f2dcd1ce7b71718d403183",
+          "support": [
+            {
+              "sourceId": "candles",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "84f8ee4212d89da098a1a539c160effd75f477bc2b0c95142efca21e570e2338",
+              "spanHash": "474785257ee2608f19cfe36c5e8559e5930c73c462a9d7eeeafdccb475963ba9"
+            }
+          ]
+        }
+      }
+    ],
+    "limitations": [
+      "Synthetic fixture data; no live research or model inference occurred."
+    ]
+  },
+  "result": {
+    "summary": "Offline fixture synopsis. This text checks the final-answer layout and orchestration; it is not a researched recommendation.",
+    "synopsis": [
+      {
+        "heading": "Market activity",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "candles",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Network observations",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "candles",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Ecosystem releases",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "candles",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "What the evidence cannot establish",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "candles",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      }
+    ],
+    "completion": "partial",
+    "findings": [
+      {
+        "claim": "Synthetic fixture evidence for Coinbase AVAX-USD daily candles.",
+        "citations": [
+          {
+            "sourceId": "candles",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "6948da8b-dc50-48e2-a67b-f64fc1259af4",
+          "checkedAt": "2026-09-11T18:08:43.442Z",
+          "claimHash": "f60ffee35800a5d877b40643a3f2817a840b353984f2dcd1ce7b71718d403183",
+          "support": [
+            {
+              "sourceId": "candles",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "84f8ee4212d89da098a1a539c160effd75f477bc2b0c95142efca21e570e2338",
+              "spanHash": "474785257ee2608f19cfe36c5e8559e5930c73c462a9d7eeeafdccb475963ba9"
+            }
+          ]
+        }
+      }
+    ],
+    "limitations": [
+      "Synthetic fixture data; no live research or model inference occurred."
+    ],
+    "review": {
+      "status": "supported",
+      "sections": [
+        {
+          "id": "summary",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "241dc193-3450-4746-963c-c0f2180a62f3",
+            "checkedAt": "2026-09-11T18:08:43.502Z",
+            "claimHash": "7a08acc679c8f2d2df6c60a2625e0c36a8071c82a7a5110a2fbf3a2547707085",
+            "support": [
+              {
+                "sourceId": "candles",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "84f8ee4212d89da098a1a539c160effd75f477bc2b0c95142efca21e570e2338",
+                "spanHash": "474785257ee2608f19cfe36c5e8559e5930c73c462a9d7eeeafdccb475963ba9"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-1",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "241dc193-3450-4746-963c-c0f2180a62f3",
+            "checkedAt": "2026-09-11T18:08:43.502Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "candles",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "84f8ee4212d89da098a1a539c160effd75f477bc2b0c95142efca21e570e2338",
+                "spanHash": "474785257ee2608f19cfe36c5e8559e5930c73c462a9d7eeeafdccb475963ba9"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-2",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "241dc193-3450-4746-963c-c0f2180a62f3",
+            "checkedAt": "2026-09-11T18:08:43.502Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "candles",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "84f8ee4212d89da098a1a539c160effd75f477bc2b0c95142efca21e570e2338",
+                "spanHash": "474785257ee2608f19cfe36c5e8559e5930c73c462a9d7eeeafdccb475963ba9"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-3",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "241dc193-3450-4746-963c-c0f2180a62f3",
+            "checkedAt": "2026-09-11T18:08:43.502Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "candles",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "84f8ee4212d89da098a1a539c160effd75f477bc2b0c95142efca21e570e2338",
+                "spanHash": "474785257ee2608f19cfe36c5e8559e5930c73c462a9d7eeeafdccb475963ba9"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-4",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "241dc193-3450-4746-963c-c0f2180a62f3",
+            "checkedAt": "2026-09-11T18:08:43.502Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "candles",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "84f8ee4212d89da098a1a539c160effd75f477bc2b0c95142efca21e570e2338",
+                "spanHash": "474785257ee2608f19cfe36c5e8559e5930c73c462a9d7eeeafdccb475963ba9"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "finishedAt": "2026-09-11T18:08:43.532Z",
+  "presentationNotes": [
+    "Product references use the full name Katara Cortex. Payment identifiers and source hashes retain their recorded values."
+  ]
+}

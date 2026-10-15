@@ -1,0 +1,145 @@
+{
+  "id": "repository",
+  "title": "Public repository explainer",
+  "command": "Explain how Express works, how to run it, its request/response API, and how its tests are organized. Cite files and line ranges.",
+  "description": "A master delegates to four specialists, each of whom spawns two file researchers.",
+  "sources": [
+    {
+      "id": "readme",
+      "title": "Project README",
+      "url": "https://raw.githubusercontent.com/{repo}/{commit}/Readme.md"
+    },
+    {
+      "id": "manifest",
+      "title": "Package manifest",
+      "url": "https://raw.githubusercontent.com/{repo}/{commit}/package.json"
+    },
+    {
+      "id": "entry",
+      "title": "Library entry point",
+      "url": "https://raw.githubusercontent.com/{repo}/{commit}/lib/express.js"
+    },
+    {
+      "id": "application",
+      "title": "Application implementation",
+      "url": "https://raw.githubusercontent.com/{repo}/{commit}/lib/application.js"
+    },
+    {
+      "id": "request",
+      "title": "Request implementation",
+      "url": "https://raw.githubusercontent.com/{repo}/{commit}/lib/request.js"
+    },
+    {
+      "id": "response",
+      "title": "Response implementation",
+      "url": "https://raw.githubusercontent.com/{repo}/{commit}/lib/response.js"
+    },
+    {
+      "id": "tests",
+      "title": "Application tests",
+      "url": "https://raw.githubusercontent.com/{repo}/{commit}/test/app.js"
+    },
+    {
+      "id": "test-contract",
+      "title": "Request contract tests",
+      "url": "https://raw.githubusercontent.com/{repo}/{commit}/test/req.accepts.js"
+    }
+  ],
+  "specialists": [
+    {
+      "id": "architecture",
+      "title": "Architecture specialist",
+      "goal": "Explain the execution path from application creation to request handling.",
+      "researchers": [
+        {
+          "id": "entry-reader",
+          "title": "Entry reader",
+          "question": "Identify exports and application construction.",
+          "sourceIds": [
+            "entry"
+          ]
+        },
+        {
+          "id": "application-reader",
+          "title": "Application reader",
+          "question": "Explain routing and middleware wiring.",
+          "sourceIds": [
+            "application"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "setup",
+      "title": "Setup specialist",
+      "goal": "Give setup commands grounded in the pinned source. Do not execute code.",
+      "researchers": [
+        {
+          "id": "readme-reader",
+          "title": "README reader",
+          "question": "Extract the documented installation and first example.",
+          "sourceIds": [
+            "readme"
+          ]
+        },
+        {
+          "id": "manifest-reader",
+          "title": "Manifest reader",
+          "question": "Extract Node requirements, scripts, and runtime dependencies.",
+          "sourceIds": [
+            "manifest"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "api",
+      "title": "API specialist",
+      "goal": "Summarize request and response behavior.",
+      "researchers": [
+        {
+          "id": "request-reader",
+          "title": "Request reader",
+          "question": "Explain representative request helpers and their contracts.",
+          "sourceIds": [
+            "request"
+          ]
+        },
+        {
+          "id": "response-reader",
+          "title": "Response reader",
+          "question": "Explain representative response helpers and their contracts.",
+          "sourceIds": [
+            "response"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "testing",
+      "title": "Testing specialist",
+      "goal": "Explain how a new contributor should validate a change.",
+      "researchers": [
+        {
+          "id": "test-reader",
+          "title": "Test reader",
+          "question": "Describe the test structure with exact file evidence.",
+          "sourceIds": [
+            "tests",
+            "manifest"
+          ]
+        },
+        {
+          "id": "test-contract-reader",
+          "title": "Test contract reader",
+          "question": "Explain asserted request behavior and test conventions using file and line evidence.",
+          "sourceIds": [
+            "test-contract",
+            "manifest"
+          ]
+        }
+      ]
+    }
+  ],
+  "repository": "expressjs/express"
+}

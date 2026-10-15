@@ -1,0 +1,1017 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:katara:recursive-agents:cli-response:v1",
+  "title": "CliResponse",
+  "anyOf": [
+    {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "type": "number",
+          "const": 1
+        },
+        "ok": {
+          "type": "boolean",
+          "const": true
+        },
+        "result": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "help"
+                },
+                "text": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "command",
+                "text"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "list"
+                },
+                "examples": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ExampleSummary"
+                  }
+                }
+              },
+              "required": [
+                "command",
+                "examples"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "plan"
+                },
+                "examples": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ExamplePlan"
+                  }
+                }
+              },
+              "required": [
+                "command",
+                "examples"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "sources"
+                },
+                "examples": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "example": {
+                        "type": "string",
+                        "enum": [
+                          "comparison",
+                          "cryptocurrency",
+                          "documentation",
+                          "repository",
+                          "trip"
+                        ]
+                      },
+                      "retrieved": {
+                        "type": "number"
+                      },
+                      "total": {
+                        "type": "number"
+                      },
+                      "sources": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "url": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "number"
+                            },
+                            "error": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "url",
+                            "status"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "required": [
+                      "example",
+                      "retrieved",
+                      "total",
+                      "sources"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "command",
+                "examples"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "inspect"
+                },
+                "runId": {
+                  "type": "string"
+                },
+                "reports": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ReportSummary"
+                  }
+                }
+              },
+              "required": [
+                "command",
+                "runId",
+                "reports"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "doctor"
+                },
+                "mode": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "test"
+                  ]
+                },
+                "address": {
+                  "type": "string"
+                },
+                "balanceUnits": {
+                  "type": "string"
+                },
+                "permit2AllowanceUnits": {
+                  "type": "string"
+                },
+                "chainId": {
+                  "type": "number"
+                },
+                "network": {
+                  "type": "string"
+                },
+                "asset": {
+                  "type": "string"
+                },
+                "settlement": {
+                  "type": "string"
+                },
+                "gateway": {
+                  "type": "string"
+                },
+                "model": {
+                  "type": "string"
+                },
+                "block": {
+                  "type": "string"
+                },
+                "configurationVerified": {
+                  "type": "boolean",
+                  "const": true
+                },
+                "paidCapacityVerified": {
+                  "type": "boolean",
+                  "const": false
+                }
+              },
+              "required": [
+                "command",
+                "mode",
+                "address",
+                "balanceUnits",
+                "permit2AllowanceUnits",
+                "chainId",
+                "network",
+                "asset",
+                "settlement",
+                "gateway",
+                "model",
+                "block",
+                "configurationVerified",
+                "paidCapacityVerified"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "faucet"
+                },
+                "address": {
+                  "type": "string"
+                },
+                "claimed": {
+                  "type": "boolean"
+                },
+                "claimTransaction": {
+                  "type": "string"
+                },
+                "nextClaimAt": {
+                  "type": "string"
+                },
+                "approved": {
+                  "type": "boolean"
+                },
+                "approveTransaction": {
+                  "type": "string"
+                },
+                "balanceUnits": {
+                  "type": "string"
+                },
+                "permit2AllowanceUnits": {
+                  "type": "string"
+                },
+                "gasWei": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "command",
+                "address",
+                "claimed",
+                "approved",
+                "balanceUnits",
+                "permit2AllowanceUnits",
+                "gasWei"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "reconcile"
+                },
+                "pendingAuthorizations": {
+                  "type": "number"
+                },
+                "confirmedUnits": {
+                  "type": "string"
+                },
+                "pendingUnits": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "command",
+                "pendingAuthorizations",
+                "confirmedUnits",
+                "pendingUnits"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "run"
+                },
+                "runId": {
+                  "type": "string"
+                },
+                "mode": {
+                  "type": "string",
+                  "enum": [
+                    "fixture",
+                    "mainnet",
+                    "test"
+                  ]
+                },
+                "budgetUnits": {
+                  "type": "string"
+                },
+                "exposureUnits": {
+                  "type": "string"
+                },
+                "reports": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ReportSummary"
+                  }
+                }
+              },
+              "required": [
+                "command",
+                "runId",
+                "mode",
+                "budgetUnits",
+                "exposureUnits",
+                "reports"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "ok",
+        "result"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "type": "number",
+          "const": 1
+        },
+        "ok": {
+          "type": "boolean",
+          "const": false
+        },
+        "command": {
+          "type": "string",
+          "enum": [
+            "doctor",
+            "faucet",
+            "help",
+            "inspect",
+            "list",
+            "plan",
+            "reconcile",
+            "run",
+            "sources",
+            "unknown"
+          ]
+        },
+        "error": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            },
+            "gateway": {
+              "$ref": "#/definitions/GatewayRefusal"
+            }
+          },
+          "required": [
+            "code",
+            "message"
+          ],
+          "additionalProperties": false
+        },
+        "result": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "help"
+                },
+                "text": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "command",
+                "text"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "list"
+                },
+                "examples": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ExampleSummary"
+                  }
+                }
+              },
+              "required": [
+                "command",
+                "examples"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "plan"
+                },
+                "examples": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ExamplePlan"
+                  }
+                }
+              },
+              "required": [
+                "command",
+                "examples"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "sources"
+                },
+                "examples": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "example": {
+                        "type": "string",
+                        "enum": [
+                          "comparison",
+                          "cryptocurrency",
+                          "documentation",
+                          "repository",
+                          "trip"
+                        ]
+                      },
+                      "retrieved": {
+                        "type": "number"
+                      },
+                      "total": {
+                        "type": "number"
+                      },
+                      "sources": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "url": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "number"
+                            },
+                            "error": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "url",
+                            "status"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "required": [
+                      "example",
+                      "retrieved",
+                      "total",
+                      "sources"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "command",
+                "examples"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "inspect"
+                },
+                "runId": {
+                  "type": "string"
+                },
+                "reports": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ReportSummary"
+                  }
+                }
+              },
+              "required": [
+                "command",
+                "runId",
+                "reports"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "doctor"
+                },
+                "mode": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "test"
+                  ]
+                },
+                "address": {
+                  "type": "string"
+                },
+                "balanceUnits": {
+                  "type": "string"
+                },
+                "permit2AllowanceUnits": {
+                  "type": "string"
+                },
+                "chainId": {
+                  "type": "number"
+                },
+                "network": {
+                  "type": "string"
+                },
+                "asset": {
+                  "type": "string"
+                },
+                "settlement": {
+                  "type": "string"
+                },
+                "gateway": {
+                  "type": "string"
+                },
+                "model": {
+                  "type": "string"
+                },
+                "block": {
+                  "type": "string"
+                },
+                "configurationVerified": {
+                  "type": "boolean",
+                  "const": true
+                },
+                "paidCapacityVerified": {
+                  "type": "boolean",
+                  "const": false
+                }
+              },
+              "required": [
+                "command",
+                "mode",
+                "address",
+                "balanceUnits",
+                "permit2AllowanceUnits",
+                "chainId",
+                "network",
+                "asset",
+                "settlement",
+                "gateway",
+                "model",
+                "block",
+                "configurationVerified",
+                "paidCapacityVerified"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "faucet"
+                },
+                "address": {
+                  "type": "string"
+                },
+                "claimed": {
+                  "type": "boolean"
+                },
+                "claimTransaction": {
+                  "type": "string"
+                },
+                "nextClaimAt": {
+                  "type": "string"
+                },
+                "approved": {
+                  "type": "boolean"
+                },
+                "approveTransaction": {
+                  "type": "string"
+                },
+                "balanceUnits": {
+                  "type": "string"
+                },
+                "permit2AllowanceUnits": {
+                  "type": "string"
+                },
+                "gasWei": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "command",
+                "address",
+                "claimed",
+                "approved",
+                "balanceUnits",
+                "permit2AllowanceUnits",
+                "gasWei"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "reconcile"
+                },
+                "pendingAuthorizations": {
+                  "type": "number"
+                },
+                "confirmedUnits": {
+                  "type": "string"
+                },
+                "pendingUnits": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "command",
+                "pendingAuthorizations",
+                "confirmedUnits",
+                "pendingUnits"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "run"
+                },
+                "runId": {
+                  "type": "string"
+                },
+                "mode": {
+                  "type": "string",
+                  "enum": [
+                    "fixture",
+                    "mainnet",
+                    "test"
+                  ]
+                },
+                "budgetUnits": {
+                  "type": "string"
+                },
+                "exposureUnits": {
+                  "type": "string"
+                },
+                "reports": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ReportSummary"
+                  }
+                }
+              },
+              "required": [
+                "command",
+                "runId",
+                "mode",
+                "budgetUnits",
+                "exposureUnits",
+                "reports"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "ok",
+        "command",
+        "error"
+      ],
+      "additionalProperties": false
+    }
+  ],
+  "definitions": {
+    "ExampleSummary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "enum": [
+            "comparison",
+            "cryptocurrency",
+            "documentation",
+            "repository",
+            "trip"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "specialists": {
+          "type": "number"
+        },
+        "researchers": {
+          "type": "number"
+        },
+        "spawnedAgents": {
+          "type": "number"
+        },
+        "totalAgents": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "command",
+        "description",
+        "specialists",
+        "researchers",
+        "spawnedAgents",
+        "totalAgents"
+      ],
+      "additionalProperties": false,
+      "description": "Counts describe logical agents; a parent can make several inference calls."
+    },
+    "ExamplePlan": {
+      "type": "object",
+      "properties": {
+        "assignments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "goal": {
+                "type": "string"
+              },
+              "researchers": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Researcher"
+                }
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "goal",
+              "researchers"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "id": {
+          "type": "string",
+          "enum": [
+            "comparison",
+            "cryptocurrency",
+            "documentation",
+            "repository",
+            "trip"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "specialists": {
+          "type": "number"
+        },
+        "researchers": {
+          "type": "number"
+        },
+        "spawnedAgents": {
+          "type": "number"
+        },
+        "totalAgents": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "assignments",
+        "id",
+        "title",
+        "command",
+        "description",
+        "specialists",
+        "researchers",
+        "spawnedAgents",
+        "totalAgents"
+      ],
+      "additionalProperties": false,
+      "description": "The fixed tree and source permissions that Katara Cortex may assign work within."
+    },
+    "Researcher": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string"
+        },
+        "sourceIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "References SourceSpec IDs from the same scenario.",
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "question",
+        "sourceIds"
+      ],
+      "additionalProperties": false,
+      "description": "Leaf agent with an explicit source scope; a model-generated task cannot expand it."
+    },
+    "ReportSummary": {
+      "type": "object",
+      "properties": {
+        "example": {
+          "type": "string",
+          "enum": [
+            "comparison",
+            "cryptocurrency",
+            "documentation",
+            "repository",
+            "trip"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "fixture",
+            "mainnet",
+            "test"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "failed",
+            "partial",
+            "running",
+            "succeeded"
+          ]
+        },
+        "agents": {
+          "type": "number"
+        },
+        "plannedAgents": {
+          "type": "number"
+        },
+        "calls": {
+          "type": "number"
+        },
+        "simulatedCalls": {
+          "type": "number",
+          "description": "Paid Test calls answered by the simulated reply; their agents used fixture output."
+        },
+        "confirmedUnits": {
+          "type": "string",
+          "description": "Confirmed net charges in USDC base units, excluding pending authorizations."
+        },
+        "pendingUnits": {
+          "type": "string",
+          "description": "Maximum amounts still reserved; these authorizations may yet settle."
+        },
+        "htmlPath": {
+          "type": "string"
+        },
+        "jsonPath": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "example",
+        "title",
+        "mode",
+        "status",
+        "agents",
+        "plannedAgents",
+        "calls",
+        "simulatedCalls",
+        "confirmedUnits",
+        "pendingUnits",
+        "htmlPath",
+        "jsonPath"
+      ],
+      "additionalProperties": false,
+      "description": "Report locations and accounting, without source bodies or wallet secrets."
+    },
+    "GatewayRefusal": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "number"
+        },
+        "code": {
+          "type": "string"
+        },
+        "param": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "description": "A gateway's error answer as it sent it: untrusted text, bounded and stripped of control characters."
+    }
+  }
+}

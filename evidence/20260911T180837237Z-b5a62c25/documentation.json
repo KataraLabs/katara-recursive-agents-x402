@@ -1,0 +1,1395 @@
+{
+  "version": 1,
+  "id": "20260911T180837237Z-b5a62c25",
+  "example": "documentation",
+  "title": "Documentation website audit",
+  "command": "Audit these Katara documentation pages for gaps, contradictions, and broken links. Distinguish observed defects from suggestions.",
+  "mode": "fixture",
+  "startedAt": "2026-09-11T18:08:38.545Z",
+  "status": "succeeded",
+  "softwareCommit": "eefb0ae031f6b0352fe44e18d84c522e997391d2+uncommitted",
+  "gateway": "none (offline fixture)",
+  "network": "none (offline fixture)",
+  "model": "fixture (no inference)",
+  "budgetUnits": "0",
+  "budgetScope": "all five examples in this invocation",
+  "plannedAgents": 10,
+  "agents": [
+    {
+      "id": "documentation/master",
+      "title": "Master demo agent",
+      "assignment": "Audit these Katara documentation pages for gaps, contradictions, and broken links. Distinguish observed defects from suggestions.",
+      "depth": 0,
+      "startedAt": "2026-09-11T18:08:38.576Z",
+      "status": "succeeded",
+      "children": [
+        "documentation/onboarding",
+        "documentation/concepts",
+        "documentation/reference"
+      ],
+      "output": {
+        "summary": "Offline fixture synopsis. This text checks the final-answer layout and orchestration; it is not a researched recommendation.",
+        "synopsis": [
+          {
+            "heading": "Overall assessment",
+            "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+            "citations": [
+              {
+                "sourceId": "start-api",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ]
+          },
+          {
+            "heading": "Observed issues",
+            "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+            "citations": [
+              {
+                "sourceId": "start-api",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ]
+          },
+          {
+            "heading": "Suggested improvements",
+            "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+            "citations": [
+              {
+                "sourceId": "start-api",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ]
+          },
+          {
+            "heading": "Audit coverage and next steps",
+            "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+            "citations": [
+              {
+                "sourceId": "start-api",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ]
+          }
+        ],
+        "completion": "partial",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for API quickstart.",
+            "citations": [
+              {
+                "sourceId": "start-api",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+              "checkedAt": "2026-09-11T18:08:39.491Z",
+              "claimHash": "14488b4907ac396fa37b2c4b9583d88b75f95ee165a127b29c9755acbd141818",
+              "support": [
+                {
+                  "sourceId": "start-api",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "e4b466f6fe79bf576c596b2578475cee0dcf421665b282fd485223854edb0ecd",
+                  "spanHash": "86fffcb09ca2884feec5fff8638f1a2001a141dd28520b1b441b2a5972d4a9cb"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "Synthetic fixture data; no live research or model inference occurred."
+        ],
+        "review": {
+          "status": "supported",
+          "sections": [
+            {
+              "id": "summary",
+              "assessment": {
+                "verdict": "supported",
+                "reason": "Explicitly labeled synthetic fixture content.",
+                "method": "fixture",
+                "callId": "d1cfc765-bfc6-4728-bd32-4b1ee04c3793",
+                "checkedAt": "2026-09-11T18:08:39.535Z",
+                "claimHash": "7a08acc679c8f2d2df6c60a2625e0c36a8071c82a7a5110a2fbf3a2547707085",
+                "support": [
+                  {
+                    "sourceId": "start-api",
+                    "startLine": 1,
+                    "endLine": 1,
+                    "sourceHash": "e4b466f6fe79bf576c596b2578475cee0dcf421665b282fd485223854edb0ecd",
+                    "spanHash": "86fffcb09ca2884feec5fff8638f1a2001a141dd28520b1b441b2a5972d4a9cb"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "section-1",
+              "assessment": {
+                "verdict": "supported",
+                "reason": "Explicitly labeled synthetic fixture content.",
+                "method": "fixture",
+                "callId": "d1cfc765-bfc6-4728-bd32-4b1ee04c3793",
+                "checkedAt": "2026-09-11T18:08:39.535Z",
+                "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+                "support": [
+                  {
+                    "sourceId": "start-api",
+                    "startLine": 1,
+                    "endLine": 1,
+                    "sourceHash": "e4b466f6fe79bf576c596b2578475cee0dcf421665b282fd485223854edb0ecd",
+                    "spanHash": "86fffcb09ca2884feec5fff8638f1a2001a141dd28520b1b441b2a5972d4a9cb"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "section-2",
+              "assessment": {
+                "verdict": "supported",
+                "reason": "Explicitly labeled synthetic fixture content.",
+                "method": "fixture",
+                "callId": "d1cfc765-bfc6-4728-bd32-4b1ee04c3793",
+                "checkedAt": "2026-09-11T18:08:39.535Z",
+                "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+                "support": [
+                  {
+                    "sourceId": "start-api",
+                    "startLine": 1,
+                    "endLine": 1,
+                    "sourceHash": "e4b466f6fe79bf576c596b2578475cee0dcf421665b282fd485223854edb0ecd",
+                    "spanHash": "86fffcb09ca2884feec5fff8638f1a2001a141dd28520b1b441b2a5972d4a9cb"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "section-3",
+              "assessment": {
+                "verdict": "supported",
+                "reason": "Explicitly labeled synthetic fixture content.",
+                "method": "fixture",
+                "callId": "d1cfc765-bfc6-4728-bd32-4b1ee04c3793",
+                "checkedAt": "2026-09-11T18:08:39.535Z",
+                "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+                "support": [
+                  {
+                    "sourceId": "start-api",
+                    "startLine": 1,
+                    "endLine": 1,
+                    "sourceHash": "e4b466f6fe79bf576c596b2578475cee0dcf421665b282fd485223854edb0ecd",
+                    "spanHash": "86fffcb09ca2884feec5fff8638f1a2001a141dd28520b1b441b2a5972d4a9cb"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "section-4",
+              "assessment": {
+                "verdict": "supported",
+                "reason": "Explicitly labeled synthetic fixture content.",
+                "method": "fixture",
+                "callId": "d1cfc765-bfc6-4728-bd32-4b1ee04c3793",
+                "checkedAt": "2026-09-11T18:08:39.535Z",
+                "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+                "support": [
+                  {
+                    "sourceId": "start-api",
+                    "startLine": 1,
+                    "endLine": 1,
+                    "sourceHash": "e4b466f6fe79bf576c596b2578475cee0dcf421665b282fd485223854edb0ecd",
+                    "spanHash": "86fffcb09ca2884feec5fff8638f1a2001a141dd28520b1b441b2a5972d4a9cb"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "finishedAt": "2026-09-11T18:08:39.536Z"
+    },
+    {
+      "id": "documentation/onboarding",
+      "parentId": "documentation/master",
+      "title": "Onboarding reviewer",
+      "assignment": "Check whether first-time users can follow the setup.",
+      "depth": 1,
+      "startedAt": "2026-09-11T18:08:38.631Z",
+      "status": "succeeded",
+      "children": [
+        "documentation/api-page",
+        "documentation/chat-page"
+      ],
+      "output": {
+        "summary": "Offline fixture synthesis. This proves orchestration only; it is not a researched answer or a paid run.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for API quickstart.",
+            "citations": [
+              {
+                "sourceId": "start-api",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+              "checkedAt": "2026-09-11T18:08:39.491Z",
+              "claimHash": "14488b4907ac396fa37b2c4b9583d88b75f95ee165a127b29c9755acbd141818",
+              "support": [
+                {
+                  "sourceId": "start-api",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "e4b466f6fe79bf576c596b2578475cee0dcf421665b282fd485223854edb0ecd",
+                  "spanHash": "86fffcb09ca2884feec5fff8638f1a2001a141dd28520b1b441b2a5972d4a9cb"
+                }
+              ]
+            }
+          },
+          {
+            "claim": "Synthetic fixture evidence for Chat quickstart.",
+            "citations": [
+              {
+                "sourceId": "start-chat",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+              "checkedAt": "2026-09-11T18:08:39.491Z",
+              "claimHash": "1d65bb28fcec16393e7f68ce92dddd41adadf7a3ecf57e920551ab6d2cb4393b",
+              "support": [
+                {
+                  "sourceId": "start-chat",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "b56f8b4c0451a0f953d68f493cbb5e740016182b9145ca28927f047e728a6049",
+                  "spanHash": "126198c935944cc61e95db9e3c52b9b2411cddd4cd93fb4e00071eac0cb92f30"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "Synthetic fixture data; no live sources or model calls."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:39.365Z"
+    },
+    {
+      "id": "documentation/concepts",
+      "parentId": "documentation/master",
+      "title": "Concept reviewer",
+      "assignment": "Compare model behavior and network descriptions.",
+      "depth": 1,
+      "startedAt": "2026-09-11T18:08:38.669Z",
+      "status": "succeeded",
+      "children": [
+        "documentation/cortex-page",
+        "documentation/network-page"
+      ],
+      "output": {
+        "summary": "Offline fixture synthesis. This proves orchestration only; it is not a researched answer or a paid run.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Katara Cortex model guide.",
+            "citations": [
+              {
+                "sourceId": "cortex",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+              "checkedAt": "2026-09-11T18:08:39.491Z",
+              "claimHash": "81810e975e333b539b36bc6c1bd57a1fa5c8c77f7f1452fc7d82c4c711e2fc9d",
+              "support": [
+                {
+                  "sourceId": "cortex",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "d3b557fdaa74566e938d2192a2e39bbd39432be8e43d231442a760e81d82f909",
+                  "spanHash": "feab7530ee0bcd0bf28508f0a6a101a55df542450906be7efef719ee59429fe5"
+                }
+              ]
+            }
+          },
+          {
+            "claim": "Synthetic fixture evidence for Network reference.",
+            "citations": [
+              {
+                "sourceId": "networks",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+              "checkedAt": "2026-09-11T18:08:39.491Z",
+              "claimHash": "3f4a24a7d212d23ea13ba960699f9e41bee353a0d866a83f8360172e17a7a59b",
+              "support": [
+                {
+                  "sourceId": "networks",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "58d15a5bf3bca278f0e1ec28e35bbda27f1f7ab1b3282cb13889849da15519bc",
+                  "spanHash": "1d3708d6a1247f61ac619c2ae868ccc5a84998ac2bf30ee33fb00bc22973bcc9"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "Synthetic fixture data; no live sources or model calls."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:39.416Z"
+    },
+    {
+      "id": "documentation/reference",
+      "parentId": "documentation/master",
+      "title": "Reference reviewer",
+      "assignment": "Check errors and billing explanations.",
+      "depth": 1,
+      "startedAt": "2026-09-11T18:08:38.710Z",
+      "status": "succeeded",
+      "children": [
+        "documentation/errors-page",
+        "documentation/usage-page"
+      ],
+      "output": {
+        "summary": "Offline fixture synthesis. This proves orchestration only; it is not a researched answer or a paid run.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Error reference.",
+            "citations": [
+              {
+                "sourceId": "errors",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+              "checkedAt": "2026-09-11T18:08:39.491Z",
+              "claimHash": "c721d58abeaa5bc46523d27dd2abbb6d5e7d14b6b066ff52599b234b180498ab",
+              "support": [
+                {
+                  "sourceId": "errors",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "c8e1d97f2abb92efc80eab284da5a40b2606e11cddb9b052b00a321bf26b6108",
+                  "spanHash": "7c157d1e09e29e73f71ae3fee3bb791b1eb0181580552a7a9ce732e9dd2bba7b"
+                }
+              ]
+            }
+          },
+          {
+            "claim": "Synthetic fixture evidence for Usage reference.",
+            "citations": [
+              {
+                "sourceId": "usage",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+              "checkedAt": "2026-09-11T18:08:39.491Z",
+              "claimHash": "804ababc26a7a3b281cc8dcef5bc4c9e08df1fc1c068a25ded4802959437a33c",
+              "support": [
+                {
+                  "sourceId": "usage",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "aebae912b8905884563323d1a561d99d01c4ad649f42f1459b9b514857389cbd",
+                  "spanHash": "8c84f3a134fe3a5a7f934a24ba8a50db7d22c9933983d2f0e2a56a5dd46bf275"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "Synthetic fixture data; no live sources or model calls."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:39.443Z"
+    },
+    {
+      "id": "documentation/api-page",
+      "parentId": "documentation/onboarding",
+      "title": "API page reviewer",
+      "assignment": "Check setup prerequisites, command completeness, and observed links.",
+      "depth": 2,
+      "startedAt": "2026-09-11T18:08:38.769Z",
+      "status": "succeeded",
+      "children": [],
+      "output": {
+        "summary": "Offline fixture research result; no factual research performed.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for API quickstart.",
+            "citations": [
+              {
+                "sourceId": "start-api",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+              "checkedAt": "2026-09-11T18:08:39.491Z",
+              "claimHash": "14488b4907ac396fa37b2c4b9583d88b75f95ee165a127b29c9755acbd141818",
+              "support": [
+                {
+                  "sourceId": "start-api",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "e4b466f6fe79bf576c596b2578475cee0dcf421665b282fd485223854edb0ecd",
+                  "spanHash": "86fffcb09ca2884feec5fff8638f1a2001a141dd28520b1b441b2a5972d4a9cb"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "This output uses synthetic test data."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:39.142Z"
+    },
+    {
+      "id": "documentation/chat-page",
+      "parentId": "documentation/onboarding",
+      "title": "Chat page reviewer",
+      "assignment": "Check sign-in, network context, and observed links.",
+      "depth": 2,
+      "startedAt": "2026-09-11T18:08:38.790Z",
+      "status": "succeeded",
+      "children": [],
+      "output": {
+        "summary": "Offline fixture research result; no factual research performed.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Chat quickstart.",
+            "citations": [
+              {
+                "sourceId": "start-chat",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+              "checkedAt": "2026-09-11T18:08:39.491Z",
+              "claimHash": "1d65bb28fcec16393e7f68ce92dddd41adadf7a3ecf57e920551ab6d2cb4393b",
+              "support": [
+                {
+                  "sourceId": "start-chat",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "b56f8b4c0451a0f953d68f493cbb5e740016182b9145ca28927f047e728a6049",
+                  "spanHash": "126198c935944cc61e95db9e3c52b9b2411cddd4cd93fb4e00071eac0cb92f30"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "This output uses synthetic test data."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:39.162Z"
+    },
+    {
+      "id": "documentation/cortex-page",
+      "parentId": "documentation/concepts",
+      "title": "Katara Cortex reviewer",
+      "assignment": "Look for unsupported claims and ambiguities using the supplied pages.",
+      "depth": 2,
+      "startedAt": "2026-09-11T18:08:38.830Z",
+      "status": "succeeded",
+      "children": [],
+      "output": {
+        "summary": "Offline fixture research result; no factual research performed.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Katara Cortex model guide.",
+            "citations": [
+              {
+                "sourceId": "cortex",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+              "checkedAt": "2026-09-11T18:08:39.491Z",
+              "claimHash": "81810e975e333b539b36bc6c1bd57a1fa5c8c77f7f1452fc7d82c4c711e2fc9d",
+              "support": [
+                {
+                  "sourceId": "cortex",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "d3b557fdaa74566e938d2192a2e39bbd39432be8e43d231442a760e81d82f909",
+                  "spanHash": "feab7530ee0bcd0bf28508f0a6a101a55df542450906be7efef719ee59429fe5"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "This output uses synthetic test data."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:39.226Z"
+    },
+    {
+      "id": "documentation/network-page",
+      "parentId": "documentation/concepts",
+      "title": "Network reviewer",
+      "assignment": "Check chain, token, and environment wording for consistency.",
+      "depth": 2,
+      "startedAt": "2026-09-11T18:08:38.850Z",
+      "status": "succeeded",
+      "children": [],
+      "output": {
+        "summary": "Offline fixture research result; no factual research performed.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Network reference.",
+            "citations": [
+              {
+                "sourceId": "networks",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+              "checkedAt": "2026-09-11T18:08:39.491Z",
+              "claimHash": "3f4a24a7d212d23ea13ba960699f9e41bee353a0d866a83f8360172e17a7a59b",
+              "support": [
+                {
+                  "sourceId": "networks",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "58d15a5bf3bca278f0e1ec28e35bbda27f1f7ab1b3282cb13889849da15519bc",
+                  "spanHash": "1d3708d6a1247f61ac619c2ae868ccc5a84998ac2bf30ee33fb00bc22973bcc9"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "This output uses synthetic test data."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:39.249Z"
+    },
+    {
+      "id": "documentation/errors-page",
+      "parentId": "documentation/reference",
+      "title": "Error reviewer",
+      "assignment": "Check failure and retry guidance and observed link outcomes.",
+      "depth": 2,
+      "startedAt": "2026-09-11T18:08:38.888Z",
+      "status": "succeeded",
+      "children": [],
+      "output": {
+        "summary": "Offline fixture research result; no factual research performed.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Error reference.",
+            "citations": [
+              {
+                "sourceId": "errors",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+              "checkedAt": "2026-09-11T18:08:39.491Z",
+              "claimHash": "c721d58abeaa5bc46523d27dd2abbb6d5e7d14b6b066ff52599b234b180498ab",
+              "support": [
+                {
+                  "sourceId": "errors",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "c8e1d97f2abb92efc80eab284da5a40b2606e11cddb9b052b00a321bf26b6108",
+                  "spanHash": "7c157d1e09e29e73f71ae3fee3bb791b1eb0181580552a7a9ce732e9dd2bba7b"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "This output uses synthetic test data."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:39.296Z"
+    },
+    {
+      "id": "documentation/usage-page",
+      "parentId": "documentation/reference",
+      "title": "Usage reviewer",
+      "assignment": "Check cost fields and attribution descriptions against the model guide.",
+      "depth": 2,
+      "startedAt": "2026-09-11T18:08:38.907Z",
+      "status": "succeeded",
+      "children": [],
+      "output": {
+        "summary": "Offline fixture research result; no factual research performed.",
+        "findings": [
+          {
+            "claim": "Synthetic fixture evidence for Usage reference.",
+            "citations": [
+              {
+                "sourceId": "usage",
+                "startLine": 1,
+                "endLine": 1
+              }
+            ],
+            "assessment": {
+              "verdict": "supported",
+              "reason": "Explicitly labeled synthetic fixture content.",
+              "method": "fixture",
+              "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+              "checkedAt": "2026-09-11T18:08:39.491Z",
+              "claimHash": "804ababc26a7a3b281cc8dcef5bc4c9e08df1fc1c068a25ded4802959437a33c",
+              "support": [
+                {
+                  "sourceId": "usage",
+                  "startLine": 1,
+                  "endLine": 1,
+                  "sourceHash": "aebae912b8905884563323d1a561d99d01c4ad649f42f1459b9b514857389cbd",
+                  "spanHash": "8c84f3a134fe3a5a7f934a24ba8a50db7d22c9933983d2f0e2a56a5dd46bf275"
+                }
+              ]
+            }
+          }
+        ],
+        "limitations": [
+          "This output uses synthetic test data."
+        ]
+      },
+      "finishedAt": "2026-09-11T18:08:39.317Z"
+    }
+  ],
+  "calls": [
+    {
+      "id": "99dbfa6e-8d61-431d-89d8-7436cff9c18e",
+      "agentId": "documentation/master",
+      "purpose": "plan",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:38.594Z",
+      "finishedAt": "2026-09-11T18:08:38.594Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "2613bbbf-baab-456e-b464-f8db8427cd72",
+      "agentId": "documentation/onboarding",
+      "purpose": "plan",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:38.650Z",
+      "finishedAt": "2026-09-11T18:08:38.650Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "94328b15-ac7c-4460-9416-45a4d9f900ab",
+      "agentId": "documentation/concepts",
+      "purpose": "plan",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:38.689Z",
+      "finishedAt": "2026-09-11T18:08:38.689Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "b086ad1b-2765-4d7a-9f97-3aa0c41c25ba",
+      "agentId": "documentation/reference",
+      "purpose": "plan",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:38.730Z",
+      "finishedAt": "2026-09-11T18:08:38.730Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "5f6dd64b-6973-4cf8-bde4-6865eacf61ae",
+      "agentId": "documentation/api-page",
+      "purpose": "research",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:38.945Z",
+      "finishedAt": "2026-09-11T18:08:38.945Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "fb3c9397-d0e5-494e-a102-6cf4e80cf884",
+      "agentId": "documentation/chat-page",
+      "purpose": "research",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:38.985Z",
+      "finishedAt": "2026-09-11T18:08:38.985Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "e1d0fb0f-b922-45b5-bad4-cc83c7ca21c8",
+      "agentId": "documentation/cortex-page",
+      "purpose": "research",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:39.092Z",
+      "finishedAt": "2026-09-11T18:08:39.092Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "84d7996c-2881-4a00-824b-67de2fc6cde0",
+      "agentId": "documentation/network-page",
+      "purpose": "research",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:39.117Z",
+      "finishedAt": "2026-09-11T18:08:39.117Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "ecccf3ae-d801-4b2e-b645-b7c53a652950",
+      "agentId": "documentation/errors-page",
+      "purpose": "research",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:39.184Z",
+      "finishedAt": "2026-09-11T18:08:39.184Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "727cef45-5523-4a00-9d6a-f6f7e122146f",
+      "agentId": "documentation/usage-page",
+      "purpose": "research",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:39.204Z",
+      "finishedAt": "2026-09-11T18:08:39.204Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "50b9c0e6-fa46-475d-8c4e-b5fa79a098f1",
+      "agentId": "documentation/onboarding",
+      "purpose": "synthesize",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:39.271Z",
+      "finishedAt": "2026-09-11T18:08:39.271Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "8ce43caa-0ff2-4ed2-a1dd-57407c352725",
+      "agentId": "documentation/concepts",
+      "purpose": "synthesize",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:39.340Z",
+      "finishedAt": "2026-09-11T18:08:39.340Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "f7573b18-401b-4c6f-b711-907363216867",
+      "agentId": "documentation/reference",
+      "purpose": "synthesize",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:39.389Z",
+      "finishedAt": "2026-09-11T18:08:39.389Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+      "agentId": "documentation/master",
+      "purpose": "review",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:39.467Z",
+      "finishedAt": "2026-09-11T18:08:39.467Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "17bc772a-e24d-4bcf-95b3-f5ab0628bcb6",
+      "agentId": "documentation/master",
+      "purpose": "synthesize",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:39.491Z",
+      "finishedAt": "2026-09-11T18:08:39.491Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "d1cfc765-bfc6-4728-bd32-4b1ee04c3793",
+      "agentId": "documentation/master",
+      "purpose": "review",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:08:39.513Z",
+      "finishedAt": "2026-09-11T18:08:39.513Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    }
+  ],
+  "sources": [
+    {
+      "id": "start-api",
+      "title": "API quickstart",
+      "url": "fixture:start-api",
+      "retrievedAt": "2026-09-11T18:08:38.790Z",
+      "status": 200,
+      "sha256": "e4b466f6fe79bf576c596b2578475cee0dcf421665b282fd485223854edb0ecd",
+      "text": "Offline fixture for API quickstart. This is synthetic test data, not a retrieved fact. A researcher must cite start-api and label the fixture.",
+      "fixture": true,
+      "textSha256": "e4b466f6fe79bf576c596b2578475cee0dcf421665b282fd485223854edb0ecd"
+    },
+    {
+      "id": "start-chat",
+      "title": "Chat quickstart",
+      "url": "fixture:start-chat",
+      "retrievedAt": "2026-09-11T18:08:38.812Z",
+      "status": 200,
+      "sha256": "b56f8b4c0451a0f953d68f493cbb5e740016182b9145ca28927f047e728a6049",
+      "text": "Offline fixture for Chat quickstart. This is synthetic test data, not a retrieved fact. A researcher must cite start-chat and label the fixture.",
+      "fixture": true,
+      "textSha256": "b56f8b4c0451a0f953d68f493cbb5e740016182b9145ca28927f047e728a6049"
+    },
+    {
+      "id": "cortex",
+      "title": "Katara Cortex model guide",
+      "url": "fixture:cortex",
+      "retrievedAt": "2026-09-11T18:08:38.850Z",
+      "status": 200,
+      "sha256": "d3b557fdaa74566e938d2192a2e39bbd39432be8e43d231442a760e81d82f909",
+      "text": "Offline fixture for Katara Cortex model guide. This is synthetic test data, not a retrieved fact. A researcher must cite cortex and label the fixture.",
+      "fixture": true,
+      "textSha256": "d3b557fdaa74566e938d2192a2e39bbd39432be8e43d231442a760e81d82f909"
+    },
+    {
+      "id": "errors",
+      "title": "Error reference",
+      "url": "fixture:errors",
+      "retrievedAt": "2026-09-11T18:08:38.850Z",
+      "status": 200,
+      "sha256": "c8e1d97f2abb92efc80eab284da5a40b2606e11cddb9b052b00a321bf26b6108",
+      "text": "Offline fixture for Error reference. This is synthetic test data, not a retrieved fact. A researcher must cite errors and label the fixture.",
+      "fixture": true,
+      "textSha256": "c8e1d97f2abb92efc80eab284da5a40b2606e11cddb9b052b00a321bf26b6108"
+    },
+    {
+      "id": "networks",
+      "title": "Network reference",
+      "url": "fixture:networks",
+      "retrievedAt": "2026-09-11T18:08:38.869Z",
+      "status": 200,
+      "sha256": "58d15a5bf3bca278f0e1ec28e35bbda27f1f7ab1b3282cb13889849da15519bc",
+      "text": "Offline fixture for Network reference. This is synthetic test data, not a retrieved fact. A researcher must cite networks and label the fixture.",
+      "fixture": true,
+      "textSha256": "58d15a5bf3bca278f0e1ec28e35bbda27f1f7ab1b3282cb13889849da15519bc"
+    },
+    {
+      "id": "usage",
+      "title": "Usage reference",
+      "url": "fixture:usage",
+      "retrievedAt": "2026-09-11T18:08:38.926Z",
+      "status": 200,
+      "sha256": "aebae912b8905884563323d1a561d99d01c4ad649f42f1459b9b514857389cbd",
+      "text": "Offline fixture for Usage reference. This is synthetic test data, not a retrieved fact. A researcher must cite usage and label the fixture.",
+      "fixture": true,
+      "textSha256": "aebae912b8905884563323d1a561d99d01c4ad649f42f1459b9b514857389cbd"
+    }
+  ],
+  "payments": [],
+  "evidenceReview": {
+    "findings": [
+      {
+        "claim": "Synthetic fixture evidence for API quickstart.",
+        "citations": [
+          {
+            "sourceId": "start-api",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+          "checkedAt": "2026-09-11T18:08:39.491Z",
+          "claimHash": "14488b4907ac396fa37b2c4b9583d88b75f95ee165a127b29c9755acbd141818",
+          "support": [
+            {
+              "sourceId": "start-api",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "e4b466f6fe79bf576c596b2578475cee0dcf421665b282fd485223854edb0ecd",
+              "spanHash": "86fffcb09ca2884feec5fff8638f1a2001a141dd28520b1b441b2a5972d4a9cb"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Chat quickstart.",
+        "citations": [
+          {
+            "sourceId": "start-chat",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+          "checkedAt": "2026-09-11T18:08:39.491Z",
+          "claimHash": "1d65bb28fcec16393e7f68ce92dddd41adadf7a3ecf57e920551ab6d2cb4393b",
+          "support": [
+            {
+              "sourceId": "start-chat",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "b56f8b4c0451a0f953d68f493cbb5e740016182b9145ca28927f047e728a6049",
+              "spanHash": "126198c935944cc61e95db9e3c52b9b2411cddd4cd93fb4e00071eac0cb92f30"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Katara Cortex model guide.",
+        "citations": [
+          {
+            "sourceId": "cortex",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+          "checkedAt": "2026-09-11T18:08:39.491Z",
+          "claimHash": "81810e975e333b539b36bc6c1bd57a1fa5c8c77f7f1452fc7d82c4c711e2fc9d",
+          "support": [
+            {
+              "sourceId": "cortex",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "d3b557fdaa74566e938d2192a2e39bbd39432be8e43d231442a760e81d82f909",
+              "spanHash": "feab7530ee0bcd0bf28508f0a6a101a55df542450906be7efef719ee59429fe5"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Network reference.",
+        "citations": [
+          {
+            "sourceId": "networks",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+          "checkedAt": "2026-09-11T18:08:39.491Z",
+          "claimHash": "3f4a24a7d212d23ea13ba960699f9e41bee353a0d866a83f8360172e17a7a59b",
+          "support": [
+            {
+              "sourceId": "networks",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "58d15a5bf3bca278f0e1ec28e35bbda27f1f7ab1b3282cb13889849da15519bc",
+              "spanHash": "1d3708d6a1247f61ac619c2ae868ccc5a84998ac2bf30ee33fb00bc22973bcc9"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Error reference.",
+        "citations": [
+          {
+            "sourceId": "errors",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+          "checkedAt": "2026-09-11T18:08:39.491Z",
+          "claimHash": "c721d58abeaa5bc46523d27dd2abbb6d5e7d14b6b066ff52599b234b180498ab",
+          "support": [
+            {
+              "sourceId": "errors",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "c8e1d97f2abb92efc80eab284da5a40b2606e11cddb9b052b00a321bf26b6108",
+              "spanHash": "7c157d1e09e29e73f71ae3fee3bb791b1eb0181580552a7a9ce732e9dd2bba7b"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Usage reference.",
+        "citations": [
+          {
+            "sourceId": "usage",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+          "checkedAt": "2026-09-11T18:08:39.491Z",
+          "claimHash": "804ababc26a7a3b281cc8dcef5bc4c9e08df1fc1c068a25ded4802959437a33c",
+          "support": [
+            {
+              "sourceId": "usage",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "aebae912b8905884563323d1a561d99d01c4ad649f42f1459b9b514857389cbd",
+              "spanHash": "8c84f3a134fe3a5a7f934a24ba8a50db7d22c9933983d2f0e2a56a5dd46bf275"
+            }
+          ]
+        }
+      }
+    ],
+    "checkedAt": "2026-09-11T18:08:39.491Z"
+  },
+  "masterDraft": {
+    "summary": "Offline fixture synopsis. This text checks the final-answer layout and orchestration; it is not a researched recommendation.",
+    "synopsis": [
+      {
+        "heading": "Overall assessment",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "start-api",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Observed issues",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "start-api",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Suggested improvements",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "start-api",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Audit coverage and next steps",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "start-api",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      }
+    ],
+    "completion": "partial",
+    "findings": [
+      {
+        "claim": "Synthetic fixture evidence for API quickstart.",
+        "citations": [
+          {
+            "sourceId": "start-api",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+          "checkedAt": "2026-09-11T18:08:39.491Z",
+          "claimHash": "14488b4907ac396fa37b2c4b9583d88b75f95ee165a127b29c9755acbd141818",
+          "support": [
+            {
+              "sourceId": "start-api",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "e4b466f6fe79bf576c596b2578475cee0dcf421665b282fd485223854edb0ecd",
+              "spanHash": "86fffcb09ca2884feec5fff8638f1a2001a141dd28520b1b441b2a5972d4a9cb"
+            }
+          ]
+        }
+      }
+    ],
+    "limitations": [
+      "Synthetic fixture data; no live research or model inference occurred."
+    ]
+  },
+  "result": {
+    "summary": "Offline fixture synopsis. This text checks the final-answer layout and orchestration; it is not a researched recommendation.",
+    "synopsis": [
+      {
+        "heading": "Overall assessment",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "start-api",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Observed issues",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "start-api",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Suggested improvements",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "start-api",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Audit coverage and next steps",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "start-api",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      }
+    ],
+    "completion": "partial",
+    "findings": [
+      {
+        "claim": "Synthetic fixture evidence for API quickstart.",
+        "citations": [
+          {
+            "sourceId": "start-api",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "781c6429-4fa9-4047-8d80-0681a90ee2e5",
+          "checkedAt": "2026-09-11T18:08:39.491Z",
+          "claimHash": "14488b4907ac396fa37b2c4b9583d88b75f95ee165a127b29c9755acbd141818",
+          "support": [
+            {
+              "sourceId": "start-api",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "e4b466f6fe79bf576c596b2578475cee0dcf421665b282fd485223854edb0ecd",
+              "spanHash": "86fffcb09ca2884feec5fff8638f1a2001a141dd28520b1b441b2a5972d4a9cb"
+            }
+          ]
+        }
+      }
+    ],
+    "limitations": [
+      "Synthetic fixture data; no live research or model inference occurred."
+    ],
+    "review": {
+      "status": "supported",
+      "sections": [
+        {
+          "id": "summary",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "d1cfc765-bfc6-4728-bd32-4b1ee04c3793",
+            "checkedAt": "2026-09-11T18:08:39.535Z",
+            "claimHash": "7a08acc679c8f2d2df6c60a2625e0c36a8071c82a7a5110a2fbf3a2547707085",
+            "support": [
+              {
+                "sourceId": "start-api",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "e4b466f6fe79bf576c596b2578475cee0dcf421665b282fd485223854edb0ecd",
+                "spanHash": "86fffcb09ca2884feec5fff8638f1a2001a141dd28520b1b441b2a5972d4a9cb"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-1",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "d1cfc765-bfc6-4728-bd32-4b1ee04c3793",
+            "checkedAt": "2026-09-11T18:08:39.535Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "start-api",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "e4b466f6fe79bf576c596b2578475cee0dcf421665b282fd485223854edb0ecd",
+                "spanHash": "86fffcb09ca2884feec5fff8638f1a2001a141dd28520b1b441b2a5972d4a9cb"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-2",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "d1cfc765-bfc6-4728-bd32-4b1ee04c3793",
+            "checkedAt": "2026-09-11T18:08:39.535Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "start-api",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "e4b466f6fe79bf576c596b2578475cee0dcf421665b282fd485223854edb0ecd",
+                "spanHash": "86fffcb09ca2884feec5fff8638f1a2001a141dd28520b1b441b2a5972d4a9cb"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-3",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "d1cfc765-bfc6-4728-bd32-4b1ee04c3793",
+            "checkedAt": "2026-09-11T18:08:39.535Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "start-api",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "e4b466f6fe79bf576c596b2578475cee0dcf421665b282fd485223854edb0ecd",
+                "spanHash": "86fffcb09ca2884feec5fff8638f1a2001a141dd28520b1b441b2a5972d4a9cb"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-4",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "d1cfc765-bfc6-4728-bd32-4b1ee04c3793",
+            "checkedAt": "2026-09-11T18:08:39.535Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "start-api",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "e4b466f6fe79bf576c596b2578475cee0dcf421665b282fd485223854edb0ecd",
+                "spanHash": "86fffcb09ca2884feec5fff8638f1a2001a141dd28520b1b441b2a5972d4a9cb"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "finishedAt": "2026-09-11T18:08:39.555Z",
+  "presentationNotes": [
+    "Product references use the full name Katara Cortex. Payment identifiers and source hashes retain their recorded values."
+  ]
+}

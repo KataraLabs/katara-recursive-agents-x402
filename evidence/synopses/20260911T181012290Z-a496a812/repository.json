@@ -1,0 +1,547 @@
+{
+  "version": 1,
+  "id": "20260911T181012290Z-a496a812",
+  "sourceRunId": "20260911T180837237Z-b5a62c25",
+  "sourceReportHash": "5fe09f51ac872fe3181980b4617aa9d0a80ac3143bb50a83acfca268c8bc5eeb",
+  "implementationFingerprint": {
+    "src/synopsis.ts": "a1fd4d2a0430b95901e03d59d1fd06b6df41d38c5dede67d673a855b319c4f08",
+    "src/review.ts": "cc4a8177ba5b5cd53ae34cf44b109da2b04f38415f7a5e246860406f452134c9",
+    "src/evidence.ts": "d0a3ecd37787fef1f9b9744d0f83cae0c1fe2a60ba4395589049c969a16569a2",
+    "src/inference.ts": "8f212d1a3bc5c262cf25a7818b23e69632d27b6fedddb9e969b0e2c8f76acd2c",
+    "src/ledger.ts": "ed6ca75e804700168fdff59f0acdf74019c1cacc75323b0f5140197f96283620",
+    "src/chain.ts": "59cf3d729ff7047ca254574cbbd889130e4c41b12672db3fcfee0312872b5917",
+    "src/config.ts": "b596853cbcee0e197362720ef2bf7196cc92c9c8d49c63761ebf80926377d2e3",
+    "src/types.ts": "9820f264cb493a027481a59adc0befda7f036d970f70d15862d70b7ea255c152",
+    "scripts/build-synopses.ts": "51fc0bbb260c571921c47d7f1ca4507dd953f298bb87f0600fbc3ae8020a24ab",
+    "package-lock.json": "50d026886293891ffb7bde1e9385065826560a2da8fbd9e94928f50fd1ae03db"
+  },
+  "example": "repository",
+  "mode": "fixture",
+  "startedAt": "2026-09-11T18:10:12.291Z",
+  "status": "succeeded",
+  "calls": [
+    {
+      "id": "b49ab4de-016b-42f7-93a9-13d149453dbf",
+      "agentId": "repository/master",
+      "purpose": "review",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:10:12.292Z",
+      "finishedAt": "2026-09-11T18:10:12.292Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "66f5e73f-0816-4562-8b4a-5f2d900383e3",
+      "agentId": "repository/master",
+      "purpose": "synthesize",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:10:12.310Z",
+      "finishedAt": "2026-09-11T18:10:12.310Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    },
+    {
+      "id": "3fc3d1c3-57c3-4ff0-b8d3-41747af8cfff",
+      "agentId": "repository/master",
+      "purpose": "review",
+      "requestedModel": "fixture (no inference)",
+      "startedAt": "2026-09-11T18:10:12.330Z",
+      "finishedAt": "2026-09-11T18:10:12.330Z",
+      "status": "succeeded",
+      "authorizationIds": []
+    }
+  ],
+  "payments": [],
+  "validationIssues": [],
+  "output": {
+    "summary": "Offline fixture synopsis. This text checks the final-answer layout and orchestration; it is not a researched recommendation.",
+    "synopsis": [
+      {
+        "heading": "What Express does",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "entry",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "How a request is handled",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "entry",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Run the application",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "entry",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Tests and remaining questions",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "entry",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      }
+    ],
+    "completion": "partial",
+    "findings": [
+      {
+        "claim": "Synthetic fixture evidence for Library entry point.",
+        "citations": [
+          {
+            "sourceId": "entry",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "b49ab4de-016b-42f7-93a9-13d149453dbf",
+          "checkedAt": "2026-09-11T18:10:12.309Z",
+          "claimHash": "1b7fdc2a8cf2eae3a1ad4cc1dcf2ae6cea6c64325439a706f5a0b216cbfc83f8",
+          "support": [
+            {
+              "sourceId": "entry",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "b659851a307ded0e1f43b0b6bff316920e01fdb0b20e0b310a09717c89264e9c",
+              "spanHash": "c9e0438cf656e7aaebd7eff804aa94bd9cb519095a9bb0f7a7a287fbb99e481b"
+            }
+          ]
+        }
+      }
+    ],
+    "limitations": [
+      "Synthetic fixture data; no live research or model inference occurred."
+    ],
+    "review": {
+      "status": "supported",
+      "sections": [
+        {
+          "id": "summary",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "3fc3d1c3-57c3-4ff0-b8d3-41747af8cfff",
+            "checkedAt": "2026-09-11T18:10:12.339Z",
+            "claimHash": "7a08acc679c8f2d2df6c60a2625e0c36a8071c82a7a5110a2fbf3a2547707085",
+            "support": [
+              {
+                "sourceId": "entry",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "b659851a307ded0e1f43b0b6bff316920e01fdb0b20e0b310a09717c89264e9c",
+                "spanHash": "c9e0438cf656e7aaebd7eff804aa94bd9cb519095a9bb0f7a7a287fbb99e481b"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-1",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "3fc3d1c3-57c3-4ff0-b8d3-41747af8cfff",
+            "checkedAt": "2026-09-11T18:10:12.339Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "entry",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "b659851a307ded0e1f43b0b6bff316920e01fdb0b20e0b310a09717c89264e9c",
+                "spanHash": "c9e0438cf656e7aaebd7eff804aa94bd9cb519095a9bb0f7a7a287fbb99e481b"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-2",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "3fc3d1c3-57c3-4ff0-b8d3-41747af8cfff",
+            "checkedAt": "2026-09-11T18:10:12.339Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "entry",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "b659851a307ded0e1f43b0b6bff316920e01fdb0b20e0b310a09717c89264e9c",
+                "spanHash": "c9e0438cf656e7aaebd7eff804aa94bd9cb519095a9bb0f7a7a287fbb99e481b"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-3",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "3fc3d1c3-57c3-4ff0-b8d3-41747af8cfff",
+            "checkedAt": "2026-09-11T18:10:12.339Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "entry",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "b659851a307ded0e1f43b0b6bff316920e01fdb0b20e0b310a09717c89264e9c",
+                "spanHash": "c9e0438cf656e7aaebd7eff804aa94bd9cb519095a9bb0f7a7a287fbb99e481b"
+              }
+            ]
+          }
+        },
+        {
+          "id": "section-4",
+          "assessment": {
+            "verdict": "supported",
+            "reason": "Explicitly labeled synthetic fixture content.",
+            "method": "fixture",
+            "callId": "3fc3d1c3-57c3-4ff0-b8d3-41747af8cfff",
+            "checkedAt": "2026-09-11T18:10:12.340Z",
+            "claimHash": "f3473241a7370a65cc04a827c2f062be9c061949af98fb48da00e4d90e6ff000",
+            "support": [
+              {
+                "sourceId": "entry",
+                "startLine": 1,
+                "endLine": 1,
+                "sourceHash": "b659851a307ded0e1f43b0b6bff316920e01fdb0b20e0b310a09717c89264e9c",
+                "spanHash": "c9e0438cf656e7aaebd7eff804aa94bd9cb519095a9bb0f7a7a287fbb99e481b"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "evidenceReview": {
+    "findings": [
+      {
+        "claim": "Synthetic fixture evidence for Library entry point.",
+        "citations": [
+          {
+            "sourceId": "entry",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "b49ab4de-016b-42f7-93a9-13d149453dbf",
+          "checkedAt": "2026-09-11T18:10:12.309Z",
+          "claimHash": "1b7fdc2a8cf2eae3a1ad4cc1dcf2ae6cea6c64325439a706f5a0b216cbfc83f8",
+          "support": [
+            {
+              "sourceId": "entry",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "b659851a307ded0e1f43b0b6bff316920e01fdb0b20e0b310a09717c89264e9c",
+              "spanHash": "c9e0438cf656e7aaebd7eff804aa94bd9cb519095a9bb0f7a7a287fbb99e481b"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Application implementation.",
+        "citations": [
+          {
+            "sourceId": "application",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "b49ab4de-016b-42f7-93a9-13d149453dbf",
+          "checkedAt": "2026-09-11T18:10:12.309Z",
+          "claimHash": "8c6a801c9c7ab1ec09af2a46dc5b7d2cebdb0cc3dd8e8fe409b5761203753d46",
+          "support": [
+            {
+              "sourceId": "application",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "148adad549ad2c1c7ef4127328a456f9fdb5b77c75a3ca30e1a329d8bb2bbfad",
+              "spanHash": "ee5e4f10b0c0e975f0f4b4ecaa603b1798ee8d4f939327107a1e7da4abad2650"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Project README.",
+        "citations": [
+          {
+            "sourceId": "readme",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "b49ab4de-016b-42f7-93a9-13d149453dbf",
+          "checkedAt": "2026-09-11T18:10:12.309Z",
+          "claimHash": "600cf9a386d9a1bff8986ec0d229c9f6e7b07d6e63482960013c5b4ff7389a1b",
+          "support": [
+            {
+              "sourceId": "readme",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "93a1e30733851a84b93e234bd2b1ec80ec91d795e63c69543c345aee04ddf6e1",
+              "spanHash": "afff780e8e79b605ac4d1d4673f4764134c81abd936d50fc1fda90353b8eb885"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Package manifest.",
+        "citations": [
+          {
+            "sourceId": "manifest",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "b49ab4de-016b-42f7-93a9-13d149453dbf",
+          "checkedAt": "2026-09-11T18:10:12.309Z",
+          "claimHash": "9336dd0f39989421e0b33f5b6e5b39fa7d8b47879ec57915b85aa2d07bdc2f55",
+          "support": [
+            {
+              "sourceId": "manifest",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "f6d280d5c5d7402dc4043432afa103850fef1d0c83f59866acae7eef17587441",
+              "spanHash": "b9efcf7c8693d062c1eb8081214e52b1839291f6add757da2f43e3a9c999b103"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Request implementation.",
+        "citations": [
+          {
+            "sourceId": "request",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "b49ab4de-016b-42f7-93a9-13d149453dbf",
+          "checkedAt": "2026-09-11T18:10:12.309Z",
+          "claimHash": "00501dfc9f94c0a515e12646b81665649c2f8b7bf260b608aaf781ac25872e24",
+          "support": [
+            {
+              "sourceId": "request",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "7795a26ff731fce813d6d7613f732c1e8fed1cb0760b833a1a909158498a143e",
+              "spanHash": "921a1acc63ea9b14d211bb9036e3044320b6ab3e9b871de92cd80da70c15a662"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Response implementation.",
+        "citations": [
+          {
+            "sourceId": "response",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "b49ab4de-016b-42f7-93a9-13d149453dbf",
+          "checkedAt": "2026-09-11T18:10:12.309Z",
+          "claimHash": "9a019f6aa9467c4837efef259d5ac2dd0f50f104b2b1ecd4f057db857b0c3130",
+          "support": [
+            {
+              "sourceId": "response",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "c2fe60e85927c216a53a5e6b66ba482d6ff873a6914cdf649170920996d9a0df",
+              "spanHash": "f0d148a90f80767dd0fc173455ea718ec59bea0d77fb1dd684bcaea166c66e57"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Application tests.",
+        "citations": [
+          {
+            "sourceId": "tests",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "b49ab4de-016b-42f7-93a9-13d149453dbf",
+          "checkedAt": "2026-09-11T18:10:12.309Z",
+          "claimHash": "d8f017e7a2c8cd621417028911430ce22e0a9534d20106fe8eccb841052230ef",
+          "support": [
+            {
+              "sourceId": "tests",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "733ef5329db4d9d45ede69fc6088331537ecb2abeca39d006ae6496cef183bf9",
+              "spanHash": "7c61603893a2b840fee76ccc31f8def355cdfd2faaccd436ba541c233e64eb26"
+            }
+          ]
+        }
+      },
+      {
+        "claim": "Synthetic fixture evidence for Request contract tests.",
+        "citations": [
+          {
+            "sourceId": "test-contract",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "b49ab4de-016b-42f7-93a9-13d149453dbf",
+          "checkedAt": "2026-09-11T18:10:12.309Z",
+          "claimHash": "657be386ca6d732ad03ad14330aedac8d4b0d26c407f81845654f4354f37732b",
+          "support": [
+            {
+              "sourceId": "test-contract",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "b89392f7bda530fc0425e29b04aa365b0d1f2cbdd3963329bccaa945321a591c",
+              "spanHash": "be4efcafa0f826cbde229e6623fea11c30f3b4e0462814ff6d8aad4ec5f0bb7f"
+            }
+          ]
+        }
+      }
+    ],
+    "checkedAt": "2026-09-11T18:10:12.310Z"
+  },
+  "masterDraft": {
+    "summary": "Offline fixture synopsis. This text checks the final-answer layout and orchestration; it is not a researched recommendation.",
+    "synopsis": [
+      {
+        "heading": "What Express does",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "entry",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "How a request is handled",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "entry",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Run the application",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "entry",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      },
+      {
+        "heading": "Tests and remaining questions",
+        "body": "This section is synthetic fixture content. A live master agent would turn the cited child findings into a readable answer for this part of the command, explain the practical implications, and identify any information the available evidence could not establish.",
+        "citations": [
+          {
+            "sourceId": "entry",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ]
+      }
+    ],
+    "completion": "partial",
+    "findings": [
+      {
+        "claim": "Synthetic fixture evidence for Library entry point.",
+        "citations": [
+          {
+            "sourceId": "entry",
+            "startLine": 1,
+            "endLine": 1
+          }
+        ],
+        "assessment": {
+          "verdict": "supported",
+          "reason": "Explicitly labeled synthetic fixture content.",
+          "method": "fixture",
+          "callId": "b49ab4de-016b-42f7-93a9-13d149453dbf",
+          "checkedAt": "2026-09-11T18:10:12.309Z",
+          "claimHash": "1b7fdc2a8cf2eae3a1ad4cc1dcf2ae6cea6c64325439a706f5a0b216cbfc83f8",
+          "support": [
+            {
+              "sourceId": "entry",
+              "startLine": 1,
+              "endLine": 1,
+              "sourceHash": "b659851a307ded0e1f43b0b6bff316920e01fdb0b20e0b310a09717c89264e9c",
+              "spanHash": "c9e0438cf656e7aaebd7eff804aa94bd9cb519095a9bb0f7a7a287fbb99e481b"
+            }
+          ]
+        }
+      }
+    ],
+    "limitations": [
+      "Synthetic fixture data; no live research or model inference occurred."
+    ]
+  },
+  "finishedAt": "2026-09-11T18:10:12.340Z"
+}

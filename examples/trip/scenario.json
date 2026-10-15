@@ -1,0 +1,148 @@
+{
+  "id": "trip",
+  "title": "One-day Boston itinerary",
+  "command": "Plan a one-day visit to Boston under $100 per person, excluding lodging and travel to Boston. Use public transport and official sources; label unverified hours or prices. Do not book anything.",
+  "description": "Four coordinators each delegate two research tasks.",
+  "sources": [
+    {
+      "id": "trail",
+      "title": "Freedom Trail visit planning",
+      "url": "https://www.nps.gov/bost/planyourvisit/index.htm"
+    },
+    {
+      "id": "common",
+      "title": "Boston Common",
+      "url": "https://www.boston.gov/parks/boston-common"
+    },
+    {
+      "id": "library",
+      "title": "Boston Public Library locations and hours",
+      "url": "https://www.bpl.org/locations/3/"
+    },
+    {
+      "id": "fares",
+      "title": "MBTA fare overview",
+      "url": "https://www.mbta.com/fares"
+    },
+    {
+      "id": "subway",
+      "title": "MBTA subway guide",
+      "url": "https://www.mbta.com/guides/subway-guide"
+    },
+    {
+      "id": "market",
+      "title": "Boston Public Market",
+      "url": "https://bostonpublicmarket.org/"
+    },
+    {
+      "id": "faneuil",
+      "title": "Faneuil Hall visitor information",
+      "url": "https://www.nps.gov/bost/learn/historyculture/fh.htm"
+    },
+    {
+      "id": "visitor",
+      "title": "Boston visitor resources",
+      "url": "https://www.boston.gov/visiting-boston"
+    }
+  ],
+  "specialists": [
+    {
+      "id": "attractions",
+      "title": "Attractions coordinator",
+      "goal": "Choose a compact set of sights grounded in official information.",
+      "researchers": [
+        {
+          "id": "history",
+          "title": "Historic sights researcher",
+          "question": "Extract access and visit details for the Freedom Trail and Faneuil Hall.",
+          "sourceIds": [
+            "trail",
+            "faneuil"
+          ]
+        },
+        {
+          "id": "public-spaces",
+          "title": "Public spaces researcher",
+          "question": "Describe accessible public spaces and library visit constraints.",
+          "sourceIds": [
+            "common",
+            "library"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food",
+      "title": "Food coordinator",
+      "goal": "Propose meal stops without inventing menu prices.",
+      "researchers": [
+        {
+          "id": "market-food",
+          "title": "Market researcher",
+          "question": "Identify documented food options and hours; flag missing prices.",
+          "sourceIds": [
+            "market"
+          ]
+        },
+        {
+          "id": "area-food",
+          "title": "Area researcher",
+          "question": "Assess meal-stop location options from these sources; keep unsupported costs explicitly unknown.",
+          "sourceIds": [
+            "visitor",
+            "faneuil"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "transport",
+      "title": "Transport coordinator",
+      "goal": "Suggest transport consistent with the official fare and route information.",
+      "researchers": [
+        {
+          "id": "fare-check",
+          "title": "Fare researcher",
+          "question": "Extract applicable fare amounts, units, and restrictions.",
+          "sourceIds": [
+            "fares"
+          ]
+        },
+        {
+          "id": "route-check",
+          "title": "Route researcher",
+          "question": "Explain useful subway guidance and transfers; do not invent travel times.",
+          "sourceIds": [
+            "subway"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "schedule",
+      "title": "Schedule coordinator",
+      "goal": "Check opening hours and construct a feasible order with explicit assumptions.",
+      "researchers": [
+        {
+          "id": "opening-check",
+          "title": "Opening-hours researcher",
+          "question": "Extract opening hours and date restrictions, labeling anything unavailable.",
+          "sourceIds": [
+            "library",
+            "market"
+          ]
+        },
+        {
+          "id": "budget-check",
+          "title": "Budget researcher",
+          "question": "Identify verified costs and unknown costs. Do not claim the $100 cap is proven when prices are missing.",
+          "sourceIds": [
+            "fares",
+            "trail",
+            "market"
+          ]
+        }
+      ]
+    }
+  ]
+}

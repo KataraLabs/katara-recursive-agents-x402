@@ -1,0 +1,49 @@
+{
+  "name": "katara-recursive-agents-x402",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Five recursive-agent demos using Katara Cortex and USDC over x402 on Avalanche",
+  "engines": {
+    "node": ">=22.14.0"
+  },
+  "scripts": {
+    "wallet": "node --import tsx scripts/create-wallet.ts",
+    "faucet": "node --import tsx src/cli.ts faucet",
+    "docs": "npm run schemas && node --import tsx scripts/build-docs.ts && node --import tsx scripts/build-agent-docs.ts",
+    "evidence": "node --import tsx scripts/export-evidence.ts",
+    "synopsis": "node --import tsx scripts/build-synopses.ts",
+    "synopsis:export": "node --import tsx scripts/export-synopses.ts",
+    "demo": "node --import tsx src/cli.ts",
+    "demo:repo": "node --import tsx src/cli.ts run repository",
+    "demo:docs": "node --import tsx src/cli.ts run documentation",
+    "demo:compare": "node --import tsx src/cli.ts run comparison",
+    "demo:trip": "node --import tsx src/cli.ts run trip",
+    "demo:crypto": "node --import tsx src/cli.ts run cryptocurrency",
+    "demo:all": "node --import tsx src/cli.ts run all",
+    "check": "tsc -p tsconfig.check.json && vitest run && npm run generated:check",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.check.json",
+    "build": "tsc",
+    "audit": "npm audit --audit-level=moderate",
+    "schemas": "node --import tsx scripts/build-schemas.ts",
+    "schemas:check": "node --import tsx scripts/build-schemas.ts --check",
+    "generated:check": "npm run schemas:check && node --import tsx scripts/build-docs.ts --check && node --import tsx scripts/build-agent-docs.ts --check"
+  },
+  "dependencies": {
+    "@x402/core": "2.25.0",
+    "@x402/evm": "2.25.0",
+    "cheerio": "1.1.2",
+    "ipaddr.js": "2.2.0",
+    "viem": "2.56.3"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.30",
+    "ajv": "8.20.0",
+    "tsx": "4.20.5",
+    "typescript": "5.9.2",
+    "vite": "7.3.6",
+    "vitest": "4.1.11"
+  },
+  "license": "MIT"
+}

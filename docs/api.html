@@ -1,0 +1,446 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Recursive-agent API reference</title><style>:root{color-scheme:light dark;--bg:#f6f7f5;--panel:#fff;--ink:#111713;--muted:#5e6761;--line:#dde3dd;--accent:#082b24;--warn:#775716}@media(prefers-color-scheme:dark){:root{--bg:#051b15;--panel:#082b24;--ink:#eef3ef;--muted:#b0beb4;--line:#365247;--accent:#b7e6cb;--warn:#edd18f}}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Geist,system-ui,sans-serif}main{max-width:1200px;margin:auto;padding:36px 24px 80px}h1{font-size:clamp(28px,4vw,44px);line-height:1.14;letter-spacing:-.035em}h2{margin-top:40px;border-top:1px solid var(--line);padding-top:22px;font-size:23px}h3{font-size:17px}a{color:var(--accent);text-underline-offset:3px}code,pre{font-family:'Geist Mono',ui-monospace,monospace;font-size:.85em;overflow-wrap:anywhere}pre{white-space:pre-wrap;padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:6px}.muted{color:var(--muted)}.banner{border:1px solid var(--warn);border-left-width:5px;border-radius:6px;padding:14px 18px;color:var(--warn)}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}.card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:18px}.card b{display:block;font-size:26px}.scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:12px;border:1px solid var(--line);text-align:left;vertical-align:top}th{background:var(--panel)}ul{padding-left:24px}li{margin-bottom:8px}.tree{list-style:none;padding:0}.tree li{border-left:2px solid var(--line);padding:9px 12px;margin:8px 0;background:var(--panel);overflow-wrap:anywhere}details{border:1px solid var(--line);border-radius:6px;margin:12px 0;padding:14px}summary{cursor:pointer;font-weight:600}.pill{display:inline-block;padding:2px 8px;border:1px solid var(--line);border-radius:999px;font-size:12px}a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}@media(max-width:600px){main{padding:20px 12px 48px}td,th{min-width:120px;padding:8px}}.synopsis{max-width:800px;margin:28px auto 44px}.synopsis .lead{font-size:21px;line-height:1.65}.synopsis h2{font-size:25px}.synopsis p{margin:14px 0}.synopsis .citations{font-size:12px;color:var(--muted)}.report-title{max-width:850px}.evidence-panel>summary{font-size:18px;padding:8px}.result-status{font-size:14px;color:var(--muted)}</style></head><body><main><p><a href="contributing.html">Contributor guide</a> · <a href="index.html">Demo guide</a></p><h1>JSDoc API reference</h1><p>Generated from source contracts. All amounts described as USDC base units use six decimals. Read <code>src/types.ts</code> and the versioned schemas for wire formats. Private source snapshots, keys and payment signatures are not public API data.</p><section><h2 id="src-chain-ts">src/chain.ts</h2><p>Read-only Avalanche checks and finalized evidence used to reconcile exact and upto USDC authorizations.</p><p><a href="../src/chain.ts">Read source</a></p><h3>TOKEN_ABI</h3><pre>Native USDC views and events needed to validate its signing domain and net authorization charge.</pre><pre>TOKEN_ABI: readonly [{ readonly name: &quot;balanceOf&quot;; readonly type: &quot;function&quot;; readonly stateMutability: &quot;view&quot;; readonly inputs: readonly [{ readonly type: &quot;address&quot;; }]; readonly outputs: readonly [{ readonly type: &quot;uint256&quot;; }]; }, ... 8 more ..., { ...; }]</pre><h3>PERMIT2_ABI</h3><pre>Permit2&#39;s unordered nonce bitmap: bit (nonce &amp; 255) of word (nonce &gt;&gt; 8) is set once a signature is used.</pre><pre>PERMIT2_ABI: readonly [{ readonly name: &quot;nonceBitmap&quot;; readonly type: &quot;function&quot;; readonly stateMutability: &quot;view&quot;; readonly inputs: readonly [{ readonly type: &quot;address&quot;; readonly name: &quot;owner&quot;; }, { readonly type: &quot;uint256&quot;; readonly name: &quot;wordPos&quot;; }]; readonly outputs: readonly [...]; }]</pre><h3>SETTLEMENT_ABI</h3><pre>Settlement token identity and the event required to establish an x402 charge.</pre><pre>SETTLEMENT_ABI: readonly [{ readonly name: &quot;token&quot;; readonly type: &quot;function&quot;; readonly stateMutability: &quot;view&quot;; readonly inputs: readonly []; readonly outputs: readonly [{ readonly type: &quot;address&quot;; }]; }, { readonly name: &quot;Settled&quot;; readonly type: &quot;event&quot;; readonly inputs: readonly [...]; }]</pre><h3>RpcRetry</h3><pre>How hard to retry an RPC that answers 429 or 5xx. Waits follow Retry-After when sent, else double from baseMs.</pre><pre>export interface RpcRetry { attempts: number; baseMs: number; maxMs: number }</pre><h3>RPC_RETRY</h3><pre>Five attempts in all, waiting 1, 2, 4 and 8 seconds, or as Retry-After says up to 10 seconds.</pre><pre>RPC_RETRY: RpcRetry</pre><h3>retryingFetch</h3><pre>Wrap fetch for JSON-RPC: a 429 or 5xx answer is retried after a bounded, cancellable wait, at most attempts times
+in all, and the last answer is returned for the caller to report. A Retry-After longer than maxMs is not waited
+out: the answer is returned at once. Each attempt has its own 20-second timeout.</pre><pre>retryingFetch(retry?: RpcRetry, signal?: AbortSignal, fetcher?: typeof fetch): inferred</pre><h3>rpcError</h3><pre>Turn an RPC failure into a stable error that names the HTTP status and how to use another endpoint. The RPC URL
+itself is never included, since private endpoints often carry a key in their path.</pre><pre>rpcError(error: unknown, config: Config): unknown</pre><h3>receiptCharge</h3><pre>Match a successful receipt to one authorization, one x402 settlement, and the net token debit.
+@returns The actual charge in USDC base units and ticket hash, or undefined for incomplete or ambiguous evidence.</pre><pre>receiptCharge(a: Authorization, receipt: TransactionReceipt): { actual: bigint; ticketHash: string } | undefined</pre><h3>AvalancheChain</h3><pre>Read the network&#39;s USDC, Permit2 and settlement state on Avalanche C-Chain or Fuji; this class never submits transactions.</pre><pre>class AvalancheChain</pre><h4>constructor(config: Config, options?: { signal?: AbortSignal; retry?: RpcRetry; fetcher?: typeof fetch; cacheMs?: number }): inferred</h4><pre>@param options signal cancels RPC retries; retry and fetcher are for tests; cacheMs is how long balance, block
+   * number and Permit2 allowance reads are reused. Those three only gate reservations conservatively: pending
+   * reservations are subtracted from the balance until reconciled, an older start block widens the log search, and a
+   * stale allowance at worst makes the gateway answer 412, which falls back to exact.</pre><h4>check(): Promise&lt;{ address: string; balance: string; permit2Allowance: string; block: string }&gt;</h4><pre>Verify the chain, token domain and deployed settlement token before paid work.
+@returns Public wallet address, USDC balance and Permit2 allowance in base units, and the observation block.
+   *
+@throws DemoError when configuration or contract evidence disagrees, or rpc_http_&lt;status&gt; / rpc_unavailable when the
+   * RPC still fails after retries.</pre><h4>permit2Allowance(): Promise&lt;bigint&gt;</h4><pre>Read the wallet&#39;s token allowance for Permit2 in base units; upto needs it to cover the quote.</pre><h4>permitNonce(): Promise&lt;bigint&gt;</h4><pre>Read the wallet&#39;s EIP-2612 nonce; only native USDC on Live supports permits.</pre><h4>balance(): Promise&lt;bigint&gt;</h4><pre>Read the current wallet balance in USDC base units; callers subtract all outstanding reservations before signing.</pre><h4>blockNumber(): Promise&lt;bigint&gt;</h4><pre>Capture the starting block for later bounded authorization-log searches.</pre><h4>reconcile(ledger: Ledger): Promise&lt;void&gt;</h4><pre>Update the ledger only from finalized chain evidence. Missing or ambiguous evidence keeps funds reserved.
+@param ledger Wallet-scoped ledger to mutate; the caller must hold its process lock.
+   *
+@throws DemoError if a reservation belongs to another wallet, token, network or recipient.</pre></section><section><h2 id="src-cli-types-ts">src/cli-types.ts</h2><p>Machine-readable CLI contracts. USDC amounts are integer strings in six-decimal base units.</p><p><a href="../src/cli-types.ts">Read source</a></p><h3>CliCommand</h3><pre>Commands supported by both human and JSON output.</pre><pre>export type CliCommand = &#39;help&#39; | &#39;list&#39; | &#39;plan&#39; | &#39;sources&#39; | &#39;doctor&#39; | &#39;inspect&#39; | &#39;run&#39; | &#39;reconcile&#39; | &#39;faucet&#39;;</pre><h3>ExampleSummary</h3><pre>Counts describe logical agents; a parent can make several inference calls.</pre><pre>export interface ExampleSummary {
+  id: ExampleId;
+  title: string;
+  command: string;
+  description: string;
+  specialists: number;
+  researchers: number;
+  spawnedAgents: number;
+  totalAgents: number;
+}</pre><h3>ExamplePlan</h3><pre>The fixed tree and source permissions that Katara Cortex may assign work within.</pre><pre>export interface ExamplePlan extends ExampleSummary {
+  assignments: { id: string; title: string; goal: string; researchers: Researcher[] }[];
+}</pre><h3>ReportSummary</h3><pre>Report locations and accounting, without source bodies or wallet secrets.</pre><pre>export interface ReportSummary {
+  example: ExampleId;
+  title: string;
+  mode: RunReport[&#39;mode&#39;];
+  status: RunReport[&#39;status&#39;];
+  agents: number;
+  plannedAgents: number;
+  calls: number;
+  /** Paid Test calls answered by the simulated reply; their agents used fixture output. */
+  simulatedCalls: number;
+  /** Confirmed net charges in USDC base units, excluding pending authorizations. */
+  confirmedUnits: string;
+  /** Maximum amounts still reserved; these authorizations may yet settle. */
+  pendingUnits: string;
+  htmlPath: string;
+  jsonPath: string;
+}</pre><h3>CliResult</h3><pre>Results remain available on partial runs; inspect the envelope&#39;s ok field and process exit code.</pre><pre>export type CliResult =
+  | { command: &#39;help&#39;; text: string }
+  | { command: &#39;list&#39;; examples: ExampleSummary[] }
+  | { command: &#39;plan&#39;; examples: ExamplePlan[] }
+  | { command: &#39;sources&#39;; examples: { example: ExampleId; retrieved: number; total: number; sources: { id: string; url: string; status: number; error?: string }[] }[] }
+  | { command: &#39;inspect&#39;; runId: string; reports: ReportSummary[] }
+  | { command: &#39;doctor&#39;; mode: &#39;live&#39; | &#39;test&#39;; address: string; balanceUnits: string; permit2AllowanceUnits: string; chainId: number; network: string; asset: string; settlement: string; gateway: string; model: string; block: string; configurationVerified: true; paidCapacityVerified: false }
+  | { command: &#39;faucet&#39;; address: string; claimed: boolean; claimTransaction?: string; nextClaimAt?: string; approved: boolean; approveTransaction?: string; balanceUnits: string; permit2AllowanceUnits: string; gasWei: string }
+  | { command: &#39;reconcile&#39;; pendingAuthorizations: number; confirmedUnits: string; pendingUnits: string }
+  | { command: &#39;run&#39;; runId: string; mode: RunReport[&#39;mode&#39;]; budgetUnits: string; exposureUnits: string; reports: ReportSummary[] };</pre><h3>CliResponse</h3><pre>Versioned envelope emitted once to stdout with --json; failures never contain raw exception objects.</pre><pre>export type CliResponse =
+  | { schemaVersion: 1; ok: true; result: CliResult }
+  | { schemaVersion: 1; ok: false; command: CliCommand | &#39;unknown&#39;; error: { code: string; message: string; gateway?: GatewayRefusal }; result?: CliResult };</pre></section><section><h2 id="src-cli-ts">src/cli.ts</h2><p>Executable and importable CLI with human output or a single versioned JSON response.</p><p><a href="../src/cli.ts">Read source</a></p><h3>CliIO</h3><pre>Output sinks are injectable so tests can verify stdout without changing global console state.</pre><pre>export interface CliIO { stdout(text: string): void; stderr(text: string): void }</pre><h3>CliOptions</h3><pre>Runtime configuration overrides used by embedders and offline tests; never serialized in output.</pre><pre>export interface CliOptions { stateDir?: string; env?: Record&lt;string, string | undefined&gt; }</pre><h3>main</h3><pre>Run the CLI without a process-level side effect when imported.
+@param argv Arguments after the executable name; --json selects a single JSON envelope.
+ *
+@param io JSON mode writes only the envelope to stdout, including errors. Human errors use stderr.
+ *
+@param options Explicit environment/state overrides for isolated use; omitted values use the local checkout.
+ *
+@returns The same envelope written in JSON mode. The executable exits 1 when ok is false.</pre><pre>main(argv?: inferred, io?: CliIO, options?: CliOptions): Promise&lt;CliResponse&gt;</pre></section><section><h2 id="src-config-ts">src/config.ts</h2><p>Katara&#39;s Live and Test networks, explicit wallet configuration and exact six-decimal USDC budget parsing.</p><p><a href="../src/config.ts">Read source</a></p><h3>PERMIT2</h3><pre>The canonical Permit2 contract; the same address on Avalanche C-Chain and Fuji.</pre><pre>PERMIT2: `0x${string}`</pre><h3>UPTO_PROXY</h3><pre>The x402 upto proxy every upto signature names as spender; the same address on both chains.</pre><pre>UPTO_PROXY: `0x${string}`</pre><h3>Network</h3><pre>One Katara network. Both are served by the production API and paid per request with x402 from the same wallet.
+Token, settlement and faucet addresses are the values Katara publishes on its Networks page
+(docs.katara.com/about/networks/); preflight checks them again against the gateway and the chain.</pre><pre>export interface Network {
+  mode: &#39;live&#39; | &#39;test&#39;;
+  /** Report label: mainnet for Live, test for Test. */
+  label: &#39;mainnet&#39; | &#39;test&#39;;
+  name: string;
+  gateway: string; model: string;
+  chainId: number; network: string; rpc: string;
+  asset: Hex; settlement: Hex;
+  /** Native USDC exposes DOMAIN_SEPARATOR(); the Test token exposes only EIP-5267 eip712Domain(). */
+  domainSource: &#39;separator&#39; | &#39;eip5267&#39;;
+  /** Block explorer for transactions on this chain, as the Networks page names it. */
+  explorer: string;
+  /** Test USDC faucet; Live has none. */
+  faucet?: Hex;
+}</pre><h3>MAINNET</h3><pre>Live: native USDC on Avalanche C-Chain through https://api.katara.com. The default.</pre><pre>MAINNET: { readonly mode: &quot;live&quot;; readonly label: &quot;mainnet&quot;; readonly name: &quot;Avalanche C-Chain&quot;; readonly gateway: &quot;https://api.katara.com&quot;; readonly model: &quot;katara/cortex@1&quot;; readonly chainId: 43114; ... 5 more ...; readonly explorer: &quot;https://snowtrace.io&quot;; }</pre><h3>TEST</h3><pre>Test: test USDC with no value on Avalanche Fuji through https://api.katara.com/test.</pre><pre>TEST: { readonly mode: &quot;test&quot;; readonly label: &quot;test&quot;; readonly name: &quot;Avalanche Fuji&quot;; readonly gateway: &quot;https://api.katara.com/test&quot;; readonly model: &quot;katara/cortex@1&quot;; readonly chainId: 43113; ... 6 more ...; readonly faucet: `0x${string}`; }</pre><h3>explorerTx</h3><pre>Link a transaction to the explorer of the network it settled on, named by its CAIP-2 id.
+@returns undefined for an unknown network or a malformed hash, so no link points at the wrong chain.</pre><pre>explorerTx(network: string, hash: string): string | undefined</pre><h3>Config</h3><pre>Resolved runtime configuration. The wallet contains signing capability and must never be serialized into reports.</pre><pre>export interface Config {
+  network: Network;
+  gateway: string; model: string; rpc: string; asset: Hex; settlement: Hex;
+  wallet?: ReturnType&lt;typeof privateKeyToAccount&gt;; budget: bigint;
+  concurrency: number; deadlineSeconds: number; maxTokens: number;
+  stateDir: string;
+}</pre><h3>ledgerPath</h3><pre>Resolve this wallet&#39;s ledger without mixing chains, assets, settlement contracts or buyers.
+@throws DemoError when no wallet is configured.</pre><pre>ledgerPath(config: Config): string</pre><h3>paymentLedgerPath</h3><pre>Build a wallet ledger path from validated addresses; reject path fragments supplied as addresses.</pre><pre>paymentLedgerPath(stateDir: string, buyer: string, asset: string, settlement: string, chainId: number): string</pre><h3>money</h3><pre>Parse a positive decimal USDC amount without floating-point arithmetic or rounding.
+@param value Plain decimal text with at most six fractional digits.
+ *
+@returns The amount in USDC base units.
+ *
+@throws DemoError for zero, negative values, exponents or unsupported precision.</pre><pre>money(value: string): bigint</pre><h3>loadConfig</h3><pre>Resolve the network for KATARA_MODE (live by default, or test) and refuse any .env value that disagrees with it.
+@param options Fixture mode skips .env and wallet loading; explicit env replaces file and process settings.
+ *
+@returns Configuration without performing network requests, signing or funding.
+ *
+@throws DemoError for an unknown mode, mismatched pinned values, wallet or limits.</pre><pre>loadConfig(options?: { budget?: string; fixture?: boolean; stateDir?: string; env?: Record&lt;string, string | undefined&gt; }): Config</pre></section><section><h2 id="src-evidence-ts">src/evidence.ts</h2><p>Publication and source-snapshot checks that preserve recorded research and payment identity.</p><p><a href="../src/evidence.ts">Read source</a></p><h3>assertExportable</h3><pre>Refuse incomplete, mislabeled or unreviewed reports before public export.
+@throws DemoError for mode, model, token or reviewed-claim hash mismatches. This is not a substitute for on-chain reconciliation.</pre><pre>assertExportable(report: RunReport): void</pre><h3>verifySupportSnapshot</h3><pre>Require a matching private source view before revising an exported answer.
+@param published The immutable public input report; its source text may be truncated.
+ *
+@param snapshot The local full source view whose hashes must match.
+ *
+@throws DemoError when the records or source hashes differ.</pre><pre>verifySupportSnapshot(published: RunReport, snapshot: RunReport): void</pre></section><section><h2 id="src-examples-ts">src/examples.ts</h2><p>Registered scenarios and fixed tree limits shared by execution and documentation.</p><p><a href="../src/examples.ts">Read source</a></p><h3>exampleIds</h3><pre>Ordered scenario registry used by all, listing, documentation and evidence navigation.</pre><pre>exampleIds: ExampleId[]</pre><h3>loadExample</h3><pre>Read a registered scenario from the checkout and apply runtime tree and source-permission checks.
+@throws DemoError for unknown examples or invalid scenario structure.</pre><pre>loadExample(id: string): Example</pre><h3>validateExample</h3><pre>Check unique task/source IDs, referenced source scopes, HTTPS endpoints and the sixteen-agent limit.
+@throws DemoError rather than silently dropping tasks or broadening source access.</pre><pre>validateExample(e: Example): void</pre><h3>agentCount</h3><pre>Count the master, specialists and researchers. This is a task count, not an inference-call estimate.</pre><pre>agentCount(e: Example): number</pre></section><section><h2 id="src-faucet-ts">src/faucet.ts</h2><p>Test-only funding: claim test USDC from Katara&#39;s faucet and approve Permit2 so upto payments work.</p><p><a href="../src/faucet.ts">Read source</a></p><h3>FAUCET_ABI</h3><pre>Katara&#39;s TestUSDCFaucet: claim() mints the configured amount to the caller once per interval.</pre><pre>FAUCET_ABI: readonly [{ readonly name: &quot;claim&quot;; readonly type: &quot;function&quot;; readonly stateMutability: &quot;nonpayable&quot;; readonly inputs: readonly []; readonly outputs: readonly []; }, { readonly name: &quot;token&quot;; readonly type: &quot;function&quot;; readonly stateMutability: &quot;view&quot;; readonly inputs: readonly []; readonly outputs: readonly [...];...</pre><h3>FUJI_AVAX_FAUCET</h3><pre>Where a wallet gets Fuji AVAX for gas.</pre><pre>FUJI_AVAX_FAUCET: &quot;https://core.app/tools/testnet-faucet/&quot;</pre><h3>FaucetResult</h3><pre>What the faucet step did. Amounts are base units: test USDC has six decimals, AVAX eighteen.</pre><pre>export interface FaucetResult {
+  address: string;
+  claimed: boolean; claimTransaction?: string;
+  /** Unix seconds when the wallet may claim again, when it cannot claim now. */
+  nextClaimAt?: string;
+  approved: boolean; approveTransaction?: string;
+  balanceUnits: string; permit2AllowanceUnits: string; gasWei: string;
+}</pre><h3>FaucetChain</h3><pre>The chain operations the faucet step needs; injectable so tests never reach Fuji.</pre><pre>export interface FaucetChain {
+  chainId(): Promise&lt;number&gt;;
+  code(address: Hex): Promise&lt;string | undefined&gt;;
+  read(address: Hex, functionName: string, args?: readonly unknown[]): Promise&lt;unknown&gt;;
+  gas(): Promise&lt;bigint&gt;;
+  /** Estimate a call&#39;s total gas cost in wei; throws when the call would revert. */
+  cost(address: Hex, abi: &#39;faucet&#39; | &#39;approve&#39;, functionName: string, args: readonly unknown[]): Promise&lt;bigint&gt;;
+  /** Send a call and wait for its successful receipt; returns the transaction hash. */
+  send(address: Hex, abi: &#39;faucet&#39; | &#39;approve&#39;, functionName: string, args: readonly unknown[]): Promise&lt;string&gt;;
+}</pre><h3>fujiChain</h3><pre>Bind the faucet step to Fuji through the configured RPC. Construction makes no request.</pre><pre>fujiChain(config: Config): FaucetChain</pre><h3>runFaucet</h3><pre>Claim test USDC when the wallet may, then approve Permit2 for test USDC when it has no allowance yet.
+Runs on Avalanche Fuji only. Without enough Fuji AVAX for a transaction it stops before sending anything
+and says where to get some. It never reads or writes Avalanche C-Chain.
+@throws DemoError faucet_test_only outside Test mode, chain_configuration_mismatch for an unexpected chain or
+ * faucet, and gas_required when the wallet cannot pay for the next transaction.</pre><pre>runFaucet(config: Config, log: (text: string) =&gt; void, chain?: FaucetChain): Promise&lt;FaucetResult&gt;</pre></section><section><h2 id="src-http-ts">src/http.ts</h2><p>Bounded HTTPS source retrieval with host restrictions and connection-time DNS checks.</p><p><a href="../src/http.ts">Read source</a></p><h3>isPublicAddress</h3><pre>Accept public unicast IP addresses only, including normalization of IPv4-mapped addresses.</pre><pre>isPublicAddress(address: string): boolean</pre><h3>validateSourceUrl</h3><pre>Require an allowed HTTPS host without credentials, alternate ports or literal private addresses.
+@throws DemoError before a refused source URL reaches the transport.</pre><pre>validateSourceUrl(input: string, allowedHosts: Set&lt;string&gt;): URL</pre><h3>HttpResult</h3><pre>Bounded source response retained for extraction; text is untrusted external content.</pre><pre>export interface HttpResult { status: number; text: string; url: string; contentType: string; location?: string }</pre><h3>SourceFetch</h3><pre>Transport seam for free source collection. A supplied body is a read-only structured-data request.</pre><pre>export type SourceFetch = (url: string, hosts: Set&lt;string&gt;, signal?: AbortSignal, body?: string) =&gt; Promise&lt;HttpResult&gt;;</pre><h3>publicFetch</h3><pre>Free source transport with three redirects, a response byte cap and connection-time DNS validation.</pre><pre>publicFetch: SourceFetch</pre></section><section><h2 id="src-inference-ts">src/inference.ts</h2><p>Paid Katara Cortex completions with fixed EIP-3009 and Permit2 signing boundaries, and offline substitutes.</p><p><a href="../src/inference.ts">Read source</a></p><h3>CompletionRequest</h3><pre>One bounded model task. fixtureOutput is used only by FixtureInference and is never sent to the gateway.</pre><pre>export interface CompletionRequest {
+  agentId: string; purpose: CallEvidence[&#39;purpose&#39;]; system: string; prompt: string;
+  fixtureOutput: unknown;
+  maxTokens?: number;
+}</pre><h3>Inference</h3><pre>Completion boundary shared by paid and offline execution; implementations must honor cancellation.</pre><pre>export interface Inference { complete(request: CompletionRequest, signal: AbortSignal): Promise&lt;string&gt; }</pre><h3>PaymentChain</h3><pre>Read-only chain capability needed to reserve spend and choose a scheme before signing.</pre><pre>export interface PaymentChain {
+  balance(): Promise&lt;bigint&gt;; blockNumber(): Promise&lt;bigint&gt;;
+  /** The wallet&#39;s token allowance for Permit2, in base units. */
+  permit2Allowance(): Promise&lt;bigint&gt;;
+  /** The wallet&#39;s EIP-2612 nonce on the token; only asked for when a quote offers gas-sponsored approval. */
+  permitNonce(): Promise&lt;bigint&gt;;
+}</pre><h3>AUTH_TYPES</h3><pre>Fixed EIP-3009 fields accepted by the exact signer; arbitrary model or SDK types are never signed.</pre><pre>AUTH_TYPES: { readonly TransferWithAuthorization: readonly [{ readonly name: &quot;from&quot;; readonly type: &quot;address&quot;; }, { readonly name: &quot;to&quot;; readonly type: &quot;address&quot;; }, { readonly name: &quot;value&quot;; readonly type: &quot;uint256&quot;; }, { ...; }, { ...; }, { ...; }]; }</pre><h3>UPTO_TYPES</h3><pre>Fixed Permit2 witness transfer accepted by the upto signer, as the x402 upto proxy verifies it.</pre><pre>UPTO_TYPES: { readonly PermitWitnessTransferFrom: readonly [{ readonly name: &quot;permitted&quot;; readonly type: &quot;TokenPermissions&quot;; }, { readonly name: &quot;spender&quot;; readonly type: &quot;address&quot;; }, { readonly name: &quot;nonce&quot;; readonly type: &quot;uint256&quot;; }, { ...; }, { ...; }]; readonly TokenPermissions: readonly [...]; readonly Witness: readonl...</pre><h3>PERMIT_TYPES</h3><pre>Fixed EIP-2612 approval of Permit2, signed only for a quote that offers eip2612GasSponsoring.</pre><pre>PERMIT_TYPES: { readonly Permit: readonly [{ readonly name: &quot;owner&quot;; readonly type: &quot;address&quot;; }, { readonly name: &quot;spender&quot;; readonly type: &quot;address&quot;; }, { readonly name: &quot;value&quot;; readonly type: &quot;uint256&quot;; }, { readonly name: &quot;nonce&quot;; readonly type: &quot;uint256&quot;; }, { ...; }]; }</pre><h3>SIMULATED_MODEL</h3><pre>The Test network&#39;s paid stand-in when no Fuji provider is free; it runs no model and its text is fixed.</pre><pre>SIMULATED_MODEL: &quot;katara/simulated@1&quot;</pre><h3>Quotes</h3><pre>The payable entries of one challenge, each already checked against the configured network.</pre><pre>export interface Quotes { exact?: PaymentRequirements; upto?: PaymentRequirements; sponsored: boolean; extensions?: Record&lt;string, unknown&gt; }</pre><h3>selectQuotes</h3><pre>Keep the challenge entries this client may sign: the configured network, its USDC token and Katara&#39;s settlement
+contract, a sane amount and lifetime, the token&#39;s EIP-712 domain, the requested model, and for upto a Permit2
+transfer naming a facilitator. Katara lists upto first and exact second for the same maximum. An entry that fails
+any check is dropped; a challenge with nothing left is refused. eip2612GasSponsoring is the only extension used.
+@returns Detached quotes; the model cannot select a payment destination.
+ *
+@throws DemoError before signing if the challenge is malformed or no entry is payable.</pre><pre>selectQuotes(required: unknown, config: Config): Quotes</pre><h3>PaidInference</h3><pre>Reserve every authorization durably before signing and retry identical request bytes under the invocation cap.
+Upto (Permit2) is preferred when the wallet&#39;s Permit2 allowance covers the quote or the quote offers a sponsored
+approval; otherwise exact (EIP-3009) is paid. A 412 permit2_allowance_required answer to an upto payment is paid
+again with exact on the same quote. Every signed maximum stays reserved until chain evidence settles or expires it.
+On Test, a reply marked simulated (no Fuji provider was free) is still a paid call; the agent receives the call&#39;s
+fixture output instead of the fixed text. Live refuses simulated quotes and replies.</pre><pre>class PaidInference</pre><h4>constructor(config: Config, ledger: Ledger, chain: PaymentChain, runId: string, record: (e: CallEvidence) =&gt; void, fetcher?: typeof fetch, pacer?: QuotePacer): inferred</h4><pre>Bind a run and its locked ledger to transport and metadata recording; construction makes no request.</pre><h4>complete(request: CompletionRequest, signal: AbortSignal): Promise&lt;string&gt;</h4><pre>Request a quote, choose a scheme, reserve the maximum, sign the fixed authorization and validate the completion.
+@param request Task prompt and output-token limit; bodies and signatures are not recorded.
+   *
+@param signal Cancellation never releases a possibly signed reservation.
+   *
+@returns Nonempty model text after model identity and truncation checks.
+   *
+@throws On refused quotes, exhausted budget, transport errors or invalid completions; payment exposure remains recorded.</pre><h3>readRefusal</h3><pre>Read a gateway&#39;s error answer: its code and parameter in the metadata character set, and at most 300 characters
+of message with control characters removed. The text is untrusted and is shown, never acted on.</pre><pre>readRefusal(response: Response): Promise&lt;GatewayRefusal&gt;</pre><h3>gatewayError</h3><pre>The stable error for a gateway refusal; its message repeats the gateway&#39;s code, parameter and text.</pre><pre>gatewayError(refusal: GatewayRefusal): DemoError</pre><h3>MAX_QUOTE_WAITS</h3><pre>Waits allowed for one call&#39;s first quote before the run stops with quote_rate_limited.</pre><pre>MAX_QUOTE_WAITS: 8</pre><h3>QuotePacer</h3><pre>Spaces one wallet&#39;s unpaid quote requests. Katara lets an address hold ten open quotes and ask for thirty a minute;
+staying under thirty in any sixty-second window keeps a run inside that in normal use. After a 429, every call
+through this pacer waits until the gateway&#39;s Retry-After has passed.</pre><pre>class QuotePacer</pre><h4>constructor(limit?: inferred, windowMs?: inferred, now?: inferred): inferred</h4><pre>@param limit Quote requests allowed in one window.
+   *
+@param windowMs Window length in milliseconds.</pre><h4>take(signal: AbortSignal): Promise&lt;void&gt;</h4><pre>Wait until one more quote request fits, then count it. Cancellation rejects without counting.</pre><h4>hold(ms: number): void</h4><pre>Hold every caller for ms milliseconds, as the gateway asked.</pre><h3>pacerFor</h3><pre>The pacer shared by every call this process makes for one wallet.</pre><pre>pacerFor(address: string): QuotePacer</pre><h3>FixtureInference</h3><pre>Return caller-supplied synthetic output without networking, keys, signatures or ledger mutations.</pre><pre>class FixtureInference</pre><h4>constructor(record: (e: CallEvidence) =&gt; void): inferred</h4><pre>Record fixture call metadata through the same callback shape used for live runs.</pre><h4>complete(request: CompletionRequest, signal: AbortSignal): Promise&lt;string&gt;</h4><pre>Serialize the synthetic output and record one fixture call; cancellation is checked first.</pre></section><section><h2 id="src-ledger-ts">src/ledger.ts</h2><p>Durable wallet locking and budget accounting in integer USDC base units.</p><p><a href="../src/ledger.ts">Read source</a></p><h3>atomicJson</h3><pre>Write private JSON through an exclusive temporary file, sync it, rename it and sync the containing directory.
+@param file Destination path; missing directories use owner-only permissions.
+ *
+@param value JSON-serializable state. Wallet keys and signatures must not be passed here as report data.</pre><pre>atomicJson(file: string, value: unknown): void</pre><h3>acquireWalletLock</h3><pre>Exclude concurrent processes using the same wallet state; reclaim a lock only when its PID no longer exists.
+@returns A release function to call in finally.
+ *
+@throws DemoError for a live owner, invalid lock or unwritable lock file.</pre><pre>acquireWalletLock(stateDir: string, address: string): () =&gt; void</pre><h3>Ledger</h3><pre>Track confirmed net charges and pending maxima. Callers must hold the wallet process lock for mutations.</pre><pre>class Ledger</pre><h4>constructor(file: string): inferred</h4><pre>Load and validate persisted accounting; corrupted or over-budget state refuses further payments.</pre><h4>begin(runId: string, cap: bigint): void</h4><pre>Create one positive invocation cap in USDC base units; reject reuse of a run ID.</pre><h4>list(runId?: string): Authorization[]</h4><pre>Return detached reservations so report formatting cannot change durable accounting.</pre><h4>exposure(runId?: string): bigint</h4><pre>Sum confirmed actual charges and pending maxima, optionally scoped to one run. Expired reservations count as zero.</pre><h4>pending(): bigint</h4><pre>Sum all still-reserved maxima across this wallet ledger in USDC base units.</pre><h4>reserve(a: Authorization, currentBalance: bigint): void</h4><pre>Reserve a unique nonce synchronously before signing.
+@param currentBalance Current USDC balance in base units; all pending reservations are subtracted.
+   *
+@throws DemoError if the run cap, available balance or replay checks fail.</pre><h4>confirm(id: string, actual: bigint, transaction: string, block: bigint, ticketHash: string): void</h4><pre>Record a validated finalized net charge; repeating the same confirmation is idempotent.
+@param actual Net buyer debit in USDC base units, bounded by the authorization maximum.
+   *
+@throws DemoError if a later receipt conflicts with an existing confirmation.</pre><h4>expire(id: string, finalizedTimestamp: bigint, authorizationUnused: boolean): void</h4><pre>Release a pending maximum only after finalized chain time passes expiry and the nonce is confirmed unused.</pre></section><section><h2 id="src-report-ts">src/report.ts</h2><p>Escaped human-readable answers, public excerpts and private source-support snapshots.</p><p><a href="../src/report.ts">Read source</a></p><h3>brandText</h3><pre>Expand prose product references to Katara Cortex while preserving recognized API identifiers and URLs.</pre><pre>brandText(text: string): string</pre><h3>escapeHtml</h3><pre>Escape untrusted values for HTML text and quoted attributes; normalize display punctuation.</pre><pre>escapeHtml: (v: unknown) =&gt; string</pre><h3>renderProse</h3><pre>Render a small escaped prose subset: paragraphs, lists, inline code and emphasis. Raw HTML never executes.</pre><pre>renderProse(text: string): string</pre><h3>css</h3><pre>Shared report styling; color scheme follows the reader&#39;s system preference.</pre><pre>css: &quot;:root{color-scheme:light dark;--bg:#f6f7f5;--panel:#fff;--ink:#111713;--muted:#5e6761;--line:#dde3dd;--accent:#082b24;--warn:#775716}@media(prefers-color-scheme:dark){:root{--bg:#051b15;--panel:#082b24;--ink:#eef3ef;--muted:#b0beb4;--line:#365247;--accent:#b7e6cb;--warn:#edd18f}}*{box-sizing:border-box}body{margin:...</pre><h3>document</h3><pre>Wrap report content in the shared responsive HTML layout. Callers must escape untrusted body values.</pre><pre>document(title: string, body: string): string</pre><h3>totals</h3><pre>Sum confirmed net USDC charges and pending authorization maxima separately. Values are returned in base units.</pre><pre>totals(report: RunReport): { spent: bigint; pending: bigint }</pre><h3>renderReport</h3><pre>Place the master answer before collapsed evidence, with optional revision provenance and combined accounting.
+@param report Original run; it is not mutated.
+ *
+@param revision Optional successful revision displayed above the retained original output.
+ *
+@returns Standalone HTML with escaped findings, source links, reviews and payment records.</pre><pre>renderReport(report: RunReport, revision?: SynopsisRevision): string</pre><h3>publicReport</h3><pre>Copy a typed report, normalize product prose and cap each source excerpt at 25 words.
+@remarks This is a presentation transform, not a sanitizer for arbitrary objects or secret fields.</pre><pre>publicReport(report: RunReport): RunReport</pre><h3>publicSynopsis</h3><pre>Copy revision metadata for export and omit its raw private draftText field.</pre><pre>publicSynopsis(revision: SynopsisRevision): SynopsisRevision</pre><h3>writeReport</h3><pre>Write owner-only local HTML/JSON plus a full private source-support snapshot. This does not publish any file.</pre><pre>writeReport(folder: string, report: RunReport): void</pre></section><section><h2 id="src-review-ts">src/review.ts</h2><p>Bounded source review and final-answer checks that keep uncertain claims out of the master result.</p><p><a href="../src/review.ts">Read source</a></p><h3>findingKey</h3><pre>Identify a claim and its citations without including the later review assessment.</pre><pre>findingKey: (f: Finding) =&gt; string</pre><h3>sourceSpans</h3><pre>Resolve positive inclusive line ranges against available, hash-matching private source views.
+@throws DemoError for unavailable sources, invalid bounds, changed views or spans larger than 6,000 characters.</pre><pre>sourceSpans(citations: Citation[], sources: Source[]): Span[]</pre><h3>policyIssue</h3><pre>Detect selected unsupported commands, amounts and contradictory equal values before model review.
+@returns A refusal reason, or undefined when these limited checks found no issue; undefined is not approval.</pre><pre>policyIssue(text: string, spans: Span[]): string | undefined</pre><h3>parseReviews</h3><pre>Require exactly one bounded verdict per supplied item ID; duplicates or missing items invalidate the batch.</pre><pre>parseReviews(text: string, ids: string[]): Map&lt;string, { verdict: EvidenceVerdict; reason: string }&gt;</pre><h3>reviewFindings</h3><pre>Review unique descendant findings and attach assessments to both the report and original agent findings.
+@remarks Paid review calls use the supplied inference boundary and its existing budget; this mutates report review state.</pre><pre>reviewFindings(inference: Inference, report: RunReport, signal: AbortSignal): Promise&lt;void&gt;</pre><h3>reviewSynopsis</h3><pre>Retain the original draft, review its sections and replace rejected prose with supported findings or explicit gaps.
+@returns A detached answer with review provenance and partial coverage when anything was withheld.</pre><pre>reviewSynopsis(inference: Inference, report: RunReport, draft: AgentOutput, signal: AbortSignal): Promise&lt;AgentOutput&gt;</pre></section><section><h2 id="src-runtime-ts">src/runtime.ts</h2><p>Recursive task execution with fixed source scopes, bounded model calls and reviewed master answers.</p><p><a href="../src/runtime.ts">Read source</a></p><h3>Semaphore</h3><pre>Limit concurrent inference without holding a slot while a parent waits for its children.</pre><pre>class Semaphore</pre><h4>constructor(limit: number): inferred</h4><pre>Require a positive integer slot count; no asynchronous work begins during construction.</pre><h4>use(fn: () =&gt; Promise&lt;T&gt;, signal: AbortSignal): Promise&lt;T&gt;</h4><pre>Run work after a slot becomes available and always return the slot. Cancellation is rechecked before work starts.</pre><h3>parsePlan</h3><pre>Require exactly one delegation for every configured child; a model cannot add or duplicate agents.</pre><pre>parsePlan(text: string, expectedIds: string[]): { id: string; task: string }[]</pre><h3>parseOutput</h3><pre>Validate bounded findings and positive citations against the task&#39;s available sources.
+@returns Sanitized structured fields with normalized product names, before semantic source review.
+ *
+@throws DemoError for invalid output, unavailable evidence or invented citation ranges.</pre><pre>parseOutput(text: string, sources: Source[]): AgentOutput</pre><h3>TRUNCATION_RETRY_TOKENS</h3><pre>Output limit for the one retry after a truncated answer: the largest a completion request allows.</pre><pre>TRUNCATION_RETRY_TOKENS: 2048</pre><h3>Runtime</h3><pre>Execute researchers recursively, preserve sibling results on failure and review the final answer within shared limits.</pre><pre>class Runtime</pre><h4>constructor(inference: Inference, collector: SourceCollector, report: RunReport, concurrency: number, signal: AbortSignal, changed: () =&gt; void): inferred</h4><pre>Bind inference, collection, mutable report state, concurrency and cancellation without starting work.</pre><h4>run(example: Example): Promise&lt;void&gt;</h4><pre>Populate the report through completion, partial results or failure; final timestamps and source records are always saved.</pre></section><section><h2 id="src-sources-ts">src/sources.ts</h2><p>Cached, bounded public source views with retrieval hashes and explicit failure records.</p><p><a href="../src/sources.ts">Read source</a></p><h3>digest</h3><pre>SHA-256 over UTF-8 text, used to bind source views, request bytes and review claims.</pre><pre>digest: (text: string) =&gt; string</pre><h3>extractText</h3><pre>Remove non-content HTML and retain readable line breaks; plain text and JSON pass through unchanged.</pre><pre>extractText(body: string, contentType: string): string</pre><h3>SourceCollector</h3><pre>Cache each source request and pin repository files to one resolved commit before collection.</pre><pre>class SourceCollector</pre><h4>constructor(example: Example, fixture?: inferred, fetcher?: SourceFetch, signal?: AbortSignal, repoOverride?: string): inferred</h4><pre>Resolve source permissions and an optional owner/name override. Fixtures use synthetic URLs and no transport.</pre><h4>prepare(): Promise&lt;void&gt;</h4><pre>Resolve the repository commit once per collector; fixture mode skips the network.</pre><h4>get(id: string): Promise&lt;Source&gt;</h4><pre>Share a single in-flight collection for a source ID so sibling agents observe the same source snapshot.</pre><h4>all(): Promise&lt;Source[]&gt;</h4><pre>Collect sources sequentially to bound public API pressure independently of model concurrency.</pre></section><section><h2 id="src-synopsis-ts">src/synopsis.ts</h2><p>Scenario-specific master prose parsed from numbered evidence and reviewed before display.</p><p><a href="../src/synopsis.ts">Read source</a></p><h3>synopsisHeadings</h3><pre>Required answer sections by scenario; update these when adding a new example identity.</pre><pre>synopsisHeadings: Record&lt;ExampleId, string[]&gt;</pre><h3>masterEvidence</h3><pre>Deduplicate descendant findings without promoting their uncited summaries.
+@param supportedOnly Require a supported assessment when preparing the synthesis prompt.</pre><pre>masterEvidence(report: RunReport, supportedOnly?: inferred): { findings: Finding[]; limitations: string[] }</pre><h3>parseSynopsis</h3><pre>Validate required headings, substantive prose, coverage notes and supplied evidence numbers.
+@throws DemoError for missing or unknown evidence, placeholders or an incomplete answer structure. Source truth is checked separately.</pre><pre>parseSynopsis(text: string, example: ExampleId, findings: Finding[]): AgentOutput</pre><h3>createMasterSynopsis</h3><pre>Write a master draft from supported findings only, allowing at most one bounded schema repair.
+@param onDraft Receives model text for private revision storage; do not publish it without review.
+ *
+@returns A parsed draft that still requires reviewSynopsis before it is treated as the final answer.</pre><pre>createMasterSynopsis(inference: Inference, report: RunReport, signal: AbortSignal, onInvalid?: (attempt: number, detail: string) =&gt; void, onDraft?: (text: string) =&gt; void, attempts?: inferred): Promise&lt;AgentOutput&gt;</pre><h3>createReviewedSynopsis</h3><pre>Run child source review, master synthesis and final draft review through the same inference and budget boundary.</pre><pre>createReviewedSynopsis(inference: Inference, report: RunReport, signal: AbortSignal, onInvalid?: (attempt: number, detail: string) =&gt; void, onDraft?: (text: string) =&gt; void): Promise&lt;AgentOutput&gt;</pre></section><section><h2 id="src-types-ts">src/types.ts</h2><p><a href="../src/types.ts">Read source</a></p><h3>ExampleId</h3><pre>Supported scenario identities; adding one also requires registration and synopsis headings.</pre><pre>export type ExampleId = &#39;repository&#39; | &#39;documentation&#39; | &#39;comparison&#39; | &#39;trip&#39; | &#39;cryptocurrency&#39;;</pre><h3>SourceSpec</h3><pre>One permitted public endpoint; URL templates are expanded only by the source collector.</pre><pre>export interface SourceSpec {
+  /** Stable citation ID, unique within its scenario. */
+  id: string;
+  title: string;
+  /** HTTPS URL; repository templates may use {repo} and {commit}. */
+  url: string;
+  /** Sample at most two same-host links after collecting the page. */
+  links?: boolean;
+  /** Select a bounded adapter for structured research data instead of HTML extraction. */
+  format?: &#39;candles&#39; | &#39;tvl&#39; | &#39;releases&#39; | &#39;rpc-block&#39;;
+}</pre><h3>Researcher</h3><pre>Leaf agent with an explicit source scope; a model-generated task cannot expand it.</pre><pre>export interface Researcher {
+  id: string;
+  title: string;
+  question: string;
+  /** References SourceSpec IDs from the same scenario.
+   * @minItems 1
+   */
+  sourceIds: string[];
+}</pre><h3>Specialist</h3><pre>Parent agent that plans and synthesizes the work of its fixed researchers.</pre><pre>export interface Specialist {
+  id: string;
+  title: string;
+  goal: string;
+  /** A specialist cannot create extra researchers through model output.
+   * @minItems 1
+   * @maxItems 3
+   */
+  researchers: Researcher[];
+}</pre><h3>Example</h3><pre>Scenario input. Runtime validation also checks unique IDs, source references and the total tree size.</pre><pre>export interface Example {
+  id: ExampleId;
+  title: string;
+  /** Default user request; --command can replace it without changing source permissions. */
+  command: string;
+  description: string;
+  /** Public owner/name resolved to a commit for repository-source collection. */
+  repository?: string;
+  /** The source collector refuses endpoints outside these hosts.
+   * @maxItems 30
+   */
+  sources: SourceSpec[];
+  /** At most sixteen agents may execute, including the master and all descendants.
+   * @minItems 1
+   * @maxItems 4
+   */
+  specialists: Specialist[];
+}</pre><h3>Source</h3><pre>A retrieved source or a recorded retrieval failure. Public exports shorten text, not its hashes.</pre><pre>export interface Source {
+  id: string;
+  title: string;
+  url: string;
+  /** ISO 8601 observation timestamp; this is not a claim that the source is still current. */
+  retrievedAt: string;
+  /** HTTP status, or zero if no response was available. */
+  status: number;
+  /** SHA-256 of retrieved response bytes, or empty before retrieval. */
+  sha256: string;
+  /** Numbered, bounded source view locally; a short excerpt in public exports. */
+  text: string;
+  /** Hash of the full local source view; public excerpts cannot be used to verify this hash. */
+  textSha256?: string;
+  error?: string;
+  /** Resolved Git commit for immutable repository citation links. */
+  commit?: string;
+  /** True only for synthetic offline sources. */
+  fixture?: boolean;
+  links?: { url: string; status: number; error?: string }[];
+}</pre><h3>Citation</h3><pre>Inclusive source-view line range. Retrieval metadata cannot support a factual claim.</pre><pre>export interface Citation {
+  sourceId: string;
+  /** First cited line, starting at one.
+   * @integer
+   * @minimum 1
+   */
+  startLine: number;
+  /** Last cited line; runtime validation also requires endLine &gt;= startLine.
+   * @integer
+   * @minimum 1
+   */
+  endLine: number;
+}</pre><h3>EvidenceVerdict</h3><pre>Only supported findings enter the master synthesis; uncertain means insufficient verification.</pre><pre>export type EvidenceVerdict = &#39;supported&#39; | &#39;unsupported&#39; | &#39;uncertain&#39;;</pre><h3>EvidenceAssessment</h3><pre>Review provenance. A model verdict is a source-support check, not proof of factual correctness.</pre><pre>export interface EvidenceAssessment {
+  verdict: EvidenceVerdict;
+  reason: string;
+  /** Hash of the exact assessed claim or original draft section. */
+  claimHash: string;
+  checkedAt: string;
+  /** Distinguishes deterministic checks, paid Katara Cortex review and synthetic fixture review. */
+  method: &#39;policy&#39; | &#39;model&#39; | &#39;fixture&#39;;
+  callId?: string;
+  /** Hashes identify cited source spans without exporting their full text. */
+  support: { sourceId: string; startLine: number; endLine: number; sourceHash: string; spanHash: string }[];
+}</pre><h3>Finding</h3><pre>A paraphrased observation with citations; assessment is absent until source review runs.</pre><pre>export interface Finding {
+  claim: string;
+  citations: Citation[];
+  assessment?: EvidenceAssessment;
+}</pre><h3>SynopsisSection</h3><pre>One scenario-specific part of the master answer.</pre><pre>export interface SynopsisSection {
+  heading: string;
+  body: string;
+  citations: Citation[];
+  /** Retained for older parser provenance; new synthesis rejects unknown evidence references. */
+  unverifiedEvidence?: number[];
+}</pre><h3>AgentOutput</h3><pre>Structured research output. Parent summaries are never treated as evidence without cited findings.</pre><pre>export interface AgentOutput {
+  summary: string;
+  findings: Finding[];
+  limitations: string[];
+  synopsis?: SynopsisSection[];
+  /** Coverage of the user&#39;s request, independent of execution or payment status. */
+  completion?: &#39;complete&#39; | &#39;partial&#39;;
+  /** Assessments refer to the retained original draft; rejected sections may have been replaced. */
+  review?: { status: &#39;supported&#39; | &#39;partial&#39;; sections: { id: string; assessment: EvidenceAssessment }[] };
+}</pre><h3>SynopsisRevision</h3><pre>Separate paid or fixture revision tied to the exact bytes of an exported source report.</pre><pre>export interface SynopsisRevision {
+  version: 1;
+  id: string;
+  sourceRunId: string;
+  sourceReportHash: string;
+  /** SHA-256 by implementation path; source research is reused rather than refreshed. */
+  implementationFingerprint: Record&lt;string, string&gt;;
+  example: ExampleId;
+  startedAt: string;
+  finishedAt?: string;
+  mode: &#39;mainnet&#39; | &#39;fixture&#39;;
+  status: &#39;running&#39; | &#39;succeeded&#39; | &#39;failed&#39;;
+  output?: AgentOutput;
+  error?: string;
+  calls: CallEvidence[];
+  payments: Authorization[];
+  evidenceReview?: RunReport[&#39;evidenceReview&#39;];
+  masterDraft?: AgentOutput;
+  /** Raw model draft kept in ignored local state and removed by publicSynopsis. */
+  draftText?: string;
+  /** Historical parser provenance; exporters never promote an unreviewed draft. */
+  postprocessing?: { originalStatus: string; originalError?: string; parserHash: string; processedAt: string };
+  reviewNotes?: string[];
+  validationIssues: { attempt: number; detail: string }[];
+}</pre><h3>Agent</h3><pre>One logical task in the recursive tree; each task can make multiple bounded inference calls.</pre><pre>export interface Agent {
+  id: string;
+  parentId?: string;
+  title: string;
+  /** Zero is the master; one is a specialist; two is a researcher. */
+  depth: number;
+  assignment?: string;
+  status: &#39;running&#39; | &#39;succeeded&#39; | &#39;failed&#39; | &#39;cancelled&#39;;
+  startedAt: string;
+  finishedAt?: string;
+  output?: AgentOutput;
+  error?: string;
+  children: string[];
+  validationIssues?: { purpose: CallEvidence[&#39;purpose&#39;]; attempt: number; code: string; detail: string }[];
+}</pre><h3>CallEvidence</h3><pre>Completion metadata without prompt bodies, raw responses or payment signatures.</pre><pre>export interface CallEvidence {
+  id: string;
+  agentId: string;
+  purpose: &#39;plan&#39; | &#39;research&#39; | &#39;synthesize&#39; | &#39;repair&#39; | &#39;review&#39;;
+  requestedModel: string;
+  servedModel?: string;
+  provider?: string;
+  requestId?: string;
+  startedAt: string;
+  finishedAt?: string;
+  status: &#39;running&#39; | &#39;succeeded&#39; | &#39;failed&#39;;
+  usage?: { prompt_tokens?: number; completion_tokens?: number; total_tokens?: number };
+  /** Charge the gateway reported in katara.cost_usdc, in USDC (test USDC in test mode). Chain evidence is authoritative for live payments. */
+  costUsdc?: string;
+  /** The gateway&#39;s own error code, parameter and message when it refused this call. */
+  gateway?: GatewayRefusal;
+  /** Times the call waited for the gateway&#39;s quote rate limit before its first quote; waits are not failures. */
+  quoteWaits?: number;
+  /** Paid Test call answered by the network&#39;s simulated reply because no Fuji provider was free; the agent used its fixture output. */
+  simulated?: true;
+  /** One completion may reserve several maxima after fresh payment challenges. */
+  authorizationIds: string[];
+  error?: string;
+}</pre><h3>Authorization</h3><pre>Durable EIP-3009 reservation. Amounts, times and block numbers remain decimal strings in JSON.</pre><pre>export interface Authorization {
+  id: string;
+  runId: string;
+  callId: string;
+  agentId: string;
+  /** Hash of the exact completion request bytes that were retried with payment. */
+  requestHash: string;
+  from: string;
+  /** Verified settlement recipient, never a model-selected address. */
+  to: string;
+  asset: string;
+  network: string;
+  /** exact: EIP-3009 transfer of the maximum with a refund; upto: Permit2 transfer of the charge only. Absent means exact. */
+  scheme?: &#39;exact&#39; | &#39;upto&#39;;
+  /** Set when an upto payment carried a sponsored EIP-2612 permit; only one may be unsettled per wallet. */
+  sponsored?: true;
+  /** EIP-3009 nonce, or the Permit2 nonce as 32-byte hex. */
+  nonce: string;
+  /** Authorized maximum in six-decimal USDC base units.
+   * @pattern ^[1-9][0-9]*$
+   */
+  value: string;
+  /** Unix seconds; validity is checked against finalized chain time before releasing a reservation. */
+  validAfter: string;
+  validBefore: string;
+  /** First block searched for authorization and settlement evidence. */
+  startBlock: string;
+  state: &#39;pending&#39; | &#39;confirmed&#39; | &#39;expired&#39;;
+  /** Confirmed net buyer debit, including fees within that charge; not the authorization maximum.
+   * @pattern ^[0-9]+$
+   */
+  actual?: string;
+  transaction?: string;
+  block?: string;
+  /** The quote&#39;s ticket for upto, which reconciliation looks for in Settled events; the settled ticket once confirmed. */
+  ticketHash?: string;
+}</pre><h3>RunReport</h3><pre>Run artifact, including partial progress. Export checks enforce mode, review and payment consistency.</pre><pre>export interface RunReport {
+  presentationNotes?: string[];
+  version: 1;
+  id: string;
+  example: ExampleId;
+  title: string;
+  command: string;
+  /** mainnet: paid per request over x402; test: a Test API key on Avalanche Fuji; fixture: offline. */
+  mode: &#39;mainnet&#39; | &#39;test&#39; | &#39;fixture&#39;;
+  startedAt: string;
+  finishedAt?: string;
+  /** Execution outcome; source coverage and settlement have separate fields. */
+  status: &#39;running&#39; | &#39;succeeded&#39; | &#39;partial&#39; | &#39;failed&#39;;
+  error?: string;
+  softwareCommit: string;
+  gateway: string;
+  network: string;
+  model: string;
+  /** Shared invocation cap in USDC base units; zero for an offline fixture.
+   * @pattern ^[0-9]+$
+   */
+  budgetUnits: string;
+  /** Identifies whether the cap covers one example or the entire invocation. */
+  budgetScope: string;
+  plannedAgents: number;
+  agents: Agent[];
+  calls: CallEvidence[];
+  sources: Source[];
+  payments: Authorization[];
+  result?: AgentOutput;
+  evidenceReview?: { findings: Finding[]; checkedAt: string };
+  /** Original parsed draft before unsupported sections were replaced. */
+  masterDraft?: AgentOutput;
+}</pre><h3>GatewayRefusal</h3><pre>A gateway&#39;s error answer as it sent it: untrusted text, bounded and stripped of control characters.</pre><pre>export interface GatewayRefusal {
+  status: number;
+  code?: string;
+  param?: string;
+  message?: string;
+}</pre><h3>DemoError</h3><pre>A stable machine error code with an intentionally safe message for CLI and report output; gateway is the refusal it reports, if any.</pre><pre>class DemoError</pre><h4>constructor(code: string, message?: inferred, gateway?: GatewayRefusal): inferred</h4><pre>Messages must not contain wallet keys, signatures, private source text or transport dumps.</pre><h3>errorCode</h3><pre>Collapse unknown exceptions to a stable code without disclosing their potentially sensitive messages.</pre><pre>errorCode(error: unknown): string</pre></section><section><h2 id="src-wait-ts">src/wait.ts</h2><p><a href="../src/wait.ts">Read source</a></p><h3>retryAfterMs</h3><pre>Turn a Retry-After header (seconds or an HTTP date) into a wait between min and max milliseconds;
+fallback when the header is missing or unreadable.</pre><pre>retryAfterMs(header: string | null, now?: inferred, fallback?: inferred, min?: inferred, max?: inferred): number</pre><h3>pause</h3><pre>Resolve after ms milliseconds, or reject as soon as the signal aborts.</pre><pre>pause(ms: number, signal?: AbortSignal): Promise&lt;void&gt;</pre></section><section><h2 id="src-wallet-ts">src/wallet.ts</h2><p>Local wallet creation that never prints or overwrites an existing private key.</p><p><a href="../src/wallet.ts">Read source</a></p><h3>createWallet</h3><pre>Create a new ignored .env from .env.example using exclusive owner-only file creation.
+@param folder Destination directory; defaults to the current checkout.
+ *
+@returns Only the public wallet address. This does not fund the wallet.
+ *
+@throws DemoError if .env exists or cannot be written.</pre><pre>createWallet(folder?: inferred): string</pre></section><section><h2 id="scripts-build-agent-docs-ts">scripts/build-agent-docs.ts</h2><p>Generate standalone onboarding, mirrored instructions and a JSDoc-derived API reference.</p><p><a href="../scripts/build-agent-docs.ts">Read source</a></p><p>Executable script; see its module JSDoc and source.</p></section><section><h2 id="scripts-build-docs-ts">scripts/build-docs.ts</h2><p>Generate the public walkthroughs from registered scenarios and shared report styling.</p><p><a href="../scripts/build-docs.ts">Read source</a></p><p>Executable script; see its module JSDoc and source.</p></section><section><h2 id="scripts-build-schemas-ts">scripts/build-schemas.ts</h2><p>Rebuild versioned wire schemas; --check reports drift without rewriting files.</p><p><a href="../scripts/build-schemas.ts">Read source</a></p><p>Executable script; see its module JSDoc and source.</p></section><section><h2 id="scripts-build-synopses-ts">scripts/build-synopses.ts</h2><p>Create bounded master-answer revisions while retaining immutable public inputs and private source snapshots.</p><p><a href="../scripts/build-synopses.ts">Read source</a></p><p>Executable script; see its module JSDoc and source.</p></section><section><h2 id="scripts-create-wallet-ts">scripts/create-wallet.ts</h2><p>Print the new public wallet address while keeping the generated key in an ignored owner-only file.</p><p><a href="../scripts/create-wallet.ts">Read source</a></p><p>Executable script; see its module JSDoc and source.</p></section><section><h2 id="scripts-evidence-index-ts">scripts/evidence-index.ts</h2><p>Build local result navigation without relabeling modes or changing original report JSON.</p><p><a href="../scripts/evidence-index.ts">Read source</a></p><h3>evidenceRoot</h3><pre>Public export directory inside the checkout; this is not a hosting destination.</pre><pre>evidenceRoot: URL</pre><h3>validRunId</h3><pre>Accept generated run-directory names without allowing path separators or traversal.</pre><pre>validRunId: (id: string) =&gt; boolean</pre><h3>writeEvidenceIndex</h3><pre>Validate exported report/revision identity, select the latest reviewed answer and regenerate HTML plus accounting indexes. All writes remain local.</pre><pre>writeEvidenceIndex(): void</pre></section><section><h2 id="scripts-export-evidence-ts">scripts/export-evidence.ts</h2><p>Export completed, reviewed local reports and refresh result navigation without making network requests.</p><p><a href="../scripts/export-evidence.ts">Read source</a></p><p>Executable script; see its module JSDoc and source.</p></section><section><h2 id="scripts-export-synopses-ts">scripts/export-synopses.ts</h2><p>Export completed revisions only when their source-report hashes and current ledger accounting agree.</p><p><a href="../scripts/export-synopses.ts">Read source</a></p><p>Executable script; see its module JSDoc and source.</p></section><section><h2 id="scripts-generated-files-ts">scripts/generated-files.ts</h2><p>Shared write-or-check behavior for deterministic documentation artifacts.</p><p><a href="../scripts/generated-files.ts">Read source</a></p><h3>generatedFile</h3><pre>Write generated content or check exact bytes without touching the checkout.
+@param file Destination URL or path inside the public artifact tree.
+ *
+@param text Deterministic output; do not include current timestamps or machine paths.
+ *
+@param check True for verification, false for intentional regeneration.
+ *
+@throws When a required artifact is absent or stale in check mode.</pre><pre>generatedFile(file: string | URL, text: string, check: boolean): void</pre></section><section><h2 id="scripts-schema-contracts-ts">scripts/schema-contracts.ts</h2><p>Generate portable JSON Schemas from the public TypeScript wire contracts.</p><p><a href="../scripts/schema-contracts.ts">Read source</a></p><h3>contractRoots</h3><pre>Schema versions describe wire compatibility independently of package releases.</pre><pre>contractRoots: { readonly scenario: &quot;Example&quot;; readonly &#39;run-report&#39;: &quot;RunReport&quot;; readonly &#39;synopsis-revision&#39;: &quot;SynopsisRevision&quot;; readonly &#39;cli-response&#39;: &quot;CliResponse&quot;; }</pre><h3>ContractName</h3><pre>Published contract filename key; each artifact contains its own schema dependencies.</pre><pre>export type ContractName = keyof typeof contractRoots;</pre><h3>JsonSchema</h3><pre>Generator representation of JSON Schema vocabulary, not a type accepted from model input.</pre><pre>export type JsonSchema = Record&lt;string, any&gt;;</pre><h3>generateSchemas</h3><pre>Derive draft-07 schemas using the installed TypeScript compiler, without loading application modules.
+Optional fields are omitted rather than encoded as null. Unknown object properties are refused.
+@param root Checkout root containing src/types.ts and src/cli-types.ts.
+ *
+@returns Self-contained schemas with local definitions and stable URN identifiers.
+ *
+@throws If a contract introduces an unsupported or non-JSON type; generation never widens it to any.</pre><pre>generateSchemas(root?: inferred): Record&lt;ContractName, JsonSchema&gt;</pre></section></main></body></html>
