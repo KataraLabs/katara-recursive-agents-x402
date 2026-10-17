@@ -170,7 +170,7 @@ export class PaidInference implements Inference {
       const body = requestBody(request, maxTokens, this.config.model);
       const endpoint = `${this.config.gateway}/v1/chat/completions`;
       // Each request has its own timeout, so waiting for the quote limit never shortens a request.
-      const send = (payment?: string) => this.fetcher(endpoint, { method: 'POST', redirect: 'error', signal: AbortSignal.any([signal, AbortSignal.timeout(90_000)]), headers: { 'content-type': 'application/json', ...(payment ? { 'PAYMENT-SIGNATURE': payment } : {}) }, body });
+      const send = (payment?: string) => this.fetcher(endpoint, { method: 'POST', redirect: 'error', signal: AbortSignal.any([signal, AbortSignal.timeout(this.config.requestSeconds * 1000)]), headers: { 'content-type': 'application/json', ...(payment ? { 'PAYMENT-SIGNATURE': payment } : {}) }, body });
       // Only the unpaid request is ever repeated for the quote limit; a payment is never resent for a 429.
       const requestQuote = async () => {
         for (let waits = 0; ; waits++) {

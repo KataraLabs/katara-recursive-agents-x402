@@ -70,6 +70,8 @@ export interface Config {
   gateway: string; model: string; rpc: string; asset: Hex; settlement: Hex;
   wallet?: ReturnType<typeof privateKeyToAccount>; budget: bigint;
   concurrency: number; deadlineSeconds: number; maxTokens: number;
+  /** How long one call may take, answer included. A Katara Community model can take minutes on a long prompt. */
+  requestSeconds: number;
   stateDir: string;
 }
 /**
@@ -144,6 +146,9 @@ export function loadConfig(options: { budget?: string; fixture?: boolean; stateD
     concurrency: integer('KATARA_DEMO_CONCURRENCY', 2, 1, 4),
     deadlineSeconds: integer('KATARA_DEMO_DEADLINE_SECONDS', 300, 30, 1800),
     maxTokens: integer('KATARA_DEMO_MAX_TOKENS', 768, 128, 2048),
+    // Longer than Katara waits for a provider's first token on a pay-per-call request (about 210 s),
+    // and never past the 300 s a payment authorization stays valid.
+    requestSeconds: integer('KATARA_DEMO_REQUEST_SECONDS', 240, 30, 300),
     stateDir: resolve(options.stateDir ?? '.katara'),
   };
 }

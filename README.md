@@ -151,6 +151,14 @@ it got). Set `AVALANCHE_RPC_URL` in `.env` to your own HTTPS RPC endpoint for th
 network's chain, from any of the providers on Avalanche's
 [integrations page](https://build.avax.network/integrations), and run again.
 
+A Katara Community model on modest hardware can take minutes to answer a long
+prompt. The client waits up to 240 seconds for each call, longer than Katara itself
+waits for a provider to start answering a pay-per-call request, and within the 300
+seconds a payment authorization stays valid. Set `KATARA_DEMO_REQUEST_SECONDS`
+(30 to 300) to change it. Each example also stops after
+`KATARA_DEMO_DEADLINE_SECONDS`, 300 by default and at most 1800; raise that for a
+slow model too.
+
 When the wallet has not approved Permit2 on Live, Katara can pay for the approval as
 part of an `upto` payment. Only one such payment is in flight per wallet at a time;
 the calls around it pay with `exact` until it settles or expires.

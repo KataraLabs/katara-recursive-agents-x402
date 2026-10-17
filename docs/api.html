@@ -79,6 +79,8 @@ Token, settlement and faucet addresses are the values Katara publishes on its Ne
   gateway: string; model: string; rpc: string; asset: Hex; settlement: Hex;
   wallet?: ReturnType&lt;typeof privateKeyToAccount&gt;; budget: bigint;
   concurrency: number; deadlineSeconds: number; maxTokens: number;
+  /** How long one call may take, answer included. A Katara Community model can take minutes on a long prompt. */
+  requestSeconds: number;
   stateDir: string;
 }</pre><h3>ledgerPath</h3><pre>Resolve this wallet&#39;s ledger without mixing chains, assets, settlement contracts or buyers.
 @throws DemoError when no wallet is configured.</pre><pre>ledgerPath(config: Config): string</pre><h3>paymentLedgerPath</h3><pre>Build a wallet ledger path from validated addresses; reject path fragments supplied as addresses.</pre><pre>paymentLedgerPath(stateDir: string, buyer: string, asset: string, settlement: string, chainId: number): string</pre><h3>money</h3><pre>Parse a positive decimal USDC amount without floating-point arithmetic or rounding.
