@@ -11,7 +11,7 @@ export const SETTLEMENT = '0x1111111111111111111111111111111111111111' as const;
 
 export function setup(network: Network = MAINNET) {
   const dir = mkdtempSync(join(tmpdir(), 'katara-demo-test-'));
-  const config: Config = { network, gateway: network.gateway, model: network.model, asset: network.asset, settlement: SETTLEMENT, rpc: network.rpc, wallet: privateKeyToAccount(generatePrivateKey()), budget: 100_000n, concurrency: 2, deadlineSeconds: 300, maxTokens: 768, requestSeconds: 240, stateDir: dir };
+  const config: Config = { network, gateway: network.gateway, model: network.model, asset: network.asset, settlement: SETTLEMENT, rpc: network.rpc, wallet: privateKeyToAccount(generatePrivateKey()), budget: 100_000n, concurrency: 2, deadlineSeconds: 1800, maxTokens: 768, silenceSeconds: 60, stateDir: dir };
   return { dir, config, cleanup: () => rmSync(dir, { recursive: true, force: true }) };
 }
 export function authorization(config: Config, override: Partial<Authorization> = {}): Authorization {

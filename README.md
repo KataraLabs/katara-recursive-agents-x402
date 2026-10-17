@@ -152,12 +152,12 @@ network's chain, from any of the providers on Avalanche's
 [integrations page](https://build.avax.network/integrations), and run again.
 
 A Katara Community model on modest hardware can take minutes to answer a long
-prompt. The client waits up to 240 seconds for each call, longer than Katara itself
-waits for a provider to start answering a pay-per-call request, and within the 300
-seconds a payment authorization stays valid. Set `KATARA_DEMO_REQUEST_SECONDS`
-(30 to 300) to change it. Each example also stops after
-`KATARA_DEMO_DEADLINE_SECONDS`, 300 by default and at most 1800; raise that for a
-slow model too.
+prompt, so the client streams each reply and waits as long as it keeps arriving. It
+gives up on a call only when Katara sends nothing for 60 seconds; set
+`KATARA_DEMO_SILENCE_SECONDS` (15 to 300) to change that. Before the first token
+Katara sends nothing at all, and it gives a pay-per-call request about 210 seconds
+to produce one, so the client waits up to 240 seconds for a reply to start. Each
+example stops after `KATARA_DEMO_DEADLINE_SECONDS`, 1800 by default and at most 3600.
 
 When the wallet has not approved Permit2 on Live, Katara can pay for the approval as
 part of an `upto` payment. Only one such payment is in flight per wallet at a time;

@@ -278,12 +278,12 @@ network's chain, from any of the providers on Avalanche's
 [integrations page](https://build.avax.network/integrations), and run again.
 
 A Katara Community model on modest hardware can take minutes to answer a long
-prompt. The client waits up to 240 seconds for each call, longer than Katara itself
-waits for a provider to start answering a pay-per-call request, and within the 300
-seconds a payment authorization stays valid. Set `KATARA_DEMO_REQUEST_SECONDS`
-(30 to 300) to change it. Each example also stops after
-`KATARA_DEMO_DEADLINE_SECONDS`, 300 by default and at most 1800; raise that for a
-slow model too.
+prompt, so the client streams each reply and waits as long as it keeps arriving. It
+gives up on a call only when Katara sends nothing for 60 seconds; set
+`KATARA_DEMO_SILENCE_SECONDS` (15 to 300) to change that. Before the first token
+Katara sends nothing at all, and it gives a pay-per-call request about 210 seconds
+to produce one, so the client waits up to 240 seconds for a reply to start. Each
+example stops after `KATARA_DEMO_DEADLINE_SECONDS`, 1800 by default and at most 3600.
 
 When the wallet has not approved Permit2 on Live, Katara can pay for the approval as
 part of an `upto` payment. Only one such payment is in flight per wallet at a time;
@@ -479,7 +479,7 @@ Token | test USDC 0xFED854555Faeeca02aCdB3fed90b0CD4048d3F45, no value | USDC 0x
 Settlement | 0xCA03Fe30B1c3cEA94530Ca95f21d8a487dB065c7 | 0x7f8D1049519Ddcb1Cb041Fb1b0dF7A125e96ACF3 | 
 Faucet | 0xe66bcB6D2864d851BB282440FA3Da2a82093CbF5 | none | 
 Permit2 · upto proxy | 0x000000000022D473030F116dDEE9F6B43aC78BA3 · 0x4020A4f3b7b90ccA423B9fabCc0CE57C6C240002 | 
-Katara publishes these addresses on its Networks page, and they appear in every payment challenge. The client fixes every value in this table. Addresses are per chain. On Avalanche C-Chain, 0x7f8D1049519Ddcb1Cb041Fb1b0dF7A125e96ACF3 is the Live settlement contract; on Fuji the same address belonged to the Test settlement contract until October 2026. The client checks each network's chain ID, so an address is only ever used on its own chain. The .env keys KATARA_SETTLEMENT_ADDRESS, KATARA_X402_ASSET, KATARA_CHAIN_ID, KATARA_X402_NETWORK, KATARA_GW_BASE and KATARA_GW_MODEL are optional; one that disagrees with the selected network stops the client. The doctor check compares the gateway's chain and settlement contract with these values and verifies deployed contract code, the settlement contract's token, the token signing domain, Permit2 and the upto proxy. The public Avalanche RPC rate limits busy addresses; the client retries an RPC 429 or 5xx up to five times with growing waits (or as Retry-After asks, when that is ten seconds or less), reuses balance, block and allowance reads for five seconds, and otherwise stops with rpc_http_<status>. Set AVALANCHE_RPC_URL to your own HTTPS RPC endpoint for the network's chain to avoid that limit; Avalanche lists RPC providers on its integrations page. For Live runs this is the recommended setup. Only one payment with a sponsored Permit2 approval is in flight per wallet; other calls pay with exact until it settles or its deadline passes, because each sponsored permit takes the token's next nonce. Optional limits are KATARA_DEMO_CONCURRENCY (1–4), KATARA_DEMO_DEADLINE_SECONDS (30–1800, default 300) for each example, KATARA_DEMO_MAX_TOKENS (128–2048), and KATARA_DEMO_REQUEST_SECONDS (30–300, default 240), how long the client waits for one call. The default outlasts Katara's own wait for a provider's first token on a pay-per-call request, so a slow Katara Community model is answered or refused by Katara rather than dropped by the client, and stays inside the 300 seconds a payment authorization is valid. An explicit --budget is required for each paid run. Quotes determine the authorization amounts; Katara charges at least 0.025 USDC per call on both networks.
+Katara publishes these addresses on its Networks page, and they appear in every payment challenge. The client fixes every value in this table. Addresses are per chain. On Avalanche C-Chain, 0x7f8D1049519Ddcb1Cb041Fb1b0dF7A125e96ACF3 is the Live settlement contract; on Fuji the same address belonged to the Test settlement contract until October 2026. The client checks each network's chain ID, so an address is only ever used on its own chain. The .env keys KATARA_SETTLEMENT_ADDRESS, KATARA_X402_ASSET, KATARA_CHAIN_ID, KATARA_X402_NETWORK, KATARA_GW_BASE and KATARA_GW_MODEL are optional; one that disagrees with the selected network stops the client. The doctor check compares the gateway's chain and settlement contract with these values and verifies deployed contract code, the settlement contract's token, the token signing domain, Permit2 and the upto proxy. The public Avalanche RPC rate limits busy addresses; the client retries an RPC 429 or 5xx up to five times with growing waits (or as Retry-After asks, when that is ten seconds or less), reuses balance, block and allowance reads for five seconds, and otherwise stops with rpc_http_<status>. Set AVALANCHE_RPC_URL to your own HTTPS RPC endpoint for the network's chain to avoid that limit; Avalanche lists RPC providers on its integrations page. For Live runs this is the recommended setup. Only one payment with a sponsored Permit2 approval is in flight per wallet; other calls pay with exact until it settles or its deadline passes, because each sponsored permit takes the token's next nonce. Optional limits are KATARA_DEMO_CONCURRENCY (1–4), KATARA_DEMO_DEADLINE_SECONDS (30–3600, default 1800) for each example, KATARA_DEMO_MAX_TOKENS (128–2048), and KATARA_DEMO_SILENCE_SECONDS (15–300, default 60), the longest pause the client accepts within a reply. Replies are streamed, so a slow Katara Community model that keeps sending is never cut off. Katara sends nothing before the first token and allows a pay-per-call request about 210 seconds for it, so the client waits up to 240 seconds for a reply to start. PAYMENT-RESPONSE arrives with the stream's headers, before the charge is known; the closing chunk's katara object carries cost_usdc, which the call record keeps. A stream that Katara ends with an error chunk is not charged and stops the call with completion_stream_failed; one that stalls stops with response_silent, and its payment stays reserved until the chain settles or expires it. An explicit --budget is required for each paid run. Quotes determine the authorization amounts; Katara charges at least 0.025 USDC per call on both networks.
 
 Test
 Test is paid exactly like Live, with the same wallet, but in test USDC on Avalanche Fuji. Its ledger is separate from Live's. Test quotes offer no sponsored approval because the test token takes no EIP-2612 permit, so upto on Test needs the wallet's own Permit2 approval, which npm run faucet sends along with the daily claim. Without it, Test payments use exact. When no Fuji provider is free for Katara Cortex, the Test network answers with a simulated reply that runs no model but is quoted, paid and settled like any other. The client records the call as simulated and gives the agent its built-in fixture output, and the report counts the simulated calls above the answer. Test therefore proves the wallet, payments, ledger and reconciliation, not answer quality. Live refuses a simulated quote before signing and a simulated reply after it.
@@ -687,8 +687,8 @@ export interface Config {
   gateway: string; model: string; rpc: string; asset: Hex; settlement: Hex;
   wallet?: ReturnType<typeof privateKeyToAccount>; budget: bigint;
   concurrency: number; deadlineSeconds: number; maxTokens: number;
-  /** How long one call may take, answer included. A Katara Community model can take minutes on a long prompt. */
-  requestSeconds: number;
+  /** How long a call may go without receiving anything once its reply has started. A slow reply that keeps streaming is never cut off. */
+  silenceSeconds: number;
   stateDir: string;
 }
 Resolved runtime configuration. The wallet contains signing capability and must never be serialized into reports.
@@ -848,6 +848,10 @@ any check is dropped; a challenge with nothing left is refused. eip2612GasSponso
 @returns Detached quotes; the model cannot select a payment destination.
  *
 @throws DemoError before signing if the challenge is malformed or no entry is payable.
+
+FIRST_BYTE_SECONDS: 240
+Longest wait for a reply to start. Katara sends nothing before the model's first token and allows a pay-per-call
+request about 210 s for it, so the client waits a little longer than that.
 
 class PaidInference
 Reserve every authorization durably before signing and retry identical request bytes under the invocation cap.

@@ -112,11 +112,110 @@ async function readJson(response: Response, max = 1_000_000): Promise<any> {
 }
 
 /**
+ * Read a streamed completion under the same byte cap and assemble it into the shape of a JSON reply: the content
+ * deltas joined, the last finish reason, and the usage, katara and system_fingerprint fields of the closing chunks.
+ * Every chunk that names a model must name the requested one.
+ * @throws DemoError when Katara ends the stream with an error chunk (nothing is charged for it), when the stream
+ * closes before data: [DONE], or when a chunk is not JSON.
+ */
+async function readEvents(response: Response, model: string, max = 1_000_000): Promise<any> {
+  const reader = response.body?.getReader();
+  if (!reader) throw new DemoError('response_empty');
+  const decoder = new TextDecoder();
+  const out: any = { model, choices: [{ message: { content: '' }, finish_reason: null }] };
+  let bytes = 0; let pending = ''; let data: string[] = [];
+  const take = (payload: string): boolean => {
+    if (payload === '[DONE]') return true;
+    let chunk: any;
+    try { chunk = JSON.parse(payload); } catch { throw new DemoError('response_invalid_json'); }
+    if (chunk?.error) throw new DemoError('completion_stream_failed', 'Katara ended the stream with an error; it charges nothing for a broken stream.', describeError({ status: response.status }, chunk.error));
+    if (chunk?.model !== undefined && chunk.model !== model) out.model = chunk.model;
+    const choice = chunk?.choices?.[0];
+    if (typeof choice?.delta?.content === 'string') out.choices[0].message.content += choice.delta.content;
+    if (choice?.finish_reason) out.choices[0].finish_reason = choice.finish_reason;
+    if (chunk?.usage && typeof chunk.usage === 'object') out.usage = chunk.usage;
+    if (chunk?.katara && typeof chunk.katara === 'object') out.katara = chunk.katara;
+    if (typeof chunk?.system_fingerprint === 'string') out.system_fingerprint = chunk.system_fingerprint;
+    return false;
+  };
+  // Server-sent events: data lines accumulate until a blank line ends the event.
+  const lines = (text: string): boolean => {
+    pending += text;
+    let end: number;
+    while ((end = pending.indexOf('\n')) >= 0) {
+      const line = pending.slice(0, end).replace(/\r$/, ''); pending = pending.slice(end + 1);
+      if (line.startsWith('data:')) data.push(line.slice(5).replace(/^ /, ''));
+      else if (line === '' && data.length) { const payload = data.join('\n'); data = []; if (take(payload)) return true; }
+    }
+    return false;
+  };
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) { if (lines(decoder.decode() + '\n\n')) return out; throw new DemoError('completion_stream_incomplete', 'The stream closed before Katara finished the reply.'); }
+      bytes += value.length;
+      if (bytes > max) throw new DemoError('response_too_large');
+      if (lines(decoder.decode(value, { stream: true }))) return out;
+    }
+  } finally { reader.cancel().catch(() => {}); }
+}
+/**
+ * Wait for one promise unless the signal aborts first; a fetch stand-in or body source that ignores the signal still stops.
+ */
+function raced<T>(work: Promise<T>, signal: AbortSignal): Promise<T> {
+  if (signal.aborted) return Promise.reject(signal.reason);
+  return new Promise<T>((resolve, reject) => {
+    const stop = () => reject(signal.reason);
+    signal.addEventListener('abort', stop, { once: true });
+    work.then(resolve, reject).finally(() => signal.removeEventListener('abort', stop));
+  });
+}
+/**
+ * Give up on a request only when it goes quiet: firstMs until the response starts, then silenceMs between any two
+ * pieces of the body. A slow reply that keeps sending is never cut off.
+ */
+class Silence {
+  private readonly control = new AbortController(); private timer?: ReturnType<typeof setTimeout>;
+  readonly signal: AbortSignal;
+  constructor(outer: AbortSignal, firstMs: number, private silenceMs: number) {
+    this.signal = AbortSignal.any([outer, this.control.signal]); this.arm(firstMs);
+  }
+  arm(ms = this.silenceMs): void {
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => this.control.abort(new DemoError('response_silent', `Katara sent nothing for ${Math.round(ms / 1000)} s.`)), ms);
+    this.timer.unref?.();
+  }
+  stop(): void { clearTimeout(this.timer); }
+  /** The same response with a body that resets the timer on every piece and fails with response_silent when it stalls. */
+  watch(response: Response): Response {
+    const upstream = response.body?.getReader();
+    if (!upstream) { this.stop(); return response; }
+    const body = new ReadableStream<Uint8Array>({
+      pull: async controller => {
+        try {
+          const { done, value } = await raced(upstream.read(), this.signal);
+          if (done) { this.stop(); controller.close(); return; }
+          this.arm(); controller.enqueue(value);
+        } catch (error) {
+          this.stop(); upstream.cancel().catch(() => {});
+          controller.error(this.signal.aborted ? this.signal.reason : error);
+        }
+      },
+      cancel: reason => { this.stop(); return upstream.cancel(reason); },
+    });
+    return new Response(body, { status: response.status, statusText: response.statusText, headers: response.headers });
+  }
+}
+/** Longest wait for a reply to start. Katara sends nothing before the model's first token and allows a pay-per-call
+ * request about 210 s for it, so the client waits a little longer than that. */
+export const FIRST_BYTE_SECONDS = 240;
+
+/**
  * Serialize the completion request shared by both payment paths; the same bytes are resent on a paid retry.
  * @throws DemoError when the body exceeds the 100 kB request cap.
  */
 function requestBody(request: CompletionRequest, maxTokens: number, model: string): string {
-  const body = JSON.stringify({ model, messages: [{ role: 'system', content: request.system }, { role: 'user', content: request.prompt }], max_tokens: maxTokens, temperature: 0, stream: false, katara: { task: 'extract' } });
+  const body = JSON.stringify({ model, messages: [{ role: 'system', content: request.system }, { role: 'user', content: request.prompt }], max_tokens: maxTokens, temperature: 0, stream: true, katara: { task: 'extract' } });
   if (Buffer.byteLength(body) > 100_000) throw new DemoError('prompt_too_large');
   return body;
 }
@@ -126,7 +225,7 @@ function requestBody(request: CompletionRequest, maxTokens: number, model: strin
  * @throws DemoError for a different model, empty or truncated output.
  */
 async function acceptCompletion(response: Response, model: string, evidence: CallEvidence): Promise<{ message: string; simulated: boolean }> {
-  const out = await readJson(response);
+  const out = response.headers.get('content-type')?.includes('text/event-stream') ? await readEvents(response, model) : await readJson(response);
   const message = out.choices?.[0]?.message?.content;
   if (out.model !== model || typeof message !== 'string' || !message.trim()) throw new DemoError('completion_invalid');
   if (out.choices?.[0]?.finish_reason === 'length') throw new DemoError('completion_truncated');
@@ -169,8 +268,14 @@ export class PaidInference implements Inference {
       if (!Number.isSafeInteger(maxTokens) || maxTokens < 128 || maxTokens > 2048) throw new DemoError('invalid_limits');
       const body = requestBody(request, maxTokens, this.config.model);
       const endpoint = `${this.config.gateway}/v1/chat/completions`;
-      // Each request has its own timeout, so waiting for the quote limit never shortens a request.
-      const send = (payment?: string) => this.fetcher(endpoint, { method: 'POST', redirect: 'error', signal: AbortSignal.any([signal, AbortSignal.timeout(this.config.requestSeconds * 1000)]), headers: { 'content-type': 'application/json', ...(payment ? { 'PAYMENT-SIGNATURE': payment } : {}) }, body });
+      // Each request has its own silence timer, so waiting for the quote limit never shortens a request.
+      const send = async (payment?: string) => {
+        const silence = new Silence(signal, Math.max(FIRST_BYTE_SECONDS, this.config.silenceSeconds) * 1000, this.config.silenceSeconds * 1000);
+        try {
+          const response = await raced(this.fetcher(endpoint, { method: 'POST', redirect: 'error', signal: silence.signal, headers: { 'content-type': 'application/json', ...(payment ? { 'PAYMENT-SIGNATURE': payment } : {}) }, body }), silence.signal);
+          silence.arm(); return silence.watch(response);
+        } catch (error) { silence.stop(); throw silence.signal.aborted ? silence.signal.reason : error; }
+      };
       // Only the unpaid request is ever repeated for the quote limit; a payment is never resent for a 429.
       const requestQuote = async () => {
         for (let waits = 0; ; waits++) {
@@ -342,13 +447,16 @@ function expiryWithin(until: bigint, maxTimeoutSeconds: number): void {
 export async function readRefusal(response: Response): Promise<GatewayRefusal> {
   const refusal: GatewayRefusal = { status: response.status };
   try {
-    const error = (await readJson(response, 24_000))?.error;
-    const code = metadata(error?.code); const param = metadata(error?.param);
-    const message = typeof error?.message === 'string' ? error.message.replace(/[\u0000-\u001f\u007f-\u009f]+/g, ' ').trim().slice(0, 300) : '';
-    if (code) refusal.code = code;
-    if (param) refusal.param = param;
-    if (message) refusal.message = message;
+    describeError(refusal, (await readJson(response, 24_000))?.error);
   } catch { /* the status still names the failure */ }
+  return refusal;
+}
+function describeError(refusal: GatewayRefusal, error: any): GatewayRefusal {
+  const code = metadata(error?.code); const param = metadata(error?.param);
+  const message = typeof error?.message === 'string' ? error.message.replace(/[\u0000-\u001f\u007f-\u009f]+/g, ' ').trim().slice(0, 300) : '';
+  if (code) refusal.code = code;
+  if (param) refusal.param = param;
+  if (message) refusal.message = message;
   return refusal;
 }
 /**

@@ -22,11 +22,18 @@ describe('mainnet configuration', () => {
     expect(ledgerPath({ ...c, settlement: other.address })).not.toBe(ledgerPath(c));
     expect(() => paymentLedgerPath(c.stateDir, '../escape', c.asset, c.settlement, 43114)).toThrow('invalid_ledger_address');
   });
-  it('gives each call 240 s unless KATARA_DEMO_REQUEST_SECONDS sets 30-300', () => {
+  it('allows 60 s of silence unless KATARA_DEMO_SILENCE_SECONDS sets 15-300, and refuses the old total wait', () => {
     const e = env();
-    expect(loadConfig({ env: e }).requestSeconds).toBe(240);
-    for (const ok of ['30', '300']) expect(loadConfig({ env: { ...e, KATARA_DEMO_REQUEST_SECONDS: ok } }).requestSeconds).toBe(Number(ok));
-    for (const bad of ['29', '301', '90.5', 'slow', '']) expect(() => loadConfig({ env: { ...e, KATARA_DEMO_REQUEST_SECONDS: bad } })).toThrow('KATARA_DEMO_REQUEST_SECONDS');
+    expect(loadConfig({ env: e }).silenceSeconds).toBe(60);
+    for (const ok of ['15', '300']) expect(loadConfig({ env: { ...e, KATARA_DEMO_SILENCE_SECONDS: ok } }).silenceSeconds).toBe(Number(ok));
+    for (const bad of ['14', '301', '60.5', 'slow', '']) expect(() => loadConfig({ env: { ...e, KATARA_DEMO_SILENCE_SECONDS: bad } })).toThrow('KATARA_DEMO_SILENCE_SECONDS');
+    expect(() => loadConfig({ env: { ...e, KATARA_DEMO_REQUEST_SECONDS: '240' } })).toThrow('replaced by KATARA_DEMO_SILENCE_SECONDS');
+  });
+  it('gives each example 30 minutes unless KATARA_DEMO_DEADLINE_SECONDS sets 30-3600', () => {
+    const e = env();
+    expect(loadConfig({ env: e }).deadlineSeconds).toBe(1800);
+    expect(loadConfig({ env: { ...e, KATARA_DEMO_DEADLINE_SECONDS: '3600' } }).deadlineSeconds).toBe(3600);
+    expect(() => loadConfig({ env: { ...e, KATARA_DEMO_DEADLINE_SECONDS: '3601' } })).toThrow('KATARA_DEMO_DEADLINE_SECONDS');
   });
   it('keeps fixtures wallet-free even when live configuration is invalid', () => {
     const config = loadConfig({ fixture: true, env: { KATARA_BUYER_KEY: 'invalid', KATARA_CHAIN_ID: '1', AVALANCHE_RPC_URL: 'bad' } });

@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { toHex, verifyTypedData } from 'viem';
 import { UptoEvmScheme } from '@x402/evm/upto/client';
-import { MAX_QUOTE_WAITS, PaidInference, QuotePacer, pacerFor, readRefusal, retryAfterMs, selectQuotes, AUTH_TYPES, PERMIT_TYPES, UPTO_TYPES, type CompletionRequest } from '../src/inference.js';
+import { FIRST_BYTE_SECONDS, MAX_QUOTE_WAITS, PaidInference, QuotePacer, pacerFor, readRefusal, retryAfterMs, selectQuotes, AUTH_TYPES, PERMIT_TYPES, UPTO_TYPES, type CompletionRequest } from '../src/inference.js';
 import { SETTLEMENT, chainStub } from './helpers.js';
 import { MAINNET, PERMIT2, TEST, UPTO_PROXY, type Network } from '../src/config.js';
 import { Ledger } from '../src/ledger.js';
@@ -463,5 +463,98 @@ describe('one sponsored permit at a time', () => {
       await client().complete(task, new AbortController().signal);
       expect(payments.map(p => [p.scheme, !!p.extensions])).toEqual([['upto', true]]);
     } finally { s.cleanup(); }
+  });
+});
+
+describe('streamed replies', () => {
+  const PROVIDER = '0x8669000000000000000000000000000000cf9520';
+  const event = (chunk: unknown) => `data: ${JSON.stringify(chunk)}\n\n`;
+  const piece = (content: string, finish: string | null = null) => event({ object: 'chat.completion.chunk', model: MAINNET.model, choices: [{ index: 0, delta: { content }, finish_reason: finish }] });
+  const closing = (finish = 'stop') => [
+    event({ object: 'chat.completion.chunk', model: MAINNET.model, choices: [{ index: 0, delta: {}, finish_reason: finish }] }),
+    event({ object: 'chat.completion.chunk', model: MAINNET.model, choices: [], usage: { prompt_tokens: 2800, completion_tokens: 9, total_tokens: 2809 } }),
+    event({ object: 'chat.completion.chunk', choices: [], system_fingerprint: 'cortex:katara/llama@1', katara: { cost_usdc: '0.025', payment: { scheme: 'exact', network: MAINNET.network, asset: MAINNET.asset, amount: '25000' }, served: { model: 'katara/llama@1', provider: PROVIDER } } }),
+    'data: [DONE]\n\n',
+  ];
+  const answer = ['{"summary"', ':"res', 'ult"}'].map(t => piece(t));
+  // The payment response arrives with the headers, before the amount is known.
+  const accepted = Buffer.from(JSON.stringify({ success: true, network: MAINNET.network, payer: '0x0', amount: '' })).toString('base64');
+  /** An SSE reply that sends one part per gap; a missing part stalls forever. */
+  function streamed(parts: (string | undefined)[], gapMs: number) {
+    let i = 0;
+    return new Response(new ReadableStream<Uint8Array>({
+      async pull(controller) {
+        if (i >= parts.length) { controller.close(); return; }
+        const part = parts[i++];
+        await new Promise(resolve => setTimeout(resolve, gapMs));
+        if (part === undefined) await new Promise(() => {});
+        controller.enqueue(new TextEncoder().encode(part));
+      },
+    }), { status: 200, headers: { 'content-type': 'text/event-stream', 'PAYMENT-RESPONSE': accepted, 'x-katara-request-id': 'req_stream' } });
+  }
+  function run(reply: () => Response | Promise<Response>) {
+    const s = setup();
+    const ledger = new Ledger(join(s.dir, 'ledger.json')); ledger.begin('run', s.config.budget);
+    const evidence: CallEvidence[] = []; const bodies: string[] = [];
+    const fetcher = vi.fn(async (_url: string, init: RequestInit) => { bodies.push(String(init.body)); return (init.headers as Record<string, string>)['PAYMENT-SIGNATURE'] ? reply() : response402(); });
+    const client = new PaidInference(s.config, ledger, chainStub(0n, 100_000n), 'run', e => evidence.push(structuredClone(e)), fetcher as any);
+    let settled = false;
+    const result = client.complete(task, new AbortController().signal).then(text => ({ text }), error => ({ error })).finally(() => { settled = true; });
+    return { s, ledger, evidence, bodies, fetcher, result, settled: () => settled };
+  }
+  it('asks for a stream and keeps the payment evidence of the closing chunks', async () => {
+    const r = run(() => streamed([...answer, ...closing()], 0)); try {
+      expect(await r.result).toEqual({ text: '{"summary":"result"}' });
+      expect(JSON.parse(r.bodies[1]!)).toMatchObject({ stream: true });
+      expect(r.bodies[0]).toBe(r.bodies[1]); expect(r.fetcher).toHaveBeenCalledTimes(2);
+      expect(r.evidence.at(-1)).toMatchObject({ status: 'succeeded', requestId: 'req_stream', costUsdc: '0.025', servedModel: 'katara/llama@1', provider: PROVIDER, usage: { prompt_tokens: 2800, completion_tokens: 9, total_tokens: 2809 } });
+      expect(r.ledger.list()).toEqual([expect.objectContaining({ state: 'pending', value: '10000' })]);
+    } finally { r.s.cleanup(); }
+  });
+  it('waits out a slow reply that keeps sending, past the first-byte limit', async () => {
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
+    const parts = [...answer, ...closing()];
+    const r = run(() => streamed(parts, 50_000)); try {
+      await vi.advanceTimersByTimeAsync(FIRST_BYTE_SECONDS * 1000 + 5_000);
+      expect(r.settled()).toBe(false);
+      await vi.advanceTimersByTimeAsync(parts.length * 50_000);
+      expect(await r.result).toEqual({ text: '{"summary":"result"}' });
+      expect(r.evidence.at(-1)).toMatchObject({ status: 'succeeded', costUsdc: '0.025' });
+    } finally { vi.useRealTimers(); r.s.cleanup(); }
+  });
+  it('gives up after 60 s of silence mid-reply and keeps the payment reserved', async () => {
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
+    const r = run(() => streamed([answer[0], undefined], 10_000)); try {
+      await vi.advanceTimersByTimeAsync(10_000 + 59_000);
+      expect(r.settled()).toBe(false);
+      await vi.advanceTimersByTimeAsync(2_000);
+      expect(((await r.result) as any).error.code).toBe('response_silent');
+      expect(r.evidence.at(-1)).toMatchObject({ status: 'failed', error: 'response_silent' });
+      expect(r.ledger.list()).toEqual([expect.objectContaining({ state: 'pending', value: '10000' })]);
+      expect(r.fetcher).toHaveBeenCalledTimes(2);
+    } finally { vi.useRealTimers(); r.s.cleanup(); }
+  });
+  it('allows the first byte the longer wait the gateway gives a first token', async () => {
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
+    const r = run(() => new Promise<Response>(() => {})); try {
+      await vi.advanceTimersByTimeAsync(FIRST_BYTE_SECONDS * 1000 - 1_000);
+      expect(r.settled()).toBe(false);
+      await vi.advanceTimersByTimeAsync(2_000);
+      expect(((await r.result) as any).error.code).toBe('response_silent');
+    } finally { vi.useRealTimers(); r.s.cleanup(); }
+  });
+  it.each([
+    ['an error chunk', [answer[0], event({ error: { code: 'stream_interrupted', message: 'provider failed', type: 'server_error' } })], 'completion_stream_failed'],
+    ['a stream that closes before [DONE]', [...answer, ...closing().slice(0, 3)], 'completion_stream_incomplete'],
+    ['a chunk from another model', [...answer, event({ model: 'other/model@1', choices: [{ index: 0, delta: { content: 'x' }, finish_reason: null }] }), ...closing()], 'completion_invalid'],
+    ['a reply cut at the token limit', [...answer, ...closing('length')], 'completion_truncated'],
+    ['a chunk that is not JSON', [answer[0], 'data: {not json\n\n'], 'response_invalid_json'],
+  ])('refuses %s and keeps the payment reserved', async (_name, parts, code) => {
+    const r = run(() => streamed(parts as string[], 0)); try {
+      const { error } = (await r.result) as any;
+      expect(error.code).toBe(code);
+      if (code === 'completion_stream_failed') expect(error.gateway).toMatchObject({ code: 'stream_interrupted', message: 'provider failed' });
+      expect(r.ledger.list()).toEqual([expect.objectContaining({ state: 'pending' })]);
+    } finally { r.s.cleanup(); }
   });
 });
