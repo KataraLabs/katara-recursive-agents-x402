@@ -58,8 +58,8 @@ npm run demo -- run cryptocurrency --budget 1.25
 3. `npm run demo -- doctor` checks the gateway, the chain, the token and Katara's
    settlement contract, and shows the wallet's balance. It makes no payment.
 4. `run` executes an example and prints the path of its HTML report. Five test USDC
-   covers about six examples, since one costs about 0.80 test USDC (some 16 calls at
-   the 0.05 minimum); the faucet pays out again the next day.
+   covers about twelve examples, since one costs about 0.40 test USDC (some 16 calls at
+   the 0.025 minimum); the faucet pays out again the next day.
 
 Test proves the wallet, the payments, the ledger and reconciliation end to end. It
 does not prove answer quality. When no Test provider is free, Katara answers with a
@@ -78,7 +78,7 @@ addresses, and a run reads the chain often. Avalanche lists RPC providers on its
 
 ```sh
 npm run demo -- doctor
-npm run demo -- run all --budget 7.00
+npm run demo -- run all --budget 3.50
 ```
 
 Check the token against the contract listed by
@@ -121,20 +121,20 @@ Addresses are per chain. On Avalanche C-Chain, `0x7f8D1049519Ddcb1Cb041Fb1b0dF7A
 
 ### Budget
 
-**Every paid run requires an explicit `--budget`.** Katara charges at least 0.05
+**Every paid run requires an explicit `--budget`.** Katara charges at least 0.025
 USDC per call on both networks. The budget caps the whole invocation, including
 planning, reviews, synthesis and repairs, and counts each signed maximum until the
 chain shows the actual charge. A payment whose outcome is unknown, such as a Katara
 Cortex fallback to another provider, still uses budget until it settles or expires.
 
-| Example | Fixture calls | Minimum at 0.05 USDC | Suggested `--budget` |
+| Example | Fixture calls | Minimum at 0.025 USDC | Suggested `--budget` |
 | --- | ---: | ---: | ---: |
-| repository | 20 | 1.00 | 1.50 |
-| documentation | 16 | 0.80 | 1.25 |
-| comparison | 19 | 0.95 | 1.50 |
-| trip | 20 | 1.00 | 1.50 |
-| cryptocurrency | 16 | 0.80 | 1.25 |
-| all five | 91 | 4.55 | 7.00 |
+| repository | 20 | 0.50 | 0.75 |
+| documentation | 16 | 0.40 | 0.75 |
+| comparison | 19 | 0.475 | 0.75 |
+| trip | 20 | 0.50 | 0.75 |
+| cryptocurrency | 16 | 0.40 | 0.75 |
+| all five | 91 | 2.275 | 3.50 |
 
 Katara lets one address hold ten unpaid quotes and ask for thirty a minute. The
 client spaces its quote requests to stay under that, and if Katara still answers

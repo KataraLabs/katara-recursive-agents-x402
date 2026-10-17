@@ -184,8 +184,8 @@ npm run demo -- run cryptocurrency --budget 1.25
 3. `npm run demo -- doctor` checks the gateway, the chain, the token and Katara's
    settlement contract, and shows the wallet's balance. It makes no payment.
 4. `run` executes an example and prints the path of its HTML report. Five test USDC
-   covers about six examples, since one costs about 0.80 test USDC (some 16 calls at
-   the 0.05 minimum); the faucet pays out again the next day.
+   covers about twelve examples, since one costs about 0.40 test USDC (some 16 calls at
+   the 0.025 minimum); the faucet pays out again the next day.
 
 Test proves the wallet, the payments, the ledger and reconciliation end to end. It
 does not prove answer quality. When no Test provider is free, Katara answers with a
@@ -204,7 +204,7 @@ addresses, and a run reads the chain often. Avalanche lists RPC providers on its
 
 ```sh
 npm run demo -- doctor
-npm run demo -- run all --budget 7.00
+npm run demo -- run all --budget 3.50
 ```
 
 Check the token against the contract listed by
@@ -247,20 +247,20 @@ Addresses are per chain. On Avalanche C-Chain, `0x7f8D1049519Ddcb1Cb041Fb1b0dF7A
 
 ### Budget
 
-**Every paid run requires an explicit `--budget`.** Katara charges at least 0.05
+**Every paid run requires an explicit `--budget`.** Katara charges at least 0.025
 USDC per call on both networks. The budget caps the whole invocation, including
 planning, reviews, synthesis and repairs, and counts each signed maximum until the
 chain shows the actual charge. A payment whose outcome is unknown, such as a Katara
 Cortex fallback to another provider, still uses budget until it settles or expires.
 
-| Example | Fixture calls | Minimum at 0.05 USDC | Suggested `--budget` |
+| Example | Fixture calls | Minimum at 0.025 USDC | Suggested `--budget` |
 | --- | ---: | ---: | ---: |
-| repository | 20 | 1.00 | 1.50 |
-| documentation | 16 | 0.80 | 1.25 |
-| comparison | 19 | 0.95 | 1.50 |
-| trip | 20 | 1.00 | 1.50 |
-| cryptocurrency | 16 | 0.80 | 1.25 |
-| all five | 91 | 4.55 | 7.00 |
+| repository | 20 | 0.50 | 0.75 |
+| documentation | 16 | 0.40 | 0.75 |
+| comparison | 19 | 0.475 | 0.75 |
+| trip | 20 | 0.50 | 0.75 |
+| cryptocurrency | 16 | 0.40 | 0.75 |
+| all five | 91 | 2.275 | 3.50 |
 
 Katara lets one address hold ten unpaid quotes and ask for thirty a minute. The
 client spaces its quote requests to stay under that, and if Katara still answers
@@ -471,7 +471,7 @@ Token | test USDC 0xFED854555Faeeca02aCdB3fed90b0CD4048d3F45, no value | USDC 0x
 Settlement | 0xCA03Fe30B1c3cEA94530Ca95f21d8a487dB065c7 | 0x7f8D1049519Ddcb1Cb041Fb1b0dF7A125e96ACF3 | 
 Faucet | 0xe66bcB6D2864d851BB282440FA3Da2a82093CbF5 | none | 
 Permit2 · upto proxy | 0x000000000022D473030F116dDEE9F6B43aC78BA3 · 0x4020A4f3b7b90ccA423B9fabCc0CE57C6C240002 | 
-Katara publishes these addresses on its Networks page, and they appear in every payment challenge. The client fixes every value in this table. Addresses are per chain. On Avalanche C-Chain, 0x7f8D1049519Ddcb1Cb041Fb1b0dF7A125e96ACF3 is the Live settlement contract; on Fuji the same address belonged to the Test settlement contract until October 2026. The client checks each network's chain ID, so an address is only ever used on its own chain. The .env keys KATARA_SETTLEMENT_ADDRESS, KATARA_X402_ASSET, KATARA_CHAIN_ID, KATARA_X402_NETWORK, KATARA_GW_BASE and KATARA_GW_MODEL are optional; one that disagrees with the selected network stops the client. The doctor check compares the gateway's chain and settlement contract with these values and verifies deployed contract code, the settlement contract's token, the token signing domain, Permit2 and the upto proxy. The public Avalanche RPC rate limits busy addresses; the client retries an RPC 429 or 5xx up to five times with growing waits (or as Retry-After asks, when that is ten seconds or less), reuses balance, block and allowance reads for five seconds, and otherwise stops with rpc_http_<status>. Set AVALANCHE_RPC_URL to your own HTTPS RPC endpoint for the network's chain to avoid that limit; Avalanche lists RPC providers on its integrations page. For Live runs this is the recommended setup. Only one payment with a sponsored Permit2 approval is in flight per wallet; other calls pay with exact until it settles or its deadline passes, because each sponsored permit takes the token's next nonce. Optional limits are KATARA_DEMO_CONCURRENCY (1–4), KATARA_DEMO_DEADLINE_SECONDS (30–1800), and KATARA_DEMO_MAX_TOKENS (128–2048). An explicit --budget is required for each paid run. Quotes determine the authorization amounts; Katara charges at least 0.05 USDC per call on both networks.
+Katara publishes these addresses on its Networks page, and they appear in every payment challenge. The client fixes every value in this table. Addresses are per chain. On Avalanche C-Chain, 0x7f8D1049519Ddcb1Cb041Fb1b0dF7A125e96ACF3 is the Live settlement contract; on Fuji the same address belonged to the Test settlement contract until October 2026. The client checks each network's chain ID, so an address is only ever used on its own chain. The .env keys KATARA_SETTLEMENT_ADDRESS, KATARA_X402_ASSET, KATARA_CHAIN_ID, KATARA_X402_NETWORK, KATARA_GW_BASE and KATARA_GW_MODEL are optional; one that disagrees with the selected network stops the client. The doctor check compares the gateway's chain and settlement contract with these values and verifies deployed contract code, the settlement contract's token, the token signing domain, Permit2 and the upto proxy. The public Avalanche RPC rate limits busy addresses; the client retries an RPC 429 or 5xx up to five times with growing waits (or as Retry-After asks, when that is ten seconds or less), reuses balance, block and allowance reads for five seconds, and otherwise stops with rpc_http_<status>. Set AVALANCHE_RPC_URL to your own HTTPS RPC endpoint for the network's chain to avoid that limit; Avalanche lists RPC providers on its integrations page. For Live runs this is the recommended setup. Only one payment with a sponsored Permit2 approval is in flight per wallet; other calls pay with exact until it settles or its deadline passes, because each sponsored permit takes the token's next nonce. Optional limits are KATARA_DEMO_CONCURRENCY (1–4), KATARA_DEMO_DEADLINE_SECONDS (30–1800), and KATARA_DEMO_MAX_TOKENS (128–2048). An explicit --budget is required for each paid run. Quotes determine the authorization amounts; Katara charges at least 0.025 USDC per call on both networks.
 
 Test
 Test is paid exactly like Live, with the same wallet, but in test USDC on Avalanche Fuji. Its ledger is separate from Live's. Test quotes offer no sponsored approval because the test token takes no EIP-2612 permit, so upto on Test needs the wallet's own Permit2 approval, which npm run faucet sends along with the daily claim. Without it, Test payments use exact. When no Fuji provider is free for Katara Cortex, the Test network answers with a simulated reply that runs no model but is quoted, paid and settled like any other. The client records the call as simulated and gives the agent its built-in fixture output, and the report counts the simulated calls above the answer. Test therefore proves the wallet, payments, ledger and reconciliation, not answer quality. Live refuses a simulated quote before signing and a simulated reply after it.
