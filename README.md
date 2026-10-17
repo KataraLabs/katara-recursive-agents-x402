@@ -115,7 +115,9 @@ against the gateway and the chain.
 | Gateway | `https://api.katara.com/test` | `https://api.katara.com` |
 | Chain | Avalanche Fuji, `eip155:43113` | Avalanche C-Chain, `eip155:43114` |
 | Token | test USDC `0xFED854555Faeeca02aCdB3fed90b0CD4048d3F45` | USDC `0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E` |
-| Settlement contract | `0xCA03Fe30B1c3cEA94530Ca95f21d8a487dB065c7` | `0xB54f9763f9C6D34089A752290922Dd301c5724fC` |
+| Settlement contract | `0xCA03Fe30B1c3cEA94530Ca95f21d8a487dB065c7` | `0x7f8D1049519Ddcb1Cb041Fb1b0dF7A125e96ACF3` |
+
+Addresses are per chain. On Avalanche C-Chain, `0x7f8D1049519Ddcb1Cb041Fb1b0dF7A125e96ACF3` is the Live settlement contract; on Fuji the same address belonged to the Test settlement contract until October 2026. The client checks each network's chain ID, so an address is only ever used on its own chain.
 
 ### Budget
 

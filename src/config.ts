@@ -38,7 +38,7 @@ export const MAINNET = {
   chainId: 43114, network: 'eip155:43114',
   rpc: 'https://api.avax.network/ext/bc/C/rpc',
   asset: getAddress('0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E'),
-  settlement: getAddress('0xB54f9763f9C6D34089A752290922Dd301c5724fC'),
+  settlement: getAddress('0x7f8D1049519Ddcb1Cb041Fb1b0dF7A125e96ACF3'),
   domainSource: 'separator',
   explorer: 'https://snowtrace.io',
 } as const satisfies Network;
