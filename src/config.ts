@@ -49,7 +49,7 @@ export const TEST = {
   chainId: 43113, network: 'eip155:43113',
   rpc: 'https://api.avax-test.network/ext/bc/C/rpc',
   asset: getAddress('0xfed854555faeeca02acdb3fed90b0cd4048d3f45'),
-  settlement: getAddress('0x7f8d1049519ddcb1cb041fb1b0df7a125e96acf3'),
+  settlement: getAddress('0xca03fe30b1c3cea94530ca95f21d8a487db065c7'),
   domainSource: 'eip5267',
   explorer: 'https://testnet.snowtrace.io',
   faucet: getAddress('0xe66bcb6d2864d851bb282440fa3da2a82093cbf5'),
