@@ -46,7 +46,7 @@ describe('source-grounded master answers', () => {
   it('keeps only approved findings and records hashes, spans, and review call IDs', async () => {
     const r = input([finding(), finding('The package has no tests.')]);
     const complete = vi.fn(async () => {
-      r.calls.push({ id: 'review-call', agentId: 'repository/master', purpose: 'review', requestedModel: 'katara/cortex@1', startedAt: r.startedAt, status: 'succeeded', authorizationIds: [] });
+      r.calls.push({ id: 'review-call', agentId: 'repository/master', purpose: 'review', requestedModel: 'katara/cortex', startedAt: r.startedAt, status: 'succeeded', authorizationIds: [] });
       return JSON.stringify({ reviews: [{ id: '1', verdict: 'supported', reason: 'Test script is present.' }, { id: '2', verdict: 'unsupported', reason: 'Test script contradicts this claim.' }] });
     });
     await reviewFindings({ complete }, r, signal());

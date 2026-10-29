@@ -100,7 +100,7 @@ describe('manual x402 payment boundary', () => {
 function liveChallenge(network: Network = MAINNET) {
   const ticket = `0x${'89002295'.repeat(8)}`;
   const common = { network: network.network as string, asset: network.asset as string, amount: '50000', payTo: network.settlement as string, maxTimeoutSeconds: 300 };
-  const meta = { managed: true, model: 'katara/cortex@1', name: 'USD Coin', provider: '0x65B03c447b51369FC3E9c7268268eE7c0Fd7d34C', served: 'katara/deepseek-chat@1', ticketHash: ticket, version: '2' };
+  const meta = { managed: true, model: 'katara/cortex', name: 'USD Coin', provider: '0x65B03c447b51369FC3E9c7268268eE7c0Fd7d34C', served: 'katara/deepseek-chat@1', ticketHash: ticket, version: '2' };
   return {
     x402Version: 2, error: 'payment required',
     accepts: [
@@ -269,7 +269,7 @@ describe('upto signing boundary', () => {
 
 describe('simulated Test replies', () => {
   // The reply Katara's Test network sends when no Fuji provider is free: fixed text, marked simulated.
-  const simulatedReply = () => Response.json({ model: 'katara/cortex@1', choices: [{ message: { content: 'Simulated reply from Katara\'s Test network. No Test provider was free to answer, so no model ran and this text is fixed.' }, finish_reason: 'stop' }], katara: { simulated: true, cost_usdc: '0.05', served: { model: 'katara/simulated@1' } } });
+  const simulatedReply = () => Response.json({ model: 'katara/cortex', choices: [{ message: { content: 'Simulated reply from Katara\'s Test network. No Test provider was free to answer, so no model ran and this text is fixed.' }, finish_reason: 'stop' }], katara: { simulated: true, cost_usdc: '0.05', served: { model: 'katara/simulated@1' } } });
   const simulatedChallenge = (n: Network = MAINNET) => { const c = liveChallenge(n); for (const a of c.accepts) a.extra.served = 'katara/simulated@1'; return c; };
   const fixtureTask: CompletionRequest = { ...task, fixtureOutput: { summary: 'fixture finding' } };
   it('gives a Test agent its fixture output and keeps the paid call in the ledger', async () => {
@@ -287,7 +287,7 @@ describe('simulated Test replies', () => {
     for (const katara of [{ simulated: true }, { served: { model: 'katara/simulated@1' } }]) {
       const s = liveSetup(TEST); try {
         const ledger = new Ledger(join(s.dir, 'ledger.json')); ledger.begin('run', s.config.budget);
-        const reply = () => Response.json({ model: 'katara/cortex@1', choices: [{ message: { content: 'fixed text' }, finish_reason: 'stop' }], katara });
+        const reply = () => Response.json({ model: 'katara/cortex', choices: [{ message: { content: 'fixed text' }, finish_reason: 'stop' }], katara });
         const fetcher = vi.fn(async (_url: string, init: RequestInit) => (init.headers as Record<string, string>)['PAYMENT-SIGNATURE'] ? reply() : response402(liveChallenge(TEST) as any));
         const client = new PaidInference(s.config, ledger, chainStub(0n), 'run', () => {}, fetcher as any);
         expect(await client.complete(fixtureTask, new AbortController().signal)).toBe('{"summary":"fixture finding"}');

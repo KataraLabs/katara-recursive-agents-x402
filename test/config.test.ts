@@ -6,7 +6,7 @@ const env = () => ({ KATARA_BUYER_KEY: generatePrivateKey() });
 describe('mainnet configuration', () => {
   it('pins native USDC, chain, gateway, model and the published settlement contract', () => {
     const config = loadConfig({ env: env() });
-    expect(config).toMatchObject({ gateway: 'https://api.katara.com', model: 'katara/cortex@1', asset: MAINNET.asset, settlement: MAINNET.settlement, rpc: MAINNET.rpc });
+    expect(config).toMatchObject({ gateway: 'https://api.katara.com', model: 'katara/cortex', asset: MAINNET.asset, settlement: MAINNET.settlement, rpc: MAINNET.rpc });
     expect(MAINNET).toMatchObject({ chainId: 43114, network: 'eip155:43114' });
   });
   it('accepts matching optional settings and refuses any that point elsewhere', () => {
@@ -46,7 +46,7 @@ describe('Test network mode', () => {
     const e = env();
     const config = loadConfig({ env: { ...e, KATARA_MODE: 'test' } });
     expect(config.network).toBe(TEST);
-    expect(config).toMatchObject({ gateway: 'https://api.katara.com/test', model: 'katara/cortex@1', asset: TEST.asset, settlement: TEST.settlement, rpc: TEST.rpc });
+    expect(config).toMatchObject({ gateway: 'https://api.katara.com/test', model: 'katara/cortex', asset: TEST.asset, settlement: TEST.settlement, rpc: TEST.rpc });
     expect(config.wallet!.address).toBe(loadConfig({ env: e }).wallet!.address);
     expect(TEST).toMatchObject({ chainId: 43113, network: 'eip155:43113' });
     expect(() => loadConfig({ env: { KATARA_MODE: 'test' } })).toThrow('npm run wallet');

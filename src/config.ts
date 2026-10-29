@@ -34,7 +34,7 @@ export interface Network {
 /** Live: native USDC on Avalanche C-Chain through https://api.katara.com. The default. */
 export const MAINNET = {
   mode: 'live', label: 'mainnet', name: 'Avalanche C-Chain',
-  gateway: 'https://api.katara.com', model: 'katara/cortex@1',
+  gateway: 'https://api.katara.com', model: 'katara/cortex',
   chainId: 43114, network: 'eip155:43114',
   rpc: 'https://api.avax.network/ext/bc/C/rpc',
   asset: getAddress('0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E'),
@@ -45,7 +45,7 @@ export const MAINNET = {
 /** Test: test USDC with no value on Avalanche Fuji through https://api.katara.com/test. */
 export const TEST = {
   mode: 'test', label: 'test', name: 'Avalanche Fuji',
-  gateway: 'https://api.katara.com/test', model: 'katara/cortex@1',
+  gateway: 'https://api.katara.com/test', model: 'katara/cortex',
   chainId: 43113, network: 'eip155:43113',
   rpc: 'https://api.avax-test.network/ext/bc/C/rpc',
   asset: getAddress('0xfed854555faeeca02acdb3fed90b0cd4048d3f45'),

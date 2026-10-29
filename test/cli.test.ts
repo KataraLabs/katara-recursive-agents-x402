@@ -156,7 +156,7 @@ describe('Test mode in the CLI', () => {
     const { dir, cleanup } = setup(); const key = generatePrivateKey();
     const address = privateKeyToAccount(key).address;
     vi.spyOn(AvalancheChain.prototype, 'check').mockResolvedValue({ address, balance: '5000000', permit2Allowance: '0', block: '100' });
-    const network = vi.fn(async (url: string) => Response.json(url.endsWith('/v1/models') ? { data: [{ id: 'katara/cortex@1' }] } : { chain_id: '43113', settlement: TEST.settlement }));
+    const network = vi.fn(async (url: string) => Response.json(url.endsWith('/v1/models') ? { data: [{ id: 'katara/cortex' }] } : { chain_id: '43113', settlement: TEST.settlement }));
     vi.stubGlobal('fetch', network);
     try {
       const response = await invoke(['doctor'], { stateDir: dir, env: { KATARA_BUYER_KEY: key, KATARA_MODE: 'test' } });
@@ -239,13 +239,13 @@ describe('simulated answers in a Test run', () => {
     // Researchers fetch through get(); fixture mode keeps the run off the network.
     const get = SourceCollector.prototype.get;
     vi.spyOn(SourceCollector.prototype, 'get').mockImplementation(function (this: any, id: string) { this.fixture = true; return get.call(this, id); });
-    const quote = { x402Version: 2, accepts: [{ scheme: 'exact', network: TEST.network, asset: TEST.asset, amount: '50000', payTo: TEST.settlement, maxTimeoutSeconds: 300, extra: { name: 'USD Coin', version: '2', model: 'katara/cortex@1', served: 'katara/simulated@1', managed: true } }] };
+    const quote = { x402Version: 2, accepts: [{ scheme: 'exact', network: TEST.network, asset: TEST.asset, amount: '50000', payTo: TEST.settlement, maxTimeoutSeconds: 300, extra: { name: 'USD Coin', version: '2', model: 'katara/cortex', served: 'katara/simulated@1', managed: true } }] };
     vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
-      if (url.endsWith('/v1/models')) return Response.json({ data: [{ id: 'katara/cortex@1' }] });
+      if (url.endsWith('/v1/models')) return Response.json({ data: [{ id: 'katara/cortex' }] });
       if (url.endsWith('/v1/provider/info')) return Response.json({ chain_id: '43113', settlement: TEST.settlement });
       expect(url).toBe('https://api.katara.com/test/v1/chat/completions');
       if (!(init!.headers as Record<string, string>)['PAYMENT-SIGNATURE']) return new Response('{}', { status: 402, headers: { 'PAYMENT-REQUIRED': Buffer.from(JSON.stringify(quote)).toString('base64') } });
-      return Response.json({ model: 'katara/cortex@1', choices: [{ message: { content: 'Simulated reply. No model ran.' }, finish_reason: 'stop' }], katara: { simulated: true, served: { model: 'katara/simulated@1' } } });
+      return Response.json({ model: 'katara/cortex', choices: [{ message: { content: 'Simulated reply. No model ran.' }, finish_reason: 'stop' }], katara: { simulated: true, served: { model: 'katara/simulated@1' } } });
     }));
     try {
       const response = await invoke(['run', 'cryptocurrency', '--budget', '5.00'], { stateDir: dir, env: { KATARA_BUYER_KEY: key, KATARA_MODE: 'test' } });

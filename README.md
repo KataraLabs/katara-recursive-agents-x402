@@ -5,7 +5,7 @@ specialist spawns researchers, and their findings return to the master. The mast
 checks their source support and writes a readable answer. Every report opens with
 that synopsis, followed by expandable evidence, agent work, and payment records.
 
-The agents call **Katara Cortex** (`katara/cortex@1`) and pay for each call with
+The agents call **Katara Cortex** (`katara/cortex`) and pay for each call with
 **x402** from a wallet you create here: test USDC on Avalanche Fuji while you try
 it, native USDC on Avalanche C-Chain when you run it for real. There is no account,
 API key, local gateway or blockchain node to set up.

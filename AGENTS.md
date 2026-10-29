@@ -108,7 +108,7 @@ lines as a stable API. Published JSON Schemas describe structure; runtime checks
 also enforce source relationships, budgets and chain evidence.
 
 Use the full product name Katara Cortex in all prose. Keep API identifiers such as
-`katara/cortex@1` unchanged. Write JSDoc that explains contracts, units, side effects,
+`katara/cortex` unchanged. Write JSDoc that explains contracts, units, side effects,
 errors and evidence boundaries without repeating obvious signatures. Preserve MIT
 and third-party source attribution. New public guidance must not rely on private
 workspace files or machine-specific paths.

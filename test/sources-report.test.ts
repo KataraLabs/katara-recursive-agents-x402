@@ -8,7 +8,7 @@ import { report } from './helpers.js';
 describe('public evidence boundary', () => {
   it('uses the full product name in reports without rewriting identifiers or original evidence', () => {
     expect(brandText('Cortex. Katara Cortex. Katara\nCortex.')).toBe('Katara Cortex. Katara Cortex. Katara\nCortex.');
-    const identifiers = 'katara/cortex@1 cortex:served CortexConfig cfg.Cortex https://example.com/Cortex Cortex.md';
+    const identifiers = 'katara/cortex cortex:served CortexConfig cfg.Cortex https://example.com/Cortex Cortex.md';
     expect(brandText(identifiers)).toBe(identifiers);
     const r = report(loadExample('documentation'));
     r.title = 'Cortex report';
@@ -66,7 +66,7 @@ describe('payment links and simulated counts', () => {
       { ...base, id: 'a', callId: 'c1', nonce: `0x${'01'.repeat(32)}`, state: 'confirmed', actual: '50000', transaction: tx, block: '2' },
       { ...base, id: 'b', callId: 'c2', nonce: `0x${'02'.repeat(32)}`, state: 'confirmed', actual: '50000', transaction: tx, block: '2', network: 'eip155:1' },
     ];
-    const call = (id: string, extra: object) => ({ id, agentId: 'trip/master', purpose: 'plan' as const, requestedModel: 'katara/cortex@1', startedAt: 'now', status: 'succeeded' as const, authorizationIds: [] as string[], ...extra });
+    const call = (id: string, extra: object) => ({ id, agentId: 'trip/master', purpose: 'plan' as const, requestedModel: 'katara/cortex', startedAt: 'now', status: 'succeeded' as const, authorizationIds: [] as string[], ...extra });
     r.calls = [call('c1', { simulated: true, authorizationIds: ['a'] }), call('c2', { simulated: true, authorizationIds: ['b'] }), call('c3', { status: 'failed', error: 'gateway_http_429', gateway: { status: 429, code: 'quote_rate_limited', message: 'Too many unpaid quotes' } })];
     return r;
   }

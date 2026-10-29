@@ -108,7 +108,7 @@ lines as a stable API. Published JSON Schemas describe structure; runtime checks
 also enforce source relationships, budgets and chain evidence.
 
 Use the full product name Katara Cortex in all prose. Keep API identifiers such as
-`katara/cortex@1` unchanged. Write JSDoc that explains contracts, units, side effects,
+`katara/cortex` unchanged. Write JSDoc that explains contracts, units, side effects,
 errors and evidence boundaries without repeating obvious signatures. Preserve MIT
 and third-party source attribution. New public guidance must not rely on private
 workspace files or machine-specific paths.
@@ -131,7 +131,7 @@ specialist spawns researchers, and their findings return to the master. The mast
 checks their source support and writes a readable answer. Every report opens with
 that synopsis, followed by expandable evidence, agent work, and payment records.
 
-The agents call **Katara Cortex** (`katara/cortex@1`) and pay for each call with
+The agents call **Katara Cortex** (`katara/cortex`) and pay for each call with
 **x402** from a wallet you create here: test USDC on Avalanche Fuji while you try
 it, native USDC on Avalanche C-Chain when you run it for real. There is no account,
 API key, local gateway or blockchain node to set up.
@@ -473,7 +473,7 @@ Reconciliation uses a finalized Avalanche block. An exact record is confirmed by
 Configuration
  | KATARA_MODE=test | Live (default) | 
 Gateway | https://api.katara.com/test | https://api.katara.com | 
-Model | katara/cortex@1 | katara/cortex@1 | 
+Model | katara/cortex | katara/cortex | 
 Network | Avalanche Fuji · eip155:43113 | Avalanche C-Chain · eip155:43114 | 
 Token | test USDC 0xFED854555Faeeca02aCdB3fed90b0CD4048d3F45, no value | USDC 0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E | 
 Settlement | 0xCA03Fe30B1c3cEA94530Ca95f21d8a487dB065c7 | 0x7f8D1049519Ddcb1Cb041Fb1b0dF7A125e96ACF3 | 
@@ -672,10 +672,10 @@ One Katara network. Both are served by the production API and paid per request w
 Token, settlement and faucet addresses are the values Katara publishes on its Networks page
 (docs.katara.com/about/networks/); preflight checks them again against the gateway and the chain.
 
-MAINNET: { readonly mode: "live"; readonly label: "mainnet"; readonly name: "Avalanche C-Chain"; readonly gateway: "https://api.katara.com"; readonly model: "katara/cortex@1"; readonly chainId: 43114; ... 5 more ...; readonly explorer: "https://snowtrace.io"; }
+MAINNET: { readonly mode: "live"; readonly label: "mainnet"; readonly name: "Avalanche C-Chain"; readonly gateway: "https://api.katara.com"; readonly model: "katara/cortex"; readonly chainId: 43114; ... 5 more ...; readonly explorer: "https://snowtrace.io"; }
 Live: native USDC on Avalanche C-Chain through https://api.katara.com. The default.
 
-TEST: { readonly mode: "test"; readonly label: "test"; readonly name: "Avalanche Fuji"; readonly gateway: "https://api.katara.com/test"; readonly model: "katara/cortex@1"; readonly chainId: 43113; ... 6 more ...; readonly faucet: `0x${string}`; }
+TEST: { readonly mode: "test"; readonly label: "test"; readonly name: "Avalanche Fuji"; readonly gateway: "https://api.katara.com/test"; readonly model: "katara/cortex"; readonly chainId: 43113; ... 6 more ...; readonly faucet: `0x${string}`; }
 Test: test USDC with no value on Avalanche Fuji through https://api.katara.com/test.
 
 explorerTx(network: string, hash: string): string | undefined
