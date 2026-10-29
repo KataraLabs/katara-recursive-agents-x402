@@ -23,6 +23,25 @@ const same = (a: unknown, b: string) => typeof a === 'string' && a.toLowerCase()
 /** Settled.mode values from the settlement contract's enum: X402=0, Prepaid=1, Permit2=2, Allowance=3. */
 const MODE_X402 = 0; const MODE_PERMIT2 = 2;
 
+/** Blocks per eth_getLogs page before any RPC has refused a range. Avalanche's public C-Chain RPC allows 100. */
+export const LOG_SPAN = 2000n;
+/** Blocks after an authorization's start block that a settlement search covers, whatever the page width. */
+export const LOG_REACH = 200_000n;
+/**
+ * The page width to try after an RPC refused eth_getLogs over `span` blocks, or undefined when the refusal was not
+ * about the range. A limit the RPC states ("maximum of 100 blocks") is used directly; otherwise the width halves.
+ */
+export function narrowerSpan(error: unknown, span: bigint): bigint | undefined {
+  for (let e: any = error, depth = 0; e && depth < 8; e = e.cause, depth++) {
+    const text = `${e.details ?? ''} ${e.shortMessage ?? ''}`;
+    if (!/block range|range (is )?too (large|wide)|too many blocks|returned more than \d+ results/i.test(text)) continue;
+    const stated = /max(?:imum)?(?: of)? (\d{1,9}) blocks/i.exec(text);
+    const next = stated && BigInt(stated[1]!) < span ? BigInt(stated[1]!) : span / 2n;
+    return next >= 1n ? next : undefined;
+  }
+  return undefined;
+}
+
 /** How hard to retry an RPC that answers 429 or 5xx. Waits follow Retry-After when sent, else double from baseMs. */
 export interface RpcRetry { attempts: number; baseMs: number; maxMs: number }
 /** Five attempts in all, waiting 1, 2, 4 and 8 seconds, or as Retry-After says up to 10 seconds. */
@@ -61,6 +80,11 @@ export function rpcError(error: unknown, config: Config): unknown {
       return new DemoError(`rpc_http_${e.status}`, `The ${config.network.name} RPC answered HTTP ${e.status}${e.status === 429 ? ' (rate limited)' : ''}${wait}. ${hint}`);
     }
     if (e.name === 'TimeoutError' || e.name === 'HttpRequestError') return new DemoError('rpc_unavailable', `The ${config.network.name} RPC did not answer. ${hint}`);
+    if (e.name === 'RpcRequestError' && Number.isInteger(e.code)) {
+      // The RPC's own text says which limit it hit; it is bounded and stripped of control characters, and never holds the URL.
+      const said = String(e.details ?? '').replace(/[\u0000-\u001f\u007f]/g, ' ').slice(0, 200);
+      return new DemoError(`rpc_error_${Math.abs(e.code)}`, `The ${config.network.name} RPC refused the request with JSON-RPC error ${e.code}${said ? `: ${said}` : ''}. ${hint}`);
+    }
   }
   return error;
 }
@@ -105,6 +129,8 @@ export class AvalancheChain {
    * Bind the verified configuration to an HTTPS RPC with bounded request timeouts. No network request occurs here.
    */
   private cache = new Map<string, { at: number; value: Promise<bigint> }>();
+  /** Current eth_getLogs page width; halved when the RPC refuses a range as too wide. */
+  private logSpan = LOG_SPAN;
   private cacheMs: number;
   /**
    * @param options signal cancels RPC retries; retry and fetcher are for tests; cacheMs is how long balance, block
@@ -132,8 +158,8 @@ export class AvalancheChain {
   /**
    * Verify the chain, token domain and deployed settlement token before paid work.
    * @returns Public wallet address, USDC balance and Permit2 allowance in base units, and the observation block.
-   * @throws DemoError when configuration or contract evidence disagrees, or rpc_http_<status> / rpc_unavailable when the
-   * RPC still fails after retries.
+   * @throws DemoError when configuration or contract evidence disagrees, or rpc_http_<status> / rpc_unavailable /
+   * rpc_error_<code> when the RPC still fails after retries or refuses the request.
    */
   async check(): Promise<{ address: string; balance: string; permit2Allowance: string; block: string }> { return this.guard(() => this.checkChain()); }
   private async checkChain(): Promise<{ address: string; balance: string; permit2Allowance: string; block: string }> {
@@ -186,7 +212,7 @@ export class AvalancheChain {
   /**
    * Update the ledger only from finalized chain evidence. Missing or ambiguous evidence keeps funds reserved.
    * @param ledger Wallet-scoped ledger to mutate; the caller must hold its process lock.
-   * @throws DemoError if a reservation belongs to another wallet, token, network or recipient.
+   * @throws DemoError if a reservation belongs to another wallet, token, network or recipient, or rpc_* as for check.
    */
   async reconcile(ledger: Ledger): Promise<void> { return this.guard(() => this.reconcileAll(ledger)); }
   private async reconcileAll(ledger: Ledger): Promise<void> {
@@ -208,17 +234,17 @@ export class AvalancheChain {
       if (finalizedTime > BigInt(a.validBefore)) ledger.expire(a.id, finalizedTime, true);
       return;
     }
-    let found = false;
-    for (let from = BigInt(a.startBlock), pages = 0; from <= finalized && !found && pages < 100; from += 2000n, pages++) {
-      const to = from + 1999n < finalized ? from + 1999n : finalized;
-      const logs = await this.client.getLogs({ address: this.config.asset, event: parseAbiItem('event AuthorizationUsed(address indexed authorizer, bytes32 indexed nonce)'), args: { authorizer: a.from as Hex, nonce: a.nonce as Hex }, fromBlock: from, toBlock: to, strict: true });
+    await this.scanLogs(BigInt(a.startBlock), finalized, async (fromBlock, toBlock) => {
+      const logs = await this.client.getLogs({ address: this.config.asset, event: parseAbiItem('event AuthorizationUsed(address indexed authorizer, bytes32 indexed nonce)'), args: { authorizer: a.from as Hex, nonce: a.nonce as Hex }, fromBlock, toBlock, strict: true });
+      let found = false;
       for (const log of logs) {
         const receipt = await this.client.getTransactionReceipt({ hash: log.transactionHash });
         if (receipt.blockNumber > finalized) continue;
         const result = receiptCharge(a, receipt);
         if (result) { ledger.confirm(a.id, result.actual, receipt.transactionHash, receipt.blockNumber, result.ticketHash); found = true; }
       }
-    }
+      return found;
+    });
   }
   /**
    * Confirm a Permit2 upto authorization from the Settled event for its ticket, or expire it once its nonce is unused
@@ -232,13 +258,32 @@ export class AvalancheChain {
       if (finalizedTime > BigInt(a.validBefore)) ledger.expire(a.id, finalizedTime, true);
       return;
     }
-    if (!a.ticketHash) return;
-    for (let from = BigInt(a.startBlock), pages = 0; from <= finalized && pages < 100; from += 2000n, pages++) {
-      const to = from + 1999n < finalized ? from + 1999n : finalized;
-      const logs = await this.client.getLogs({ address: this.config.settlement, event: SETTLEMENT_ABI[1], args: { ticketHash: a.ticketHash as Hex, buyer: a.from as Hex }, fromBlock: from, toBlock: to, strict: true });
+    const ticketHash = a.ticketHash;
+    if (!ticketHash) return;
+    await this.scanLogs(BigInt(a.startBlock), finalized, async (fromBlock, toBlock) => {
+      const logs = await this.client.getLogs({ address: this.config.settlement, event: SETTLEMENT_ABI[1], args: { ticketHash: ticketHash as Hex, buyer: a.from as Hex }, fromBlock, toBlock, strict: true });
       const settled = logs.filter(l => l.args.mode === MODE_PERMIT2 && l.args.actualAmount! <= BigInt(a.value));
-      if (settled.length === 1) { ledger.confirm(a.id, settled[0]!.args.actualAmount!, settled[0]!.transactionHash, settled[0]!.blockNumber, a.ticketHash); return; }
-      if (settled.length > 1) return;
+      if (settled.length === 1) ledger.confirm(a.id, settled[0]!.args.actualAmount!, settled[0]!.transactionHash, settled[0]!.blockNumber, ticketHash);
+      return settled.length > 0;
+    });
+  }
+  /**
+   * Walk [start, finalized] in eth_getLogs pages until page returns true or LOG_REACH blocks are covered. A page the RPC
+   * refuses as too wide is asked again narrower (see narrowerSpan), and later searches keep that width, so a public
+   * endpoint's range limit costs a refusal or two per process while a private RPC keeps wide pages.
+   */
+  private async scanLogs(start: bigint, finalized: bigint, page: (from: bigint, to: bigint) => Promise<boolean>): Promise<void> {
+    const end = start + LOG_REACH - 1n < finalized ? start + LOG_REACH - 1n : finalized;
+    for (let from = start; from <= end;) {
+      const to = from + this.logSpan - 1n < end ? from + this.logSpan - 1n : end;
+      let done: boolean;
+      try { done = await page(from, to); } catch (error) {
+        const narrower = narrowerSpan(error, this.logSpan);
+        if (narrower) { this.logSpan = narrower; continue; }
+        throw error;
+      }
+      if (done) return;
+      from = to + 1n;
     }
   }
 }

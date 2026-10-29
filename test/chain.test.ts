@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { encodeEventTopics, encodeAbiParameters, parseAbiParameters, toHex, type TransactionReceipt } from 'viem';
 import { join } from 'node:path';
-import { AvalancheChain, receiptCharge, TOKEN_ABI, SETTLEMENT_ABI } from '../src/chain.js';
+import { AvalancheChain, LOG_REACH, receiptCharge, TOKEN_ABI, SETTLEMENT_ABI } from '../src/chain.js';
 import { Ledger } from '../src/ledger.js';
 import { authorization, setup } from './helpers.js';
 import { DemoError, type Authorization } from '../src/types.js';
@@ -198,6 +198,82 @@ describe('long RPC bans', () => {
       const error = await chain.blockNumber().catch(e => e);
       expect(error.code).toBe('rpc_http_429');
       expect(error.message).toContain('asked to wait 38 minutes'); expect(error.message).toContain('AVALANCHE_RPC_URL');
+      expect(fetcher).toHaveBeenCalledTimes(1);
+    } finally { s.cleanup(); }
+  });
+});
+
+describe('eth_getLogs range limits', () => {
+  const nonce = (1n << 8n) + 5n;
+  // Answers eth_getLogs like Avalanche's public C-Chain RPC: more than `limit` blocks is refused with -32602.
+  function logsRpc(limit: bigint, settledAt?: bigint, message = `block range too large: total block range in this request exceeds the maximum of ${limit} blocks`) {
+    const ranges: [bigint, bigint][] = [];
+    const fetcher = vi.fn(async (_input: unknown, init?: RequestInit) => {
+      const req = JSON.parse(String(init!.body));
+      const { fromBlock, toBlock, address } = req.params[0];
+      const from = BigInt(fromBlock); const to = BigInt(toBlock); ranges.push([from, to]);
+      if (to - from + 1n > limit) return Response.json({ jsonrpc: '2.0', id: req.id, error: { code: -32602, message } });
+      const hit = settledAt !== undefined && from <= settledAt && settledAt <= to;
+      const log = () => ({ address, blockNumber: toHex(settledAt!), blockHash: `0x${'ee'.repeat(32)}`, transactionHash: tx, transactionIndex: '0x0', logIndex: '0x0', removed: false,
+        topics: req.params[0].topics.map((t: unknown, i: number) => i === 3 ? `0x${'00'.repeat(12)}${'11'.repeat(20)}` : t),
+        data: encodeAbiParameters(parseAbiParameters('uint256,uint256,uint8'), [12_000n, 1n, 2]) });
+      return Response.json({ jsonrpc: '2.0', id: req.id, result: hit ? [log()] : [] });
+    });
+    return { fetcher, ranges };
+  }
+  function uptoChain(fetcher: typeof fetch, finalized: bigint) {
+    const s = setup();
+    const ledger = new Ledger(join(s.dir, 'ledger.json')); ledger.begin('run', s.config.budget);
+    ledger.reserve(authorization(s.config, { scheme: 'upto', nonce: toHex(nonce, { size: 32 }), value: '50000', ticketHash: ticket }), 100_000n);
+    const chain = new AvalancheChain(s.config, { fetcher });
+    vi.spyOn(chain.client, 'getBlock').mockResolvedValue({ number: finalized, timestamp: 1n } as any);
+    vi.spyOn(chain.client, 'readContract').mockResolvedValue(1n << 5n as any);
+    return { s, ledger, chain };
+  }
+  it('drops to the limit the RPC states, keeps that width, and finds the settlement', async () => {
+    const { fetcher, ranges } = logsRpc(100n, 950n);
+    const { s, ledger, chain } = uptoChain(fetcher as any, 5_000n); try {
+      await chain.reconcile(ledger);
+      expect(ledger.list()[0]).toMatchObject({ state: 'confirmed', actual: '12000', transaction: tx });
+      expect(ranges.map(([f, t]) => t - f + 1n)).toEqual([2000n, ...Array(9).fill(100n)]);
+      expect(ranges.at(-1)).toEqual([900n, 999n]);
+    } finally { s.cleanup(); }
+  });
+  it('halves the page width while the RPC refuses a range without stating its limit', async () => {
+    const { fetcher, ranges } = logsRpc(100n, 950n, 'query exceeds max block range');
+    const { s, ledger, chain } = uptoChain(fetcher as any, 5_000n); try {
+      await chain.reconcile(ledger);
+      expect(ledger.list()[0]!.state).toBe('confirmed');
+      // 2000, 1000, 500, 250 and 125 are refused; 62-block pages from block 100 reach 950 on the fourteenth.
+      expect(ranges.slice(0, 6).map(([f, t]) => t - f + 1n)).toEqual([2000n, 1000n, 500n, 250n, 125n, 62n]);
+      expect(ranges.slice(5).every(([f, t]) => t - f + 1n === 62n)).toBe(true);
+      expect(ranges.length).toBe(5 + 14);
+    } finally { s.cleanup(); }
+  });
+  it('covers the same block reach at any page width and stops at the finalized block', async () => {
+    const wide = logsRpc(10_000n);
+    const a = uptoChain(wide.fetcher as any, 10_000_000n); try {
+      await a.chain.reconcile(a.ledger);
+      expect(a.ledger.list()[0]!.state).toBe('pending');
+      expect(wide.ranges).toHaveLength(Number(LOG_REACH / 2000n));
+      expect(wide.ranges.at(-1)![1]).toBe(100n + LOG_REACH - 1n);
+    } finally { a.s.cleanup(); }
+    const near = logsRpc(100n);
+    const b = uptoChain(near.fetcher as any, 1_000n); try {
+      await b.chain.reconcile(b.ledger);
+      expect(near.ranges.at(-1)![1]).toBe(1_000n);
+    } finally { b.s.cleanup(); }
+  });
+  it('reports another RPC refusal by its JSON-RPC code instead of request_failed', async () => {
+    const fetcher = vi.fn(async (_input: unknown, init?: RequestInit) => {
+      const req = JSON.parse(String(init!.body));
+      return Response.json({ jsonrpc: '2.0', id: req.id, error: { code: -32000, message: 'header not found' } });
+    });
+    const { s, ledger, chain } = uptoChain(fetcher as any, 5_000n); try {
+      const error = await chain.reconcile(ledger).catch(e => e);
+      expect(error).toBeInstanceOf(DemoError);
+      expect(error.code).toBe('rpc_error_32000');
+      expect(error.message).toContain('-32000'); expect(error.message).toContain('header not found'); expect(error.message).toContain('AVALANCHE_RPC_URL');
       expect(fetcher).toHaveBeenCalledTimes(1);
     } finally { s.cleanup(); }
   });

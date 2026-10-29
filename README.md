@@ -147,7 +147,10 @@ The client reads the chain through Avalanche's public RPC by default, which limi
 how often one address may ask. It retries an RPC answer of 429 or 5xx a few times
 with growing waits and reuses balance and block reads for a few seconds. If the
 public endpoint still refuses, the command stops with `rpc_http_429` (or the status
-it got). Set `AVALANCHE_RPC_URL` in `.env` to your own HTTPS RPC endpoint for the
+it got). The public C-Chain endpoint also answers a log search over more than 100
+blocks with an error; `reconcile` then asks again in narrower block ranges, so it
+works there, only more slowly. Any other refusal stops the command with
+`rpc_error_<code>` and the RPC's message. Set `AVALANCHE_RPC_URL` in `.env` to your own HTTPS RPC endpoint for the
 network's chain, from any of the providers on Avalanche's
 [integrations page](https://build.avax.network/integrations), and run again.
 
