@@ -100,7 +100,7 @@ describe('manual x402 payment boundary', () => {
 function liveChallenge(network: Network = MAINNET) {
   const ticket = `0x${'89002295'.repeat(8)}`;
   const common = { network: network.network as string, asset: network.asset as string, amount: '50000', payTo: network.settlement as string, maxTimeoutSeconds: 300 };
-  const meta = { managed: true, model: 'katara/cortex', name: 'USD Coin', provider: '0x65B03c447b51369FC3E9c7268268eE7c0Fd7d34C', served: 'katara/deepseek-chat@1', ticketHash: ticket, version: '2' };
+  const meta = { managed: true, model: 'katara/cortex', name: 'USD Coin', provider: '0x65B03c447b51369FC3E9c7268268eE7c0Fd7d34C', served: 'katara/cortex', ticketHash: ticket, version: '2' };
   return {
     x402Version: 2, error: 'payment required',
     accepts: [
